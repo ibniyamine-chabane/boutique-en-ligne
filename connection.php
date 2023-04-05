@@ -1,3 +1,18 @@
+<?php 
+session_start();
+require_once("src/class/users.php");
+$user = new users;
+
+if (isset($_POST['submit'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $user->connection($email, $password);
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,9 +22,7 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        
-    </header>
+    <?php require_once("header.php"); ?>
     <main>
         <div></div>
     <section>
@@ -20,7 +33,7 @@
                 <input type="email" name="email" required>
                 <label for="password">password</label>
                 <input type="password" name="password" required>
-                <input type="submit" value="valider">
+                <input type="submit" name="submit" value="valider">
             </form>
         </div>
     </section>

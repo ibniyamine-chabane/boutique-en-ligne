@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,7 @@
     <title>admin dashboard</title>
 </head>
 <body>
+    <?php require_once("header.php"); ?>
     <main>
         <section>
         <div>

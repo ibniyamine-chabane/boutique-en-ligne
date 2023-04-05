@@ -7,6 +7,7 @@
     <title>validation commande</title>
 </head>
 <body>
+    <?php require_once("header.php"); ?>
     <main>
         <section>
             <h2>détail de facturation</h2>

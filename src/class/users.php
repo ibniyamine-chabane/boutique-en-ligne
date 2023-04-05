@@ -11,7 +11,8 @@ class users
     //Constructeur
     public function __construct(){ 
         try {
-            $this->database = new PDO('mysql:host=localhost;dbname=blog_js;charset=utf8;port=3307', 'root', '');
+            $this->database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
+
         } catch(Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -21,10 +22,9 @@ class users
 
     public function register($email, $firstname, $lastname, $password) {
 
-        $request = $this->database->prepare('SELECT * FROM users');
+        $request = $this->database->prepare('SELECT * FROM user');
         $request->execute(array());
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-        
         $this->email = $email;
         $password;
         $firstname;
@@ -48,7 +48,7 @@ class users
 
         if ($emailOk == true){
         //on créer l'utilisateur.
-          $request = $this->database->prepare("INSERT INTO users(email, firstname, lastname, password, id_role, register_date) VALUES (?, ?, ?, ?,NOW())");
+          $request = $this->database->prepare("INSERT INTO user(email, first_name, last_name, password, id_role, register_date) VALUES (?, ?, ?, ?, ?,NOW())");
           $request->execute(array($this->email, $firstname, $lastname, $password, $role_id));
     
           echo "tu est inscrit";
@@ -60,7 +60,7 @@ class users
     public function connection($email, $password) {
         //session_start();
 
-        $request = $this->database->prepare('SELECT u.`id` , `email` , `firstname` , `lastname` , `password` , `rights` FROM user u INNER JOIN role ON role.id = u.role_id');
+        $request = $this->database->prepare('SELECT u.`id` , `email` , `first_name` , `last_name` , `password` , `rights` FROM user u INNER JOIN role ON role.id = u.id_role');
         $request->execute(array());
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
 
