@@ -11,6 +11,7 @@
                 <li><a href="shop.php">boutique</a></li>
                 <li><a href="logout.php">Se déconnecter</a></li>
                 <li><a href="admin_dashboard.php">admin</a></li>
+                <li><a href="cart.php">panier</a></li>
             <?php else: ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="shop.php">boutique</a></li>
