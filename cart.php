@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +10,7 @@
     <title>cart</title>
 </head>
 <body>
+    <?php require_once("header.php"); ?>
     <main>
         <section>
             <h2></h2>

@@ -1,3 +1,29 @@
+<?php
+require_once("src/class/users.php");
+$user = new users;
+
+if (isset($_POST['submit'])) {
+
+    if ($_POST['email'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password'] && $_POST['password_confirm']) {
+     
+        if ($_POST['password'] == $_POST['password_confirm']) {
+
+            $email = htmlspecialchars(trim($_POST['email']));
+            $firstname = htmlspecialchars(trim($_POST['firstname']));
+            $lastname =  htmlspecialchars(trim($_POST['lastname']));
+            $password =  htmlspecialchars(trim($_POST['password']));
+            $user->register($email, $firstname, $lastname, $password);
+
+        }else {
+            echo "les mot de passe ne correspond pas";
+        }    
+
+    } else {
+        echo "veuillez remplir tout les champs"; 
+    } 
+} 
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,9 +33,8 @@
     <title>inscription</title>
 </head>
 <body>
-    <header>
-
-    </header>
+    <?php require_once("header.php"); ?>
+    <main>
     <div></div>
     <section>
         <div>
@@ -25,9 +50,10 @@
                 <input type="password" name="password">
                 <label for="password_confirm">confirmer mot de passe</label>
                 <input type="password" name="password_confirm">
-                <input type="submit" value="valider">
+                <input type="submit" name="submit" value="valider">
             </form>
         </div>
-    </section>    
+    </section> 
+    </main>   
 </body>
 </html>

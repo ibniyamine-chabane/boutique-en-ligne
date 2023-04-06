@@ -12,6 +12,7 @@
     <title>Produit</title>
 </head>
 <body>
+    <?php require_once("header.php"); ?>
     <main>
         <div></div>
         <section>
