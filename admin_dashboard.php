@@ -26,7 +26,7 @@ session_start();
                 </div>
             </div>
         </div>
-        <button>ajouter un produit</button>
+        <button><a href="add_product.php">ajouter un produit</a></button>
         </section>
     </main>
 </body>
