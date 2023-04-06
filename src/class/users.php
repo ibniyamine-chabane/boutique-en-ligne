@@ -75,7 +75,7 @@ class users
                 $_SESSION['email'] = $email;
                 $id = $user['id'];  
                 $_SESSION['id'] = $id;
-                $_SESSION["firstname"] = $user["firstname"];
+                $_SESSION["firstname"] = $user["first_name"];
                 $_SESSION["rights"] = $user["rights"];
                 $logged = true;
                 break;
@@ -83,13 +83,12 @@ class users
             } else {
                 $logged = false;
             }
-            //var_dump($user);
         }
 
         //echo $_SESSION["username"];
 
         if( $logged ) {
-            echo "vous êtes connecté ".$_SESSION['username']." en tant que: ".$_SESSION['rights'];
+            echo "vous êtes connecté ".$_SESSION['firstname']." en tant que: ".$_SESSION['rights'];
             //var_dump($user);
             header('Location: index.php');
         } else {
