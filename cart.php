@@ -7,11 +7,24 @@
     // Instanciation de la classe Cart
     $cart = new Cart();
 
-    // Récupération de l'ID de l'utilisateur actuel (à remplacer par votre propre logique)
-    $user_id = 1;
+ // Vérifie si l'utilisateur est connecté
+ //if(isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+//} else {
+    // Redirige l'utilisateur vers la page de connexion si non connecté
+   // header('Location: login.php');
+    //exit();
+//}
+
 
     // Récupération des produits ajoutés au panier par l'utilisateur
     $products = $cart->selectProducts($user_id);
+
+    // Calcul  total du panier
+    $total_price = 0;
+    foreach ($products as $product) {
+        $total_price += $product['price'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +60,7 @@
                 </tbody>
             </table>
         </section>
+        <h2>Total panier : <?= $total_price ?> €</h2>
         <button>Valider le panier</button>
     </main>
 </body>
