@@ -11,7 +11,7 @@ class users
     //Constructeur
     public function __construct(){ 
         try {
-            $this->database = new PDO('mysql:host=localhost;dbname=blog_js;charset=utf8;port=3307', 'root', '');
+            $this->database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8;port=3306', 'root', '');
         } catch(Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -48,7 +48,7 @@ class users
 
         if ($emailOk == true){
         //on créer l'utilisateur.
-          $request = $this->database->prepare("INSERT INTO users(email, firstname, lastname, password, id_role, register_date) VALUES (?, ?, ?, ?,NOW())");
+          $request = $this->database->prepare("INSERT INTO user (email, firstname, lastname, password, id_role, register_date) VALUES (?, ?, ?, ?,NOW())");
           $request->execute(array($this->email, $firstname, $lastname, $password, $role_id));
     
           echo "tu est inscrit";
@@ -106,11 +106,10 @@ class users
 
 //$user = new users;
 
-// $user->register("maloo@.com","maloo","boubou");
-// $user->register("elgato@churros.com","elgato","meowmeow");
+ //$user->register("test@test.com","test","test");
+//$user->register("test@test4.com","test5","test5");
 // $user->register("yolo@fimo.com","yolo","stand");
-// $user->connection("elmacho@dino.com","pocoloco");
-// $user->connection("yolo@fimo.com","stand"); 
+//$user->connection("test@test.com","test");
 // $user->connection("admin@wild.com","azeradmin");
 // echo $user->getAllUsers()['email'];
 // echo $user->getAllUsers()['email'];

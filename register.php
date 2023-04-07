@@ -1,3 +1,36 @@
+<?php 
+
+include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php');
+
+// Vérification si le formulaire a été soumis
+if(isset($_POST['submit'])){
+
+    // Vérification des données du formulaire
+    if(isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['password']) ) {
+        $email = htmlspecialchars($_POST['email'],ENT_QUOTES);
+        $firstname = htmlspecialchars($_POST['firstname'],ENT_QUOTES);
+        $lastname = htmlspecialchars($_POST['lastname'],ENT_QUOTES);
+        $password = htmlspecialchars($_POST['password'],ENT_QUOTES);
+
+        // Instanciation de l'objet "users"
+        $user = new users();
+
+        // Vérification si l'email est déjà utilisé
+        $emailOk = $user->checkEmail($email);
+
+        if($emailOk) {
+            // Enregistrement du nouvel utilisateur
+            $user->register($email, $firstname, $lastname, $password,);
+        } else {
+            echo "Cette adresse email est déjà utilisée.";
+        }
+    }
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

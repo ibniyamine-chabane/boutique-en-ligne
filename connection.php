@@ -1,3 +1,9 @@
+<?php  
+ session_start();
+
+include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php')
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
