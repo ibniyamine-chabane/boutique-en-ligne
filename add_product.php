@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,19 +16,19 @@
             <h2>ajout de produit</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="">nom du produit</label>
-                <input type="text" name="title_product">
+                <input type="text" name="title">
                 <label for="">image du produit</label>
                 <input type="file" name="image_file">
                 <label for="">prix</label>
                 <input type="text" name="price">
                 <label for="">quantité</label>
-                <input type="text" name="quantity_product">
+                <input type="text" name="quantity">
                 <label for="">catégorie</label>
-                <input type="text" name="catégory_product">
+                <inpé'ut type="text" name="category">
                 <label for="">sous-catégorie</label>
-                <input type="text" name="sub_category_product">
+                <input type="text" name="sub_category">
                 <label for="">description</label>
-                <input type="textarea" name="descritpion_product">
+                <textarea name="description" id="" cols="80" rows="5"></textarea>
                 <input type="submit" value="ajouter le produit">
             </form>
         </section>

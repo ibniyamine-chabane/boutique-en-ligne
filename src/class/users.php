@@ -101,6 +101,55 @@ class users
         return $this->database;
     }
 
+    public function getProfil() {
+
+        $request = $this->database->prepare("SELECT * FROM user WHERE id = (?)");
+        $request->execute(array($_SESSION['id']));
+        $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+        return $userDatabase;
+    }
+
+    public function updateProfil($email, $firstname, $lastname, $password) {
+
+        $this->email = $email;
+        $request = $this->database->prepare('SELECT * FROM user');
+        $request->execute(array());
+        $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+        $emailOk = false;
+        
+        foreach ($userDatabase as $user) {
+            
+            if ($this->email == $_SESSION['email']) {
+                $emailOk = true;
+            } else if ( $this->email == $user['email']){
+                echo "cette adresse appartient à un autre utilisateur";
+                $emailOk = false;
+                break;
+            } else {
+                $emailOk = true;
+            }
+
+        }
+
+        if ($emailOk == true){
+            
+            $request = $this->database->prepare("UPDATE user SET `email` = (?) , `first_name` = (?) , `last_name` = (?) , `password` = (?) WHERE `user`.`id` = (?)");
+            $request->execute(array($email, $firstname, $lastname, $password, $_SESSION['id']));
+        
+              echo "votre profil a bien été modifier";
+            }               
+    }
+
+    public function changePassword($new_password) {
+
+        $request = $this->database->prepare('SELECT * FROM user');
+        $request->execute(array());
+        $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+        $request = $this->database->prepare("UPDATE user SET `password` = (?) WHERE `user`.`id` = (?)");
+        $request->execute(array($new_password, $_SESSION['id']));
+
+    }
+
 }
 
 //$user = new users;
