@@ -7,9 +7,11 @@
     <title>rechercher</title>
 </head>
 <body>
+
+
 <form method="get" id="mon-formulaire">
   <label for="recherche">Rechercher:</label>
-  <input type="text" id="recherche" name="q" autocomplete="off">
+  <input type="text" id="recherche" name="q" autocomplete="off" required>
   <div id="suggestions"></div>
   <button type="submit">Rechercher</button>
 </form>
