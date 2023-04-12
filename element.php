@@ -10,8 +10,7 @@
     <h1>Résultats de la recherche pour "<span id="search-query"></span>" :</h1>
     <div id="products"></div>
 
-    <script src="result.js">
-    </script>
+    <script src="result.js"></script>
 </body>
 </html>
 

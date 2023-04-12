@@ -1,9 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const search = document.querySelector('#recherche');
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('#mon-formulaire');
+    const searchInput = document.querySelector('#recherche');
     const suggestions = document.querySelector('#suggestions');
   
-    search.addEventListener('input', function() {
-      const query = search.value;
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const query = searchInput.value;
+      window.location.href = `element.php?q=${query}`;
+    });
+  
+    searchInput.addEventListener('input', function() {
+      const query = searchInput.value;
   
       if (query.trim().length < 0) {
         suggestions.innerHTML = '';
@@ -33,4 +42,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
   });
-  

@@ -11,7 +11,7 @@
 
 <form method="get" id="mon-formulaire">
   <label for="recherche">Rechercher:</label>
-  <input type="text" id="recherche" name="q" autocomplete="off" required>
+  <input type="text" id="recherche" name="q" autocomplete="off" >
   <div id="suggestions"></div>
   <button type="submit">Rechercher</button>
 </form>

@@ -46,3 +46,5 @@ document.addEventListener('DOMContentLoaded', function() {
             products.innerHTML = "<p>Erreur de chargement des résultats.</p>";
         });
 });
+  
+  
