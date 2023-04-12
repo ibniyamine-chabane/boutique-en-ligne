@@ -15,7 +15,7 @@ if (isset($_GET['q'])){
     $query = $_GET['q'];
 
     // Requête SQL pour chercher les suggestions d'autocomplétion
-    $stmt = $pdo->prepare("SELECT id, name, price FROM product WHERE name LIKE :query LIMIT 10");
+    $stmt = $pdo->prepare("SELECT id, name, price  FROM product WHERE name LIKE :query LIMIT 10");
     $stmt->bindValue(':query', '%'.$query.'%');
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

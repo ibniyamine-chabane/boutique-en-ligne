@@ -1,43 +1,65 @@
-<?php
-$pdo = new PDO('mysql:host=localhost;dbname=boutique', 'root', '');
-
-if (isset($_GET['q'])) {
-    $query = $_GET['q'];
-
-    // Recherche des produits correspondant à la chaîne de recherche
-    $stmt = $pdo->prepare("SELECT id, name, price FROM product WHERE name LIKE :query");
-    $stmt->bindValue(':query', '%'.$query.'%');
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$results) {
-        // Aucun produit trouvé
-        echo "Aucun produit avec ce nom.";
-    } else {
-        // Affichage des produits correspondant à la recherche
-        foreach ($results as $result) {
-            $id = $result['id'];
-            $nom = $result['name'];
-            $price = $result['price'];
-            echo "<h1>$nom</h1>";
-            echo "<p>$price</p>";
-            echo "<a href=\"product.php?id=$id\">Voir le produit</a><br><br>";
-        }
-    }
-}
-?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Résultats de la recherche</title>
 </head>
 <body>
-    <title>Résultats de la recherche</title>
+    <h1>Résultats de la recherche pour "<span id="search-query"></span>" :</h1>
+    <div id="products"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchQuery = document.querySelector('#search-query');
+            const products = document.querySelector('#products');
+
+            // Récupération de la chaîne de recherche depuis l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            searchQuery.innerText = query;
+
+            // Récupération des produits correspondant à la chaîne de recherche
+            fetch(`autocompletion.php?q=${query}`)
+                .then(response => response.json())
+                .then(results => {
+                    if (results.length === 0) {
+                        // Aucun produit trouvé
+                        products.innerHTML = "<p>Aucun produit avec ce nom.</p>";
+                    } else {
+                        // Affichage des produits correspondant à la recherche
+                        results.forEach(result => {
+                            const id = result.id;
+                            const nom = result.name;
+                            const category = result.id_category;
+                            const price = result.price;
+                            const productDiv = document.createElement('div');
+                            const productName = document.createElement('h2');
+                            const productCategory = document.createElement('p');
+                            const productPrice = document.createElement('p');
+                            const productLink = document.createElement('a');
+
+                            productName.innerText = nom;
+                            productCategory.innerText = `Catégorie : ${category}`;
+                            productPrice.innerText = `Prix : ${price} €`;
+                            productLink.href = `product.php?id=${id}`;
+                            productLink.innerText = 'Voir le produit';
+
+                            productDiv.appendChild(productName);
+                            productDiv.appendChild(productCategory);
+                            productDiv.appendChild(productPrice);
+                            productDiv.appendChild(productLink);
+                            products.appendChild(productDiv);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    products.innerHTML = "<p>Erreur de chargement des résultats.</p>";
+                });
+        });
+    </script>
 </body>
 </html>
 
