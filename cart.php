@@ -4,12 +4,20 @@
     include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php');
     include('C:\wamp64\www\boutique-en-ligne\scr\class\cart.php');
 
+    //instance auto
+
+    $term = new Cart();
+
+
+    //verif recherche 
+
+
     // Instanciation de la classe Cart
     $cart = new Cart();
 
  // Vérifie si l'utilisateur est connecté
  //if(isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['login'];
 //} else {
     // Redirige l'utilisateur vers la page de connexion si non connecté
    // header('Location: login.php');
@@ -36,6 +44,32 @@
     <title>Mon panier</title>
 </head>
 <body>
+
+<!-- formulaire de recherche -->
+<form method="get">
+    <input type="text" id="search" name="search" placeholder="Rechercher">
+</form>
+
+
+<script src="research.js"></script>
+
+<!-- liste des produits dans le panier -->
+<ul>
+    <?php foreach($products as $product): ?>
+        <li>
+            <a href="element.php?id=<?php echo $product['id']; ?>">
+                <?php echo $product['name']; ?>
+                <img src="<?php echo $product['image']; ?>" alt="">
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+<script src="research.js"></script>
+
+
+
     <main>
         <section>
             <h2>Mon panier</h2>
