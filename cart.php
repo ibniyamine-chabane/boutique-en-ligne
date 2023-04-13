@@ -4,10 +4,8 @@
     include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php');
     include('C:\wamp64\www\boutique-en-ligne\scr\class\cart.php');
 
-    //instance auto
 
-    $term = new Cart();
-
+    
 
     //verif recherche 
 
@@ -17,7 +15,7 @@
 
  // Vérifie si l'utilisateur est connecté
  //if(isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['login'];
+    $user_id = $_SESSION['email'];
 //} else {
     // Redirige l'utilisateur vers la page de connexion si non connecté
    // header('Location: login.php');
@@ -45,13 +43,7 @@
 </head>
 <body>
 
-<!-- formulaire de recherche -->
-<form method="get">
-    <input type="text" id="search" name="search" placeholder="Rechercher">
-</form>
 
-
-<script src="research.js"></script>
 
 <!-- liste des produits dans le panier -->
 <ul>

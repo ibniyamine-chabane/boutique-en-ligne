@@ -1,36 +1,31 @@
-<?php 
+<?php
+require_once("src/class/users.php");
+$user = new users;
 
-include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php');
+var_dump($user);
 
-// Vérification si le formulaire a été soumis
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-    // Vérification des données du formulaire
-    if(isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['password']) ) {
-        $email = htmlspecialchars($_POST['email'],ENT_QUOTES);
-        $firstname = htmlspecialchars($_POST['firstname'],ENT_QUOTES);
-        $lastname = htmlspecialchars($_POST['lastname'],ENT_QUOTES);
-        $password = htmlspecialchars($_POST['password'],ENT_QUOTES);
+    if ($_POST['email'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password'] && $_POST['password_confirm']) {
+     
+        if ($_POST['password'] == $_POST['password_confirm']) {
 
-        // Instanciation de l'objet "users"
-        $user = new users();
+            $email = htmlspecialchars(trim($_POST['email']));
+            $firstname = htmlspecialchars(trim($_POST['firstname']));
+            $lastname =  htmlspecialchars(trim($_POST['lastname']));
+            $password =  htmlspecialchars(trim($_POST['password']));
+            $user->register($email, $firstname, $lastname, $password);
 
-        // Vérification si l'email est déjà utilisé
-        $emailOk = $user->checkEmail($email);
+        }else {
+            echo "les mot de passe ne correspond pas";
+        }    
 
-        if($emailOk) {
-            // Enregistrement du nouvel utilisateur
-            $user->register($email, $firstname, $lastname, $password,);
-        } else {
-            echo "Cette adresse email est déjà utilisée.";
-        }
-    }
-}
-
-
+    } else {
+        echo "veuillez remplir tout les champs"; 
+    } 
+} 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -40,9 +35,8 @@ if(isset($_POST['submit'])){
     <title>inscription</title>
 </head>
 <body>
-    <header>
-
-    </header>
+    <?php require_once("header.php"); ?>
+    <main>
     <div></div>
     <section>
         <div>
@@ -58,9 +52,10 @@ if(isset($_POST['submit'])){
                 <input type="password" name="password">
                 <label for="password_confirm">confirmer mot de passe</label>
                 <input type="password" name="password_confirm">
-                <input type="submit" value="valider">
+                <input type="submit" name="submit" value="valider">
             </form>
         </div>
-    </section>    
+    </section> 
+    </main>   
 </body>
 </html>
