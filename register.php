@@ -2,8 +2,11 @@
 require_once("src/class/users.php");
 $user = new users;
 
+<<<<<<< HEAD
 var_dump($user);
 
+=======
+>>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
 if (isset($_POST['submit'])) {
 
     if ($_POST['email'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password'] && $_POST['password_confirm']) {

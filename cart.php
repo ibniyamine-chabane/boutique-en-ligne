@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
     session_start();
 
     include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php');
@@ -33,6 +34,10 @@
     }
 ?>
 
+=======
+session_start();
+?>
+>>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,6 +47,7 @@
     <title>Mon panier</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 
 
@@ -62,6 +68,9 @@
 
 
 
+=======
+    <?php require_once("header.php"); ?>
+>>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
     <main>
         <section>
             <h2>Mon panier</h2>

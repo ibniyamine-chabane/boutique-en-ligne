@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,7 @@
     <title>admin dashboard</title>
 </head>
 <body>
+    <?php require_once("header.php"); ?>
     <main>
         <section>
         <div>
@@ -22,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <button>ajouter un produit</button>
+        <button><a href="add_product.php">ajouter un produit</a></button>
         </section>
     </main>
 </body>
