@@ -11,16 +11,12 @@ class users
     //Constructeur
     public function __construct(){ 
         try {
-<<<<<<< HEAD
-=======
-            $this->database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
->>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
+            $this->database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8;port=3306', 'root', '');
 
         } catch(Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
     //Méthodes 
 
     public function register($email, $firstname, $lastname, $password) {

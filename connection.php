@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<?php  
- session_start();
-
-include('C:\wamp64\www\boutique-en-ligne\scr\class\users.php')
-?>
-
-=======
 <?php 
 session_start();
 require_once("src/class/users.php");
@@ -21,7 +13,6 @@ if (isset($_POST['submit'])) {
 
 
 ?>
->>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
 <!DOCTYPE html>
 <html lang="fr">
 <head>

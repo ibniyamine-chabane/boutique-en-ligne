@@ -1,5 +1,7 @@
 <?php 
 
+
+
 class Cart {
     private $database;
 
@@ -19,6 +21,9 @@ class Cart {
         return $products;
     }
 }
+
+
+
 
 
 
