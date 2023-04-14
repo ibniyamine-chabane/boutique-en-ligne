@@ -141,7 +141,7 @@ if (isset($_POST['send'])) {
                             $request->execute(array($_SESSION['id_product'], $_SESSION['id_inventory']));
 
                             if ($_POST['sub_category']) {
-                                var_dump($_POST['sub_category']);
+                                //var_dump($_POST['sub_category']);
                                 // var_dump($_POST['sub_category'][1]);
                                 $request = $database->prepare('SELECT * FROM sub_category');
                                 //$request = $this->database->prepare('SELECT * FROM users');
