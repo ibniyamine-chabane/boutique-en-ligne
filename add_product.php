@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+//require_once 'src/class/products.php/';
+
+// Connect to database
+try {
+    $database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
