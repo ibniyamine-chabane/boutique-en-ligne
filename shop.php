@@ -1,13 +1,10 @@
 <?php
 session_start(); 
+require_once('src/class/shopClass.php');
+$shop = new shop;
+$database = $shop->getDatabase();
 
-$database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
-// $request = $database->prepare('SELECT * FROM product');
-// $request->execute(array());
-// $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($productDatabase);
-//echo $productDatabase[0]['image'];
-
+//$database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
 
 // on determine dans quel page on se trouve 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -27,7 +24,7 @@ $nbProduct = (int) $result['nb_product'];
 //var_dump($nbProduct);
 
 // on determine le nombre de produit par page.
-$perPages = 10;
+$perPages = 6;
 
 // on fait un calcule pour avoir le nombre de page total pour les produits
 

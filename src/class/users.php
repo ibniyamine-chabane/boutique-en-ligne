@@ -74,7 +74,7 @@ class users
             if ($email === $user['email'] && $password === $user['password']) {   
                 $_SESSION['email'] = $email;
                 $id = $user['id'];  
-                $_SESSION['id'] = $id;
+                $_SESSION['id_user'] = $id;
                 $_SESSION["firstname"] = $user["first_name"];
                 $_SESSION["rights"] = $user["rights"];
                 $logged = true;
@@ -104,7 +104,7 @@ class users
     public function getProfil() {
 
         $request = $this->database->prepare("SELECT * FROM user WHERE id = (?)");
-        $request->execute(array($_SESSION['id']));
+        $request->execute(array($_SESSION['id_user']));
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
         return $userDatabase;
     }
