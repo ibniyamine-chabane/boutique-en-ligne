@@ -267,8 +267,8 @@ if (isset($_POST['send'])) {
                     <label for="Mecha">Mecha</label>
                 </div>
                 <label for="">description</label>
-                <input type="textarea" name="descritpion_product">
-                <input type="submit" value="ajouter le produit">
+                <textarea name="description" id="" cols="80" rows="5"></textarea>
+                <input type="submit" value="ajouter le produit" name="send">
             </form>
         </section>
     </main>
