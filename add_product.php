@@ -139,6 +139,39 @@ if (isset($_POST['send'])) {
                             $request = $database->prepare($sql2);
                             //$request = $this->database->prepare($sql);
                             $request->execute(array($_SESSION['id_product'], $_SESSION['id_inventory']));
+
+                            if ($_POST['sub_category']) {
+                                var_dump($_POST['sub_category']);
+                                // var_dump($_POST['sub_category'][1]);
+                                $request = $database->prepare('SELECT * FROM sub_category');
+                                //$request = $this->database->prepare('SELECT * FROM users');
+                                $request->execute(array());
+                                $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+                                //var_dump($boutiqueDB);
+
+                                foreach ($_POST['sub_category'] as $postSubCategory) {
+                                    foreach ($boutiqueDB as $subCategoryName) {
+                                        if ($postSubCategory == $subCategoryName['name']) {
+                                            //echo $subCategoryName['id'];
+                                            $_SESSION['sub_category_id'] = $subCategoryName['id'];
+
+                                            $sql = "INSERT INTO `sub_category_category` (`id_category`,`id_sub_category`) 
+                                            VALUE (?,?)";
+                                            $request = $database->prepare($sql);
+                                            //$request = $this->database->prepare($sql);
+                                            $request->execute(array($_SESSION['category_id'], $_SESSION['sub_category_id']));
+
+                                            $sql2 = "INSERT INTO `sub_category_product` (`id_product`,`id_sub_category`) 
+                                            VALUE (?,?)";
+                                            $request = $database->prepare($sql2);
+                                            //$request = $this->database->prepare($sql);
+                                            $request->execute(array($_SESSION['id_product'], $_SESSION['sub_category_id']));
+                                        }
+                                    }
+                                }
+                            } else {
+                                echo "Veuillez ajouter au moins une sous catégorie au produit";
+                            }
                         } else {
                             echo "Veuillez ajouter la quantité du produit";
                         }
