@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,19 +33,47 @@
                     <option value="Manhwa">Manhwa</option>
                     <option value="Manhua">Manhua</option>
                 </select>
-                <label for="">Sous-catégorie</label>
-                <select name="categorie" id="" multiple>
-                    <option value="Action">Action</option>
-                    <option value="Fantaisie">Fantaisie</option>
-                    <option value="Isekai">Isekai</option>
-                    <option value="Drame">Drame</option>
-                    <option value="Psychologique">Psychologique</option>
-                    <option value="Comedie">Comedie</option>
-                    <option value="Policier">Policier</option>
-                    <option value="Science fiction">Science fiction</option>
-                    <option value="Aventure">Aventure</option>
-                    <option value="Mecha">Mecha</option>
-                </select>
+                <legend>Sous-catégorie :</legend>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">
+                    <label for="Action">Action</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Fantaisie">
+                    <label for="Fantaisie">Fantaisie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Isekai">
+                    <label for="Isekai">Isekaï</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Drame">
+                    <label for="Drame">Drame</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Psychologique">
+                    <label for="Psychologique">Psychologique</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Comedie">
+                    <label for="Comedie">Comedie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Policier">
+                    <label for="Policier">Policier</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Science fiction">
+                    <label for="Science fiction">Science fiction</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Aventure">
+                    <label for="Aventure">Aventure</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
+                    <label for="Mecha">Mecha</label>
+                </div>
                 <label for="">description</label>
                 <input type="textarea" name="descritpion_product">
                 <input type="submit" value="ajouter le produit">
