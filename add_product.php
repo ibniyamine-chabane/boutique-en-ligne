@@ -210,15 +210,15 @@ if (isset($_POST['send'])) {
             <h2>ajout de produit</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="">nom du produit</label>
-                <input type="text" name="title_product">
-                <label for="">image du produit</label>
-                <input type="file" name="image_file">
+                <input type="text" name="title">
+                <label for="">image du produit (png, jpg, jpeg, d'1 Mo max)</label>
+                <input type="file" name="image" accept=".png,.jpg,.jpeg">
                 <label for="">prix</label>
                 <input type="text" name="price">
                 <label for="">quantité</label>
-                <input type="text" name="quantity_product">
+                <input type="text" name="quantity">
                 <label for="">Catégorie</label>
-                <select name="categorie" id="">
+                <select name="category" id="">
                     <option value="Comics">Comics</option>
                     <option value="Bande dessinée">Bande dessinée</option>
                     <option value="Manga">Manga</option>
