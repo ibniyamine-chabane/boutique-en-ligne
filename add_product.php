@@ -98,6 +98,50 @@ if (isset($_POST['send'])) {
                         // echo $boutiqueDB[0]["id"];
 
                         $_SESSION['id_product'] = $boutiqueDB[0]['id'];
+
+                        if ($_POST['quantity']) {
+
+
+                            $quantity = intval($_POST['quantity']);
+                            $_SESSION['quantity'] = $quantity;
+
+                            $request = $database->prepare('SELECT product.id AS id_prod, inventory.id AS id_invent, id_product, id_inventory 
+                                                            FROM product_inventory
+                                                            INNER JOIN product
+                                                            on product_inventory.id_product = product.id
+                                                            INNER JOIN inventory
+                                                            on product_inventory.id_inventory = inventory.id');
+                            //$request = $this->database->prepare('SELECT * FROM users');
+                            $request->execute(array());
+                            $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+
+                            // $this->$content = $content;
+                            // $this->$title = $title;
+
+                            //var_dump($boutiqueDB);
+
+                            // SENDING THE REQUEST
+                            $sql = "INSERT INTO `inventory` (`quantity`) 
+                            VALUE (?)";
+                            $request = $database->prepare($sql);
+                            //$request = $this->database->prepare($sql);
+                            $request->execute(array($quantity));
+
+                            $request2 = $database->prepare('SELECT * FROM inventory WHERE quantity = (?)');
+                            $request2->execute(array($_SESSION['quantity']));
+                            $boutiqueDB2 = $request2->fetchAll(PDO::FETCH_ASSOC);
+                            //var_dump($boutiqueDB2);
+
+                            $_SESSION['id_inventory'] = $boutiqueDB2[0]['id'];
+
+                            $sql2 = "INSERT INTO `product_inventory` (`id_product`,`id_inventory`) 
+                            VALUE (?,?)";
+                            $request = $database->prepare($sql2);
+                            //$request = $this->database->prepare($sql);
+                            $request->execute(array($_SESSION['id_product'], $_SESSION['id_inventory']));
+                        } else {
+                            echo "Veuillez ajouter la quantité du produit";
+                        }
                     } else {
                         echo "Veuillez ajouter un prix au produit";
                     }
