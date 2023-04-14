@@ -63,6 +63,44 @@ if (isset($_POST['send'])) {
                             $_SESSION['category_id'] = $categoryName['id'];
                         }
                     }
+
+                    if ($_POST['price']) {
+
+                        $title = $_POST['title'];
+                        $image = $filename;
+                        $price = intval($_POST['price']);
+                        $description = $_POST['description'];
+                        $_SESSION['name'] = $title;
+
+                        $request = $database->prepare('SELECT * FROM product');
+                        //$request = $this->database->prepare('SELECT * FROM users');
+                        $request->execute(array());
+                        $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+                        //var_dump($boutiqueDB);
+                        // $this->$content = $content;
+                        // $this->$title = $title;
+
+
+                        //var_dump($request->execute(array()));
+
+                        // SENDING THE REQUEST
+                        $sql = "INSERT INTO `product` (`name`,`image`,`price`,`description`,`id_category`) 
+                        VALUE (?,?,?,?,?)";
+                        $request = $database->prepare($sql);
+                        //$request = $this->database->prepare($sql);
+                        $request->execute(array($title, $image, $price, $description, $_SESSION['category_id']));
+
+                        $request2 = $database->prepare('SELECT * FROM product WHERE name = (?)');
+                        $request2->execute(array($_SESSION['name']));
+                        $boutiqueDB = $request2->fetchAll(PDO::FETCH_ASSOC);
+                        //var_dump($boutiqueDB);
+
+                        // echo $boutiqueDB[0]["id"];
+
+                        $_SESSION['id_product'] = $boutiqueDB[0]['id'];
+                    } else {
+                        echo "Veuillez ajouter un prix au produit";
+                    }
                 } else {
                     echo "Veuillez ajouter une catégorie au produit";
                 }
