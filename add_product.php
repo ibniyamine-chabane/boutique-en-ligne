@@ -48,6 +48,27 @@ if (isset($_POST['send'])) {
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $newfilename)) {
                 die("L'upload a échoué");
             }
+            if ($_POST['description']) {
+                if ($_POST['category']) {
+
+                    $request = $database->prepare('SELECT * FROM category');
+                    //$request = $this->database->prepare('SELECT * FROM users');
+                    $request->execute(array());
+                    $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+                    //var_dump($boutiqueDB);
+
+                    foreach ($boutiqueDB as $categoryName) {
+                        if ($_POST['category'] == $categoryName['name']) {
+                            //echo $categoryName['id'];
+                            $_SESSION['category_id'] = $categoryName['id'];
+                        }
+                    }
+                } else {
+                    echo "Veuillez ajouter une catégorie au produit";
+                }
+            } else {
+                echo "Veuillez ajouter une description au produit";
+            }
         } else {
             echo "Veuillez ajouter une image au produits";
         }
