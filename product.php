@@ -2,11 +2,7 @@
 // dans cette page il faudrat récupérer la quantité deproduit disponible du produit , et les infos du produit
 // les table products et product_inventory devront etre appeler, 
 // le formulaire une fois valider devra envoyer les données récupérer en post vers la table cart.
-<<<<<<< HEAD
 $database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8;port=3306', 'root', '');
-=======
-$database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
->>>>>>> f3972328dd6ce00cbbf7d90c437dda109c677ff4
 $request = $database->prepare('SELECT * FROM product WHERE id = (?)');
 $request->execute(array($_GET['id']));
 $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
