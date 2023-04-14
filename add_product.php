@@ -10,6 +10,51 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
+//var_dump($_FILES['image']);
+
+if (isset($_POST['send'])) {
+
+    //if the fields are filled in
+    if ($_POST['title']) {
+        if ($_FILES['image'] && $_FILES['image']['error'] === 0) {
+
+            // // checks are carried out
+            // extension
+            $allowed = [
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+            ];
+
+            $filename = $_FILES['image']['name'];
+            $filetype = $_FILES['image']['type'];
+            $filesize = $_FILES['image']['size'];
+
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            // we check the absence of the extension in the keys of the allowed variable or the absence of the MIME type in the values
+            if (!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
+                die('ERREUR : format de fichier incorrect');
+            }
+
+            // The limit is 1 MB
+            if ($filesize > 1024 * 1024) {
+                die('Le fichier dépasse 1 Mo');
+            }
+
+            // we generate a complete path
+            $newfilename = __DIR__ . "/src/upload/" . $filename;
+
+            // insert the downloaded image in the upload folder
+            if (!move_uploaded_file($_FILES['image']['tmp_name'], $newfilename)) {
+                die("L'upload a échoué");
+            }
+        } else {
+            echo "Veuillez ajouter une image au produits";
+        }
+    } else {
+        echo "Veuillez ajouter un titre au produit";
+    }
+}
 
 ?>
 <!DOCTYPE html>
