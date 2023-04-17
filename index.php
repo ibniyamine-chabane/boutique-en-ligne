@@ -20,7 +20,7 @@ $products = $cart->getProducts();
 </head>
 <body>
     <?php include('header.php') ?>
-  <h1>Tous les produits</h1>
+  <h1>Tous nos produits</h1>
   <table>
     <thead>
       <tr>
