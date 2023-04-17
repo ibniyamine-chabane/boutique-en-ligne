@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'src/class/products.php/';
+require_once 'src/class/products.php';
 
 if (isset($_POST['send'])) {
 
