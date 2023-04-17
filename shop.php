@@ -84,7 +84,16 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </div>
             <div><!-- les catégorie ici -->
-
+                <div>
+                    <form action="" method="post">
+                        <label for="categories">Catégories</label>
+                        <select name="category" id="category">
+                        <option value="manga">Manga</option>
+                        <option value="bd">Bande-déssiné</option>
+                        <option value="comics">comics</option>
+                        </select>
+                    </form>
+                </div>
             </div>
             <div class="pagination">
                 <ul>                
