@@ -7,36 +7,36 @@ $cart = new Cart();
 
 //recuperer les les produits 
 
-$products = $cart->selectProducts();
+$products = $cart->getProducts();
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nos produits</title>
+  <title>Tous les produits</title>
 </head>
 <body>
-  <?php include('header.php') ?>
-  <h1>Nos produits</h1>
+    <?php include('header.php') ?>
+  <h1>Tous les produits</h1>
   <table>
     <thead>
       <tr>
         <th>Nom</th>
         <th>Description</th>
         <th>Prix</th>
+        <th>Date de création</th>
       </tr>
     </thead>
     <tbody>
-      <?php 
-        $cart = new Cart();
-        $products = $cart->getProducts();
-        foreach ($products as $product) { 
-      ?>
+      <?php foreach ($products as $product) { ?>
         <tr>
           <td><?php echo $product['name']; ?></td>
           <td><?php echo $product['description']; ?></td>
           <td><?php echo $product['price']; ?> €</td>
+          <td><?php echo date('d/m/Y', strtotime($product['date_product'])); ?></td>
         </tr>
       <?php } ?>
     </tbody>
