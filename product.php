@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
             <?php foreach ($productDatabase as $product) : ?>
             <h2><?= $product['name'] ?></h2>
             <div>
-                <img src="<?= $product['image'] ?>.jpg" alt="">
+                <img src="src/upload/<?= $product['image'] ?>" alt="">
             </div>
             <article>
                 <h3><?= $product['description'] ?></h3>

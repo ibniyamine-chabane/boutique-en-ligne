@@ -73,7 +73,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 <a href="product.php?id=<?= $product['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
                     <div>
                         <div>
-                            <img src="<?=$product['image']?>.jpg" alt="">
+                            <img src="src/upload/<?=$product['image']?>" alt="">
                         </div>
                         <div>
                             <h4><?= $product['name'] ?></h4>
