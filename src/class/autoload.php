@@ -1,7 +1,5 @@
 <?php 
 
-
-
 class Cart {
     private $database;
 
@@ -13,12 +11,11 @@ class Cart {
         }
     }
     
-    
     public function selectProducts() {
-        // Récupération de l'ID de l'utilisateur connecté à partir de la variable de session
+        // Récupération de l'ID de l'utilisateur connecté à partir de la  session
         $user_id = $_SESSION['id'];
         
-        // Vérification que $user_id est un scalaire avant de l'utiliser dans la requête SQL
+        // Vérification que $user_id 
         if (!is_scalar($user_id)) {
             return array();
         }
@@ -36,10 +33,11 @@ class Cart {
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products;
     }
-    
-    
-
 }
 
+// Fonction d'auto-chargement des classes
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
 
 ?>

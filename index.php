@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('src/class/cart.php');
+include('src/class/autoload.php');
 
 $cart = new Cart();
 
