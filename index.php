@@ -1,42 +1,45 @@
 <?php
 session_start();
 
+include('src/class/cart.php');
+
+$cart = new Cart();
+
+//recuperer les les produits 
+
+$products = $cart->selectProducts();
+
+
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>accueil</title>
+  <title>Nos produits</title>
 </head>
 <body>
-    <?php require_once("header.php"); ?>
-    <main>
-        <section>
-            <h2>nos produits</h2>
-            <div>
-                <div>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <h4>titre produit</h4>
-                    <p>prix</p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h2>Nos dernier produits ajouté</h2>
-            <div>
-                <div>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <h4>titre produit</h4>
-                    <p>prix</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <?php include('header.php') ?>
+  <h1>Nos produits</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+        $cart = new Cart();
+        $products = $cart->getProducts();
+        foreach ($products as $product) { 
+      ?>
+        <tr>
+          <td><?php echo $product['name']; ?></td>
+          <td><?php echo $product['description']; ?></td>
+          <td><?php echo $product['price']; ?> €</td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
 </body>
 </html>

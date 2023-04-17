@@ -29,7 +29,19 @@ class Cart {
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products;
     }
+
+    public function getProducts() {
+        $stmt = $this->database->prepare('SELECT * FROM product ORDER BY date_product DESC');
+        $stmt->execute();
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $products;
+    }
+    
+    
+
 }
+
+  
 
 
 
