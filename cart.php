@@ -1,5 +1,7 @@
 <?php
   session_start();
+  include('src\class\users.php');
+
   include('src\class\cart.php');
   
   $cart = new Cart();

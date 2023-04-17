@@ -16,7 +16,7 @@ class Cart {
     
     public function selectProducts() {
         // Récupération de l'ID de l'utilisateur connecté à partir de la variable de session
-        $user_id = $_SESSION['id'];
+        $user_id = $_SESSION['id_user'];
         
         // Vérification que $user_id est un scalaire avant de l'utiliser dans la requête SQL
         if (!is_scalar($user_id)) {

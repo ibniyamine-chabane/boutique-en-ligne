@@ -1,7 +1,9 @@
 <?php
 session_start(); 
+require_once('src/class/shopClass.php');
+$shop = new shop;
+$database = $shop->getDatabase();
 
-$database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8;port=3306', 'root', '');
 // $request = $database->prepare('SELECT * FROM product');
 // $request->execute(array());
 // $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +29,7 @@ $nbProduct = (int) $result['nb_product'];
 //var_dump($nbProduct);
 
 // on determine le nombre de produit par page.
-$perPages = 10;
+$perPages = 6;
 
 // on fait un calcule pour avoir le nombre de page total pour les produits
 
