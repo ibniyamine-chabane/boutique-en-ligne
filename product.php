@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // dans cette page il faudrat récupérer la quantité deproduit disponible du produit , et les infos du produit
 // les table products et product_inventory devront etre appeler, 
 // le formulaire une fois valider devra envoyer les données récupérer en post vers la table cart.

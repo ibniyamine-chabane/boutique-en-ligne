@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-$database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
+$database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8;port=3306', 'root', '');
 // $request = $database->prepare('SELECT * FROM product');
 // $request->execute(array());
 // $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
