@@ -33,6 +33,15 @@ $pages = ceil($nbProduct / $perPages);
 // Calculation of the 1st item on the page
 $premier = ($currentPage * $perPages) - $perPages;
 
+/* 
+$sql = 'SELECT product.id, product.name, price, image, sub_category.name as sub_name ,category.name as cate_name FROM `product` 
+        INNER JOIN category 
+        ON category.id = product.id_category
+        INNER JOIN sub_category_category
+        ON category.id = sub_category_category.id_category
+        INNER JOIN sub_category 
+        ON sub_category.id = sub_category_category.id_sub_category WHERE product.id = 1';
+*/
 
 $sql = 'SELECT * FROM `product` LIMIT :premier, :parpage;';
 
@@ -88,11 +97,58 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 <div>
                     <form action="" method="post" id="filter_form">
                         <label for="categories">Catégories</label>
-                        <select name="category" id="category">
-                        <option value="manga">Manga</option>
-                        <option value="bd">Bande-déssiné</option>
-                        <option value="comics">comics</option>
-                        </select>
+                        <select name="category" id="">
+                    <option value="Comics">Comics</option>
+                    <option value="Bande dessinée">Bande dessinée</option>
+                    <option value="Manga">Manga</option>
+                    <option value="Manhwa">Manhwa</option>
+                    <option value="Manhua">Manhua</option>
+                </select>
+                <legend>Sous-catégorie :</legend>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">
+                    <label for="Action">Action</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Fantaisie">
+                    <label for="Fantaisie">Fantaisie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Isekai">
+                    <label for="Isekai">Isekaï</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Drame">
+                    <label for="Drame">Drame</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Psychologique">
+                    <label for="Psychologique">Psychologique</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Comedie">
+                    <label for="Comedie">Comedie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Policier">
+                    <label for="Policier">Policier</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Science fiction">
+                    <label for="Science fiction">Science fiction</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Aventure">
+                    <label for="Aventure">Aventure</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
+                    <label for="Mecha">Mecha</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Horreur">
+                    <label for="Mecha">Horreur</label>
+                </div>
                         <input type="submit" name="" id="">
                     </form>
                 </div>

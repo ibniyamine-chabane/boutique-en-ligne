@@ -13,7 +13,7 @@ document.querySelector('#filter_form').addEventListener('submit', (event) => {
     .then(response => {
       // Redirection vers la page 
       alert('toto')
-      window.location.replace("index.php");
+      window.location.replace("shop.php");
     })
     .catch(error => {
       console.error(error);
