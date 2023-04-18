@@ -1,5 +1,5 @@
 <?php 
-$pdo = new PDO('mysql:host=localhost;dbname=boutique', 'root', '');
+$pdo = new PDO('mysql:host=localhost;dbname=boutique-en-ligne', 'root', '');
 
 if (isset($_GET['q'])){
     $query = $_GET['q'];

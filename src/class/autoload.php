@@ -5,7 +5,7 @@ class Cart {
 
     public function __construct(){ 
         try {
-            $this->database = new PDO('mysql:host=localhost;dbname=boutique;charset=utf8', 'root', '');
+            $this->database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
         } catch(Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
