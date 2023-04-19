@@ -39,6 +39,31 @@ class Cart {
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products;
     }
+    public function removeProductFromCart($product_id) {
+        // Récupération de l'ID de l'utilisateur connecté à partir de la variable de session
+        $user_id = $_SESSION['id_user'];
+    
+        // Vérification que $user_id et $product_id sont des scalaires 
+        if (!is_scalar($user_id) || !is_scalar($product_id)) {
+            return false;
+        }
+    
+        // Récupération de la quantité actuelle dans le panier pour cet article
+        $stmt = $this->database->prepare('SELECT quantity FROM cart_product WHERE id_cart = :user_id AND id_product = :id_product');
+        $stmt->execute(array(':user_id' => $user_id, ':id_product' => $product_id));
+        $current_quantity = $stmt->fetch(PDO::FETCH_COLUMN);
+    
+        // Suppression de l'article du panier
+        $stmt = $this->database->prepare('DELETE FROM cart_product WHERE id_cart = :user_id AND id_product = :id_product');
+        $stmt->execute(array(':user_id' => $user_id, ':id_product' => $product_id));
+    
+        // Mise à jour du stock
+        $stmt = $this->database->prepare('UPDATE inventory SET quantity = quantity + :quantity WHERE id_product = :product_id');
+        $stmt->execute(array(':quantity' => $current_quantity, ':product_id' => $product_id));
+    
+        return true;
+    }
+    
 }
 
 ?>

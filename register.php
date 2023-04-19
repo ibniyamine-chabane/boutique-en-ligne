@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     <section>
         <div>
             <h2>Inscription</h2>
-            <form action="" method="post"> <!-- le formulaire d'inscription -->
+            <form id="form-register" action="" method="post"> <!-- le formulaire d'inscription -->
                 <label for="email">email</label>
                 <input type="email" name="email">
                 <label for="firstname">prénom</label>
@@ -52,8 +52,10 @@ if (isset($_POST['submit'])) {
                 <input type="password" name="password">
                 <label for="password_confirm">confirmer mot de passe</label>
                 <input type="password" name="password_confirm">
-                <input type="submit" name="submit" value="valider">
+                <input id="submit" type="submit" name="submit" value="valider">
             </form>
+
+            <script src="src/js/register.js"></script>
         </div>
     </section> 
     </main>   

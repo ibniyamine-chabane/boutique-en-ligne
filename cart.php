@@ -10,6 +10,36 @@ $products = $cart->getCartProductsByUserId($user_id); // Récupération des prod
 
 $total = 0; // initialisation de la variable total
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérification de la présence de l'id du produit à supprimer dans la requête POST
+    if (isset($_POST['id_product']) && is_scalar($_POST['id_product'])) {
+        $product_id = $_POST['id_product'];
+        
+        // Vérification de la présence de la quantité à supprimer dans la requête POST
+        if (isset($_POST['quantity']) && is_scalar($_POST['quantity'])) {
+            $quantity = $_POST['quantity'];
+            
+            // Suppression du produit du panier
+            $cart->removeProductFromCart($product_id, $quantity);
+            
+            // Redirection vers la page du panier
+            header('Location: cart.php');
+            exit();
+        }
+    }
+    
+    // Vérification de la présence de l'id du produit à supprimer dans la requête POST
+    if (isset($_POST['remove_product_id']) && is_scalar($_POST['remove_product_id'])) {
+        $product_id = $_POST['remove_product_id'];
+        
+        // Suppression du produit du panier
+        $cart->removeProductFromCart($product_id);
+        
+        // Redirection vers la page du panier
+        header('Location: cart.php');
+        exit();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,44 +51,6 @@ $total = 0; // initialisation de la variable total
 	<?php include('header.php') ?>
 	<h1>Panier</h1>
 	<table>
-		<thead>
-			<tr>
-				<th>Image</th>
-				<th>Nom</th>
-				<th>Prix unitaire</th>
-				<th>Quantité</th>
-				<th>Total</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-			foreach ($products as $product) {
-				?>
-				<tr>
-					<td><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>"></td>
-					<td><?php echo $product['name']; ?></td>
-					<td><?php echo $product['price']; ?> €</td>
-					<td><?php echo $product['quantity']; ?></td>
-					<td><?php $product_total = $product['price'] * $product['quantity']; echo $product_total; ?> €</td>
-				</tr>
-				<?php
-				$total += $product_total; // Ajout du prix total du produit à la variable total
-			}
-			?>
-			<tr>
-				<td colspan="4">Total :</td>
-				<td><?php echo $total; ?> €</td> <!-- Affichage du total en euros -->
-			</tr>
-		</tbody>
-	</table>
-</body>
-</html>
-
-
-
-
-
-
 
 
 

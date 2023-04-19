@@ -5,7 +5,7 @@ session_start();
 
 // Connect to database
 try {
-    $this->database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3306', 'root', '');
+    $this->database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
