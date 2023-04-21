@@ -33,15 +33,25 @@ $pages = ceil($nbProduct / $perPages);
 // Calculation of the 1st item on the page
 $premier = ($currentPage * $perPages) - $perPages;
 
-/* 
-$sql = 'SELECT product.id, product.name, price, image, sub_category.name as sub_name ,category.name as cate_name FROM `product` 
-        INNER JOIN category 
-        ON category.id = product.id_category
-        INNER JOIN sub_category_category
-        ON category.id = sub_category_category.id_category
-        INNER JOIN sub_category 
-        ON sub_category.id = sub_category_category.id_sub_category WHERE product.id = 1';
-*/
+ 
+// $sql = 'SELECT product.id, product.name, price, image, sub_category.name as sub_name ,category.name as cate_name FROM `product` 
+//         INNER JOIN category 
+//         ON category.id = product.id_category
+//         INNER JOIN sub_category_category
+//         ON category.id = sub_category_category.id_category
+//         INNER JOIN sub_category 
+//         ON sub_category.id = sub_category_category.id_sub_category WHERE 1=1
+//         AND category.id = 3  
+//         AND sub_category.id = 2
+//         LIMIT :premier, :parpage;';
+
+// if (!empty($categorie)) {
+//     $sql .= " AND id_categorie = " . $categorie;
+//   }
+
+//   if (!empty($sous_categorie)) {
+//     $sql .= " AND id_sous_categorie = " . $sous_categorie;
+//   }
 
 $sql = 'SELECT * FROM `product` LIMIT :premier, :parpage;';
 
