@@ -1,11 +1,9 @@
 
 <header>    
+    <div class="logo">
+        <img src="src/image/" alt="logo">
+    </div>
     <nav>
-        <div class="mobile-menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <ul>
             <?php if(isset($_SESSION['rights']) && $_SESSION["rights"] == "administrator") :?>
                 <li><a href="index.php">Accueil</a></li>
@@ -27,5 +25,6 @@
                 <li><a href="register.php">inscription</a></li>
             <?php endif; ?>
         </ul>
+        <?php require_once("research.php"); ?>
     </nav>
 </header>
