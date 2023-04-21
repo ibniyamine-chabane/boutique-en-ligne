@@ -33,6 +33,25 @@ $pages = ceil($nbProduct / $perPages);
 // Calculation of the 1st item on the page
 $premier = ($currentPage * $perPages) - $perPages;
 
+ 
+// $sql = 'SELECT product.id, product.name, price, image, sub_category.name as sub_name ,category.name as cate_name FROM `product` 
+//         INNER JOIN category 
+//         ON category.id = product.id_category
+//         INNER JOIN sub_category_category
+//         ON category.id = sub_category_category.id_category
+//         INNER JOIN sub_category 
+//         ON sub_category.id = sub_category_category.id_sub_category WHERE 1=1
+//         AND category.id = 3  
+//         AND sub_category.id = 2
+//         LIMIT :premier, :parpage;';
+
+// if (!empty($categorie)) {
+//     $sql .= " AND id_categorie = " . $categorie;
+//   }
+
+//   if (!empty($sous_categorie)) {
+//     $sql .= " AND id_sous_categorie = " . $sous_categorie;
+//   }
 
 $sql = 'SELECT * FROM `product` LIMIT :premier, :parpage;';
 
@@ -58,6 +77,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
+    <script defer src="src/js/shop.js"></script>
     <title>Boutique</title>
 </head>
 <body>
@@ -73,7 +93,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 <a href="product.php?id=<?= $product['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
                     <div>
                         <div>
-                            <img src="<?=$product['image']?>.jpg" alt="">
+                            <img src="src/upload/<?=$product['image']?>" alt="">
                         </div>
                         <div>
                             <h4><?= $product['name'] ?></h4>
@@ -84,7 +104,64 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </div>
             <div><!-- les catégorie ici -->
-
+                <div>
+                    <form action="" method="post" id="filter_form">
+                        <label for="categories">Catégories</label>
+                        <select name="category" id="">
+                    <option value="Comics">Comics</option>
+                    <option value="Bande dessinée">Bande dessinée</option>
+                    <option value="Manga">Manga</option>
+                    <option value="Manhwa">Manhwa</option>
+                    <option value="Manhua">Manhua</option>
+                </select>
+                <legend>Sous-catégorie :</legend>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">
+                    <label for="Action">Action</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Fantaisie">
+                    <label for="Fantaisie">Fantaisie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Isekai">
+                    <label for="Isekai">Isekaï</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Drame">
+                    <label for="Drame">Drame</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Psychologique">
+                    <label for="Psychologique">Psychologique</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Comedie">
+                    <label for="Comedie">Comedie</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Policier">
+                    <label for="Policier">Policier</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Science fiction">
+                    <label for="Science fiction">Science fiction</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Aventure">
+                    <label for="Aventure">Aventure</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
+                    <label for="Mecha">Mecha</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Horreur">
+                    <label for="Mecha">Horreur</label>
+                </div>
+                        <input type="submit" name="" id="">
+                    </form>
+                </div>
             </div>
             <div class="pagination">
                 <ul>                

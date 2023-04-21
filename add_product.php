@@ -83,6 +83,10 @@ if (isset($_POST['send'])) {
                     <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
                     <label for="Mecha">Mecha</label>
                 </div>
+                <div>
+                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Horreur">
+                    <label for="Mecha">Horreur</label>
+                </div>
                 <label for="">description</label>
                 <textarea name="description" id="" cols="80" rows="5"></textarea>
                 <input type="submit" value="ajouter le produit" name="send">
