@@ -1,58 +1,20 @@
 <?php
+
 session_start();
+
 //var_dump($_SESSION["rights"]);
 require_once("src/class/users.php");
 $user = new users;
-var_dump($user->getProfil());  
+//var_dump($user->getProfil());  
 $userDb = $user->getProfil()[0];
-//echo $userDb['email'];
-$prefilled_email = $userDb["email"];
-$prefilled_firstname = $userDb["first_name"];
-$prefilled_lastname = $userDb["last_name"];
-$current_password = $userDb["password"]; // c'est le mdp actuelle de l'utilisateur dans la BDD
-
-if (isset($_POST['submit'])) {
-
-    if ($_POST['email'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['current_password']) {
-     
-        if ($_POST['current_password'] == $current_password) {
-
-            $email = htmlspecialchars(trim($_POST['email']));
-            $firstname = htmlspecialchars(trim($_POST['firstname']));
-            $lastname =  htmlspecialchars(trim($_POST['lastname']));
-            $password =  htmlspecialchars(trim($_POST['current_password']));
-            $user->updateProfil($email, $firstname, $lastname, $password);
-
-        }else {
-            echo "les mot de passe ne correspond pas";
-        }    
-
-    } else {
-        echo "veuillez remplir tout les champs";
-    } 
-
-    if ($_POST['current_password'] && $_POST['new_password'] && $_POST['password_confirm']) {
-        
-        if($_POST['current_password'] == $current_password && $_POST['new_password'] == $_POST['password_confirm'] ) {
-
-            $new_password = $_POST['new_password'];
-            $user->changePassword($new_password);
-            echo "le mot de passe a été modifier";
-
-        } else if ($_POST['current_password'] != $current_password) {
-            echo "erreur sur le mdp actuelle ";
-        } else if ($_POST['new_password'] != $_POST['password_confirm']) {
-            echo "les nouveau mdp et la confirmation ne sont pas identique";
-        }
-    }
 
 
-} 
 
 
 
 ?>
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">

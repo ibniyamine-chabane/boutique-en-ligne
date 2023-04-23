@@ -12,6 +12,12 @@ document.getElementById("formulaire").addEventListener("submit", async function 
   if (response.ok) {
       const result = await response.json();
       console.log(result);
+
+      if (result.success) {
+          alert("Vous êtes inscrit !");
+      } else {
+          alert(result.message);
+      }
   } else {
       console.error("Erreur lors de l'envoi du formulaire:", response.statusText);
   }

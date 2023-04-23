@@ -88,7 +88,7 @@ class users
         if( $logged ) {
             echo "vous êtes connecté ".$_SESSION['firstname']." en tant que: ".$_SESSION['rights'];
             //var_dump($user);
-            header('Location: index.php');
+           header('Location: profil.php');
         } else {
             echo "erreur dans l'email ou le password</br>";
         }
