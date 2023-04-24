@@ -29,6 +29,36 @@ if (isset($_POST['delete_cart'])) {
     header('Location: cart.php');
     exit();
 }
+if (isset($_POST['delete_simple'])) {
+    // Vérifier si l'ID du produit à supprimer est présent dans le formulaire
+    if (isset($_POST['id_product'])) {
+        $product = $_POST['id_product'];
+
+        // Récupérer l'ID du panier de l'utilisateur connecté
+        $requete = $connexion->prepare("SELECT id FROM cart WHERE id_user = :id_user");
+        $requete->bindParam(':id_user', $user_id);
+        $requete->execute();
+        $cart_id = $requete->fetch(PDO::FETCH_ASSOC)['id'];
+
+        // Supprimer le produit du panier de l'utilisateur connecté
+        $requete = $connexion->prepare("DELETE FROM `cart_product` WHERE id_cart = :cart_id AND id_product = :product");
+        $requete->bindParam(':cart_id', $cart_id);
+        $requete->bindParam(':product', $product);
+        $requete->execute();
+
+        // Vérifier si le produit a été supprimé
+        if ($requete->rowCount() > 0) {
+            // Rediriger l'utilisateur vers la page du panier
+            header('Location: cart.php');
+            exit();
+        } else {
+            echo "Le produit n'a pas été supprimé.";
+        }
+    }
+}
+
+
+
 
 $products = $cart->getCartProductsByUserId($user_id); // Récupération des produits du panier de l'utilisateur
 
@@ -44,9 +74,7 @@ $total = 0; // initialisation de la variable total
 <body>
     <?php include('header.php') ?>
     <h1>Panier</h1>
-    <form method="post">
-        <button type="submit" name="delete_cart">Supprimer le panier</button>
-    </form>
+
     <table>
         <thead>
             <tr>
@@ -55,6 +83,7 @@ $total = 0; // initialisation de la variable total
                 <th>Prix unitaire</th>
                 <th>Quantité</th>
                 <th>Total</th>
+                <th>total produit</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -63,29 +92,38 @@ $total = 0; // initialisation de la variable total
             foreach ($products as $product) {
                 ?>
                 <tr>
+                    <th><?php echo $product['id'];  ?></th>
                     <td><img src="<?php echo $product['image']; ?>"></td>
                     <td><?php echo $product['name']; ?></td>
                     <td><?php echo $product['price']; ?> €</td>
                     <td><?php echo $product['quantity']; ?></td>
                     <td><?php $product_total = $product['price'] * $product['quantity']; echo $product_total; ?> €</td>
                     <td>
+                    <form method="post">
+    <input type="hidden" name="id_product" value="ID_DU_PRODUIT">
+    <button type="submit" name="delete_simple">Supprimer ce produit</button>
+</form>
 
+
+
+        </form>
                     </td>
                 </tr>
+
                 <?php
-                $total += $product_total; // Ajout du prix total du produit à la variable total
+                $total += $product_total; 
             }
             ?>
             <tr>
                 <td colspan="4">Total :</td>
                 <td><?php echo $total; ?> €</td> <!-- Affichage du total en euros -->
-                <td></td>
+
             </tr>
         </tbody>
     </table>
+                 <form method="post">
+                <button type="submit" name="delete_cart">Supprimer le panier</button>
+                </form>
 </body>
 </html>
-
-
-
 
