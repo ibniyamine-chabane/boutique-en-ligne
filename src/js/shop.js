@@ -18,4 +18,4 @@ document.querySelector('#filter_form').addEventListener('submit', (event) => {
     .catch(error => {
       console.error(error);
     });
-  });
+  }); 

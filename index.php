@@ -87,16 +87,16 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="pagination">
                 <ul>                
-                    <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="shop?page=<?= $currentPage - 1 ?>">Précèdent</a></li>
+                    <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="index.php?page=<?= $currentPage - 1 ?>">Précédent</a></li>
                     <?php for ($page = 1; $page <= $pages; $page++) : ?>
                     <li><a href="index.php?page=<?= $page ?>"><?= $page ?></a></li>
                     <?php endfor; ?>
-                    <li class="<?= ($currentPage == $pages) ? "disabled" : "" ?>"><a href="shop.php?page=<?= $currentPage + 1 ?>">Suivant</a></li>
+                    <li class="<?= ($currentPage == $pages) ? "disabled" : "" ?>"><a href="index.php?page=<?= $currentPage + 1 ?>">Suivant</a></li>
                 </ul>
             </div>
         </section>
         <section>
-            <h2>Nos dernier produits ajouté</h2>
+            <h2>Nos derniers produits ajoutés</h2>
             <div class="container-product">
                 <?php foreach ($fourLastProducts as $lastProducts ) : ?>
                 <a href="product.php?id=<?= $lastProducts['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
