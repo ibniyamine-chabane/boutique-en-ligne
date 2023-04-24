@@ -72,17 +72,19 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
             <h2>nos produits</h2>
             <div class="container-product">
                 <?php foreach ($productDatabase as $product ) : ?>
-                <a href="product.php?id=<?= $product['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
-                    <div>
-                        <div class="image_box">
-                            <img src="src/upload/<?=$product['image']?>" alt="">
+                    <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
+                    <a href="product.php?id=<?= $product['id'] ?>">
+                        <div>
+                            <div class="image_box">
+                                <img src="src/upload/<?=$product['image']?>" alt="">
+                            </div>
+                            <div class="box_title_product">
+                                <h4><?= $product['name'] ?></h4>
+                                <p><?= $product['price'] ?>€</p>
+                            </div>
                         </div>
-                        <div class="box_title_product">
-                            <h4><?= $product['name'] ?></h4>
-                            <p><?= $product['price'] ?>€</p>
-                        </div>
-                    </div>
-                </div></a>
+                    </a>
+                </div>
                 <?php endforeach; ?>
             </div>
             <div class="pagination">
@@ -114,5 +116,6 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </section>
     </main>
+    <?php require_once("footer.php");?>
 </body>
 </html>

@@ -6,13 +6,15 @@
 }
 /* -------    Header   ------  */
 header {
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 70px;
     display: flex;
+    background-color: #0F766E;
+    color: white;
 }
 
 nav {
-    background-color: azure;
+    /* background-color: azure; */
     width: 90%;
     margin: auto;
     display: flex;
@@ -30,6 +32,7 @@ nav ul {
 
 li a {
     text-decoration: none;
+    color: white;
 }
 
 /*  ------  Fin Header ------   */
@@ -56,6 +59,10 @@ section:first-child  {
     display: flex; 
     justify-content: space-evenly; 
     flex-wrap: wrap; 
+}
+
+.container-product a {
+    
 }
 
 .image_box {
@@ -123,6 +130,7 @@ ul {
 
 section:last-child {
     background-color: bisque;
+    padding-bottom: 115px;
 }
 
 h2 {
@@ -130,3 +138,16 @@ h2 {
     padding-top: 60px;
 }
 
+footer {
+    height: 110px;
+    background-color: #0F766E;
+}
+
+.container-footer {
+    height: 55px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 40px;
+    color: white;
+}
