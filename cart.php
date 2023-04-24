@@ -57,6 +57,25 @@ if (isset($_POST['delete_simple'])) {
     }
 }
 
+// Vérifier si le bouton "Valider" a été cliqué
+if (isset($_POST['validate_cart'])) {
+    // Récupérer le panier de l'utilisateur connecté
+    $requete = $connexion->prepare("SELECT * FROM cart WHERE id_user = :id_user");
+    $requete->bindParam(':id_user', $user_id);
+    $requete->execute();
+    $cart = $requete->fetch(PDO::FETCH_ASSOC);
+
+    // Stocker le panier de l'utilisateur connecté dans la session
+    session_start();
+    $_SESSION['cart'] = $cart;
+
+    // Rediriger l'utilisateur vers la page de validation de commande
+    header('Location: order_validation.php');
+    exit();
+}
+
+
+
 
 
 
@@ -100,13 +119,12 @@ $total = 0; // initialisation de la variable total
                     <td><?php $product_total = $product['price'] * $product['quantity']; echo $product_total; ?> €</td>
                     <td>
                     <form method="post">
-    <input type="hidden" name="id_product" value="ID_DU_PRODUIT">
-    <button type="submit" name="delete_simple">Supprimer ce produit</button>
-</form>
+                        <input type="hidden" name="id_product" value="ID_DU_PRODUIT">
+                        <button type="submit" name="delete_simple">Supprimer ce produit</button>
+                        </form>
 
 
 
-        </form>
                     </td>
                 </tr>
 
@@ -124,6 +142,10 @@ $total = 0; // initialisation de la variable total
                  <form method="post">
                 <button type="submit" name="delete_cart">Supprimer le panier</button>
                 </form>
+                <form method="post">
+             <button type="submit" name="validate_cart">Valider le Panier</button>
+            </form>
+
 </body>
 </html>
 
