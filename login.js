@@ -16,7 +16,7 @@ document.getElementById("form-log").addEventListener("submit", async function (e
         if (result.success) {
             alert("Vous êtes connecter !");
             // Rediriger vers index.php
-            window.location.href = "index.php";
+            window.location.href = "profil.php";
         } else {
             alert(result.message);
         }

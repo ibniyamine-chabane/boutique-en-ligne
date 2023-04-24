@@ -1,4 +1,4 @@
-
+<?php include('header.php') ?>
 
         <div>
             <h2>Connexion</h2>
