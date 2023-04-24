@@ -131,6 +131,7 @@ ul {
 section:last-child {
     background-color: bisque;
     padding-bottom: 115px;
+    padding-top: 1px;
 }
 
 h2 {
@@ -150,4 +151,59 @@ footer {
     text-align: center;
     padding-top: 40px;
     color: white;
+}
+
+/* -------- login ---------- */
+
+.container-login {
+    background-color: #14B8A6;
+    margin-top: 75px;
+    height: 500px;
+    width: 60%;
+    margin: auto;
+    border-radius: 8px;
+    margin-top: 7%;
+    padding-bottom: 16px;
+}
+
+.container-form-login {
+    width: 49%;
+    margin: auto;
+    padding-top: 28px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    margin-right: 0px;
+    margin-left: 0px;
+    resize: vertical;
+}       
+
+.button {
+    width: 30%;
+    margin: 24px 34%;
+}
+
+/*  ------- register.php -------- */
+
+.container-register {
+    background-color: #14B8A6;
+    margin-top: 75px;
+    width: 60%;
+    margin: auto;
+    border-radius: 8px;
+    margin-top: 4%;
+    padding-bottom: 63px;
+}
+
+.container-form-register {
+    width: 49%;
+    margin: auto;
+    padding-top: 28px;
 }

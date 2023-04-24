@@ -30,6 +30,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>inscription</title>
 </head>
 <body>
@@ -37,23 +38,26 @@ if (isset($_POST['submit'])) {
     <main>
     <div></div>
     <section>
-        <div>
+        <div class="container-register">
             <h2>Inscription</h2>
-            <form action="" method="post"> <!-- le formulaire d'inscription -->
-                <label for="email">email</label>
-                <input type="email" name="email">
-                <label for="firstname">prénom</label>
-                <input type="text" name="firstname">
-                <label for="lastname">lastname</label>
-                <input type="lastname" name="lastname">
-                <label for="password">mot de passe</label>
-                <input type="password" name="password">
-                <label for="password_confirm">confirmer mot de passe</label>
-                <input type="password" name="password_confirm">
-                <input type="submit" name="submit" value="valider">
-            </form>
+            <div class="container-form-register">
+                <form action="" method="post"> <!-- le formulaire d'inscription -->
+                    <label for="email">email</label>
+                    <input type="email" name="email">
+                    <label for="firstname">prénom</label>
+                    <input type="text" name="firstname">
+                    <label for="lastname">lastname</label>
+                    <input type="lastname" name="lastname">
+                    <label for="password">mot de passe</label>
+                    <input type="password" name="password">
+                    <label for="password_confirm">confirmer mot de passe</label>
+                    <input type="password" name="password_confirm">
+                    <input type="submit" name="submit" value="valider" class="button">
+                </form>
+            </div>
         </div>
     </section> 
     </main>   
+    <?php require_once("footer.php") ?>
 </body>
 </html>
