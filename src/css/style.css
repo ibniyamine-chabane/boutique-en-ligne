@@ -207,3 +207,50 @@ input {
     margin: auto;
     padding-top: 28px;
 }
+
+/* --------- product ---------- */
+
+.container-product-page {
+    display: flex;
+    padding-top: 73px;
+}
+
+.image-box {
+    /* width: 60%; */
+    margin: auto;
+    width: 588px;
+}
+
+.container-image {
+    /* width: 300%; */
+    width: 832px;
+}
+
+.container-image img {
+    width: 100%;
+}
+
+.right-side {
+    width: 40%;
+}
+
+.right-side article {
+    /* padding-top: 63px; */
+    text-align: justify;
+}
+
+.right-side article h3 {
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.container-form-quantity {
+    width: 165px;
+    margin: auto;
+    padding-top: 48px;
+}
+
+.green-button {
+    color: white;
+    background-color: #14B8A6;
+}
