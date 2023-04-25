@@ -54,7 +54,12 @@ section:first-child  {
     margin-top: 50px;
     overflow: auto;
 }
-    
+
+.big-box {
+    display: flex;
+    justify-content: space-between;
+}
+
 .container-product { 
     display: flex; 
     justify-content: space-evenly; 
