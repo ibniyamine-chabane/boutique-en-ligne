@@ -2,6 +2,7 @@
 session_start();
 //var_dump($_SESSION["rights"]);
 require_once("src/class/users.php");
+require_once("src/class/cartClass.php");
 $user = new users;
 // var_dump($user->getProfil());  
 $userDb = $user->getProfil()[0];
@@ -10,6 +11,10 @@ $prefilled_email = $userDb["email"];
 $prefilled_firstname = $userDb["first_name"];
 $prefilled_lastname = $userDb["last_name"];
 $current_password = $userDb["password"]; // c'est le mdp actuelle de l'utilisateur dans la BDD
+
+$cart = new cart;
+$cartDb = $cart->getCartProductsByUserId($_SESSION['id_user']);
+// var_dump($cartDb);
 
 if (isset($_POST['submit'])) {
 
@@ -40,7 +45,7 @@ if (isset($_POST['submit'])) {
             echo "le mot de passe a été modifier";
 
         } else if ($_POST['current_password'] != $current_password) {
-            echo "erreur sur le mdp actuelle ";
+            echo "erreur";
         } else if ($_POST['new_password'] != $_POST['password_confirm']) {
             echo "les nouveau mdp et la confirmation ne sont pas identique";
         }
@@ -100,14 +105,20 @@ if (isset($_POST['submit'])) {
                     <th>Quantité</th>
                     <th>total</th>
                 </tr>
-                <tr>
-
+                <?php foreach ($cartDb as $cart) :?> 
+                <tr>     
+                    <td><?= $cart['name'] ?><img src="src/upload/<?= $cart['image'] ?>" width="100px" style="margin-left:66px;" alt=""> </td>
+                    <td><?= $cart['price'] ?></td>
+                    <td><?= $cart['quantity'] ?></td>
+                    <td><?= $cart['amount'] ?></td>
                 </tr>
+                <?php endforeach; ?>       
                 </table>
             </div>
             
             </div>    
         </section>  
     </main>
+    <?php require_once("footer.php"); ?>
 </body>
 </html>

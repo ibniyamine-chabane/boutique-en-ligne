@@ -66,6 +66,7 @@ if (isset($_POST['submit'])) {
                         </article>
                         <div class="container-form-quantity">
                             <form action="" method="post" id="form-add- cart">
+                                <h3>Prix : <?= $productDatabase[0]['price'] ?>€</h3>
                                 <label for="product_quantity">quantité :</label>
                                 <input type="hidden" name="" value=""><!-- ici la value sera l'id de l'user inscrit -->
                                 <input type="hidden" value=""><!-- ici la value sera l'id du produit -->

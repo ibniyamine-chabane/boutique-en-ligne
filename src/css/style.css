@@ -218,6 +218,7 @@ input {
 
 .container-table {
     margin: auto;
+    margin-top: 40px;
 } 
 
 #cart {
@@ -310,3 +311,12 @@ input {
     background-color: #14B8A6;
 }
 
+/* --------  add_product.php ------- */
+
+.flex {
+    display: flex;
+}
+
+.ds input {
+    width: inherit;
+}
