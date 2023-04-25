@@ -317,6 +317,13 @@ input {
     display: flex;
 }
 
-.ds input {
+.category input {
     width: inherit;
+}
+
+/* -------- product_change.php -------- */
+
+.box-img {
+    width: 37%;
+    margin: auto;
 }

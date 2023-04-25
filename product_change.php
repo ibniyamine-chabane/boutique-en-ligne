@@ -131,6 +131,7 @@ if (isset($_POST['send'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Modification du produit</title>
 </head>
 
@@ -138,11 +139,13 @@ if (isset($_POST['send'])) {
     <?php require_once("header.php"); ?>
     <main>
         <section>
+        <div class="container-register">
             <h2>Image du produit</h2>
-            <div>
+            <div class="box-img">
                 <img src="src/upload/<?= $dbChangeproduct[0]['image'] ?>" alt="">
             </div>
             <h2>Modification du produit</h2>
+            <div class="container-form-register">
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="">Nom du produit</label>
                 <input type="text" name="name" value="<?= $dbChangeproduct[0]['name'] ?>">
@@ -164,7 +167,7 @@ if (isset($_POST['send'])) {
                 </select>
                 <legend>Sous-catégorie :</legend>
                 <?php foreach ($subCategoryDB as $subCategory) : ?>
-                    <div>
+                    <div class="category">
                         <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $dbChangeproduct[0]['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
                         <label for="Action"><?= $subCategory['name'] ?></label>
                     </div>
@@ -173,6 +176,8 @@ if (isset($_POST['send'])) {
                 <textarea name="description" id="" cols="80" rows="5"><?= $dbChangeproduct[0]['description'] ?></textarea>
                 <input type="submit" value="Modifier le produit" name="send">
             </form>
+            </div>
+        </div>
         </section>
     </main>
 </body>

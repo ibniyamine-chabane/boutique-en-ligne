@@ -46,40 +46,40 @@ if (isset($_POST['send'])) {
                         <option value="Manhua">Manhua</option>
                     </select>
                     <legend>Sous-catégorie :</legend>
-                    <div class="ds">
+                    <div class="category">
                         <div class="">
-                            <label for="Action">Action</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">
+                            <label for="Action">Action</label>
                             <br>
-                            <label for="Fantaisie">Fantaisie</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Fantaisie">
+                            <label for="Fantaisie">Fantaisie</label>
                             <br>
-                            <label for="Isekai">Isekaï</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Isekai">
+                            <label for="Isekai">Isekaï</label>
                             <br>
-                            <label for="Drame">Drame</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Drame">
+                            <label for="Drame">Drame</label>
                             <br>
-                            <label for="Psychologique">Psychologique</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Psychologique">
+                            <label for="Psychologique">Psychologique</label>
                             <br>
-                            <label for="Comedie">Comedie</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Comedie">
+                            <label for="Comedie">Comedie</label>
                             <br>
-                            <label for="Policier">Policier</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Policier">
+                            <label for="Policier">Policier</label>
                             <br>
-                            <label for="Science fiction">Science fiction</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Science fiction">
+                            <label for="Science fiction">Science fiction</label>
                             <br>
-                            <label for="Aventure">Aventure</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Aventure">
+                            <label for="Aventure">Aventure</label>
                             <br>
-                            <label for="Mecha">Mecha</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
+                            <label for="Mecha">Mecha</label>
                             <br>
-                            <label for="Mecha">Horreur</label>
                             <input type="checkbox" id="sub_category" name="sub_category[]" value="Horreur">
+                            <label for="Mecha">Horreur</label>
                         </div>
                     </div>    
                     <label for="">description</label>
