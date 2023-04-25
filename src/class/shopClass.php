@@ -45,7 +45,7 @@ class shop
     }
     
     public function getProduct() {
-        $request = $this->getDatabase()->prepare('SELECT product.id , `name` , `image` , `description` , `price` , inventory.id , quantity 
+        $request = $this->getDatabase()->prepare('SELECT product.id , `name` , `image` , `description` , `price` , id_category, inventory.id , quantity 
                                FROM product 
                                INNER JOIN product_inventory 
                                ON product_inventory.id_product = product.id 
@@ -77,5 +77,3 @@ class shop
 // echo $user->getAllUsers()['email'];
 // echo $user->getAllUsers()['email'];
 // echo $user->getAllUsers()['email'];
-
-?>
