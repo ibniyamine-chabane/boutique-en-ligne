@@ -72,7 +72,7 @@ class cart
 
         $update->execute(array($amount ,$_SESSION['id_user']));
         
-        echo "votre produit à bien été ajouté dans votre panier";
+        // $_SESSION['message'] = "votre produit à bien été ajouté dans votre panier";
 
     }
 
