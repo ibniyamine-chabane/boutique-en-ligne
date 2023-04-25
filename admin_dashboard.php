@@ -136,89 +136,89 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                     justify-content: space-evenly;
                 }
             </style>
-            <section>
-                <form action="" method="post">
-                    <?php
-                    // envoyé une catégory dans la base de données
-                    if (isset($_POST['submit_category'])) {
-                        if ($_POST['category']) {
-                            $category = $_POST['category'];
 
-                            $sql2 = "INSERT INTO `category` (`name`) 
-                            VALUE (?)";
-                            $request2 = $database->prepare($sql2);
-                            $request2->execute(array($category));
-                        }
+            <form action="" method="post">
+                <?php
+                // envoyé une catégory dans la base de données
+                if (isset($_POST['submit_category'])) {
+                    if ($_POST['category']) {
+                        $category = $_POST['category'];
+
+                        $sql2 = "INSERT INTO `category` (`name`) 
+                        VALUE (?)";
+                        $request2 = $database->prepare($sql2);
+                        $request2->execute(array($category));
                     }
-                    ?>
-                    <h2>Ajouter une catégorie</h2>
-                    <input type="text" name="category">
-                    <input type="submit" name="submit_category">
-                    <?php
-                    // envoyé une sous catégory dans la base de données
-                    if (isset($_POST['submit_sub_category'])) {
-                        if ($_POST['sub_category']) {
-                            $subCategory = $_POST['sub_category'];
+                }
+                ?>
+                <h2>Ajouter une catégorie</h2>
+                <input type="text" name="category">
+                <input type="submit" name="submit_category">
+                <?php
+                // envoyé une sous catégory dans la base de données
+                if (isset($_POST['submit_sub_category'])) {
+                    if ($_POST['sub_category']) {
+                        $subCategory = $_POST['sub_category'];
 
-                            $sql2 = "INSERT INTO `sub_category` (`name`) 
-                            VALUE (?)";
-                            $request2 = $database->prepare($sql2);
-                            $request2->execute(array($subCategory));
-                        }
+                        $sql2 = "INSERT INTO `sub_category` (`name`) 
+                        VALUE (?)";
+                        $request2 = $database->prepare($sql2);
+                        $request2->execute(array($subCategory));
                     }
-                    ?>
-                    <h2>Ajouter une sous catégorie</h2>
-                    <input type="text" name="sub_category">
-                    <input type="submit" name="submit_sub_category">
+                }
+                ?>
+                <h2>Ajouter une sous catégorie</h2>
+                <input type="text" name="sub_category">
+                <input type="submit" name="submit_sub_category">
 
 
-                    <h2>Produit</h2>
-                    <div class="container-product">
-                        <?php foreach ($display as $product) : ?>
-                            <a href="product.php?id=<?= $product['productId'] ?>">
-                                <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
+                <h2>Produit</h2>
+                <div class="container-product">
+                    <?php foreach ($display as $product) : ?>
+                        <a href="product.php?id=<?= $product['productId'] ?>">
+                            <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
+                                <div>
                                     <div>
-                                        <div>
-                                            <img src="src/upload/<?= $product['image'] ?>" alt="">
-                                        </div>
-                                        <div>
-                                            <h4><?= $product['productName'] ?></h4>
-                                            <p><?= $product['price'] ?>€</p>
-                                            <p><?= "Quantité : " . $product['quantity'] ?></p>
-                                            <p><?= $product['date_product'] ?></p>
-                                            <p><?= $product['categoryName'] ?></p>
-                                            <?php foreach ($display2 as $subCategory) : ?>
-                                                <?php if (
-                                                    $product['productId'] ==
-                                                    $subCategory['id_product']
-                                                ) : ?>
-                                                    <p><?= $subCategory['subName'] ?></p>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                            <button><a href="product_change.php?id=<?= $product['productId'] ?>">Modifier le produit</a></button>
-                                            <button><a href="delete_product.php?id=<?= $product['productId'] ?>">suprimmer le produit</a></button>
-                                        </div>
+                                        <img src="src/upload/<?= $product['image'] ?>" alt="">
+                                    </div>
+                                    <div>
+                                        <h4><?= $product['productName'] ?></h4>
+                                        <p><?= $product['price'] ?>€</p>
+                                        <p><?= "Quantité : " . $product['quantity'] ?></p>
+                                        <p><?= $product['date_product'] ?></p>
+                                        <p><?= $product['categoryName'] ?></p>
+                                        <?php foreach ($display2 as $subCategory) : ?>
+                                            <?php if (
+                                                $product['productId'] ==
+                                                $subCategory['id_product']
+                                            ) : ?>
+                                                <p><?= $subCategory['subName'] ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                        <button><a href="product_change.php?id=<?= $product['productId'] ?>">Modifier le produit</a></button>
+                                        <button><a href="delete_product.php?id=<?= $product['productId'] ?>">suprimmer le produit</a></button>
                                     </div>
                                 </div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </form>
-
-                <div class="pagination">
-                    <ul>
-                        <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage - 1 ?>">Précèdent</a></li>
-                        <?php for ($page = 1; $page <= $pages; $page++) : ?>
-                            <li><a href="admin_dashboard.php?page=<?= $page ?>"><?= $page ?></a></li>
-                        <?php endfor; ?>
-                        <li class="<?= ($currentPage == $pages) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage + 1 ?>">Suivant</a></li>
-                    </ul>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
+            </form>
 
-                <h2>Ajouter un produit</h2>
-                <button><a href="add_product.php">Ajouter un produit</a></button>
+            <div class="pagination">
+                <ul>
+                    <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage - 1 ?>">Précèdent</a></li>
+                    <?php for ($page = 1; $page <= $pages; $page++) : ?>
+                        <li><a href="admin_dashboard.php?page=<?= $page ?>"><?= $page ?></a></li>
+                    <?php endfor; ?>
+                    <li class="<?= ($currentPage == $pages) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage + 1 ?>">Suivant</a></li>
+                </ul>
+            </div>
 
-            </section>
+            <h2>Ajouter un produit</h2>
+            <button><a href="add_product.php">Ajouter un produit</a></button>
+
+        </section>
     </main>
 </body>
 
