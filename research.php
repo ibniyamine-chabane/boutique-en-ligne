@@ -7,16 +7,13 @@
     <title>rechercher</title>
 </head>
 <body>
-
-
 <form method="get" id="mon-formulaire">
   <label for="recherche">Rechercher:</label>
   <input type="text" id="recherche" name="q" autocomplete="off" required>
   <div id="suggestions"></div>
+  <img src="" id="image" alt="">
   <button type="submit">Rechercher</button>
 </form>
-
-
-    <script src="research.js"></script>
+    <script src="src/js/research.js"></script>
 </body>
 </html>

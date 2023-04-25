@@ -57,7 +57,7 @@ if (isset($_POST['delete_simple'])) {
     }
 }
 
-// Vérifier si le bouton "Valider" a été cliqué
+// Vérifier si le bouton "Valider" a été envoyer
 if (isset($_POST['validate_cart'])) {
     // Récupérer le panier de l'utilisateur connecté
     $requete = $connexion->prepare("SELECT * FROM cart WHERE id_user = :id_user");
@@ -88,13 +88,14 @@ $total = 0; // initialisation de la variable total
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./src/css/style.css">
     <title>Panier</title>
 </head>
 <body>
     <?php include('header.php') ?>
     <h1>Panier</h1>
 
-    <table>
+    <table id="cart">
         <thead>
             <tr>
                 <th>Image</th>
@@ -111,7 +112,6 @@ $total = 0; // initialisation de la variable total
             foreach ($products as $product) {
                 ?>
                 <tr>
-                    <th><?php echo $product['id'];  ?></th>
                     <td><img src="<?php echo $product['image']; ?>"></td>
                     <td><?php echo $product['name']; ?></td>
                     <td><?php echo $product['price']; ?> €</td>

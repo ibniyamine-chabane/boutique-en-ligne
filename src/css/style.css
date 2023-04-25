@@ -1,0 +1,223 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+/* -------    Header   ------  */
+header {
+    /* background-color: aqua; */
+    height: 70px;
+    display: flex;
+    background-color: #0F766E;
+    color: white;
+}
+
+nav {
+    /* background-color: azure; */
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    /* justify-content:space-around; */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    width: 95%;
+    justify-content: space-evenly;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+}
+
+/*  ------  Fin Header ------   */
+                            /* page index */ 
+
+/* section 1 / 2 */ 
+section:first-child  {
+    background-color: azure;
+    padding-bottom: 1px;
+}
+
+.container-thumbnail { 
+    border: 1px solid black;
+    width: 361px;
+    border-radius: 12px;
+    font-size: 12px;
+    background-color: #D9D9D9;
+    box-shadow: 3px 3px 4px -2px;
+    margin-top: 50px;
+    overflow: auto;
+}
+    
+.container-product { 
+    display: flex; 
+    justify-content: space-evenly; 
+    flex-wrap: wrap; 
+}
+
+.container-product a {
+    
+}
+
+.image_box {
+    width: 62%;
+    height: 252px;
+    position: relative;
+    margin: auto;
+}
+
+.image_box img {
+    width: 100%;
+    padding-top: 15px;
+}
+
+.box_title_product {
+    background-color: #14B8A6;
+    height: 55px;
+}
+
+.box_title_product h4, p {
+    padding: 3px 3px;
+}
+
+.disabled { 
+    pointer-events: none; 
+} 
+
+/* .pagination {
+    margin: auto; 
+    width: 627px;
+}  */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 48px 0;
+  }
+  
+.pagination ul {
+    list-style: none;
+}
+
+.pagination a {
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  margin: 0 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+  
+  .pagination a:hover,
+  .pagination .active {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+ul {
+    display:flex; 
+    justify-content: space-evenly;
+}
+
+section:last-child {
+    background-color: bisque;
+    padding-bottom: 115px;
+    padding-top: 1px;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 60px;
+}
+
+footer {
+    height: 110px;
+    background-color: #0F766E;
+}
+
+.container-footer {
+    height: 55px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 40px;
+    color: white;
+}
+
+/* -------- login ---------- */
+
+.container-login {
+    background-color: #14B8A6;
+    margin-top: 75px;
+    height: 500px;
+    width: 60%;
+    margin: auto;
+    border-radius: 8px;
+    margin-top: 7%;
+    padding-bottom: 16px;
+}
+
+.container-form-login {
+    width: 49%;
+    margin: auto;
+    padding-top: 28px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    margin-right: 0px;
+    margin-left: 0px;
+    resize: vertical;
+}       
+
+.button {
+    width: 30%;
+    margin: 24px 34%;
+}
+
+/*  ------- register.php -------- */
+
+.container-register {
+    background-color: #14B8A6;
+    margin-top: 75px;
+    width: 60%;
+    margin: auto;
+    border-radius: 8px;
+    margin-top: 4%;
+    padding-bottom: 63px;
+}
+
+.container-form-register {
+    width: 49%;
+    margin: auto;
+    padding-top: 28px;
+}
+
+/*--cart.php--*/
+
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+}
+

@@ -5,7 +5,7 @@ class users
 
     //attributs 
     private $database;
-    private $id;
+    private $id;    
     private $email;
 
     //Constructeur
