@@ -10,6 +10,18 @@ if (isset($_POST['send'])) {
     $product->addProduct($_POST['title'], $_POST['price'], $_POST['description']);
 }
 
+// select the category table
+$request = $product->getDB()->prepare('SELECT * FROM category');
+$request->execute(array());
+$categoryDB = $request->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($categoryDB);
+
+// select the sub category table
+$request2 = $product->getDB()->prepare('SELECT * FROM sub_category');
+$request2->execute(array());
+$subCategoryDB = $request2->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($subCategoryDB);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,9 +50,7 @@ if (isset($_POST['send'])) {
                 <label for="">Catégorie</label>
                 <select name="category" id="">
                     <?php foreach ($categoryDB as $category) : ?>
-                        <option value="<?= $category['name'] ?>" <?php
-                                                                    if ($category['id'] == $dbChangeproduct[0]['id_category']) :
-                                                                    ?> <?= "selected"; ?> <?php endif; ?>>
+                        <option value="<?= $category['name'] ?>">
                             <?= $category['name'] ?>
                         </option>
                     <?php endforeach; ?>
@@ -48,7 +58,7 @@ if (isset($_POST['send'])) {
                 <legend>Sous-catégorie :</legend>
                 <?php foreach ($subCategoryDB as $subCategory) : ?>
                     <div>
-                        <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $dbChangeproduct[0]['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
+                        <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>">
                         <label for="Action"><?= $subCategory['name'] ?></label>
                     </div>
                 <?php endforeach; ?>
