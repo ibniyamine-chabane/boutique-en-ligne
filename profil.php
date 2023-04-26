@@ -72,6 +72,9 @@ if (isset($_POST['submit'])) {
         <section>
             <div class="container-register">
                 <h2>profil</h2>
+                <?php if (isset($_SESSION['message_profil'])) :?>
+                <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $_SESSION['message_profil'] ?></span>
+                <?php endif; ?>
                 <div class="container-form-register">
                     <form action="" method="post">
                         <label for="email">email</label>
@@ -120,5 +123,6 @@ if (isset($_POST['submit'])) {
         </section>  
     </main>
     <?php require_once("footer.php"); ?>
+    <script></script>
 </body>
 </html>
