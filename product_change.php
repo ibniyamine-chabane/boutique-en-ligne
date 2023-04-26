@@ -7,7 +7,7 @@ require_once('src/class/shopClass.php');
 $change = new shop;
 
 $dbChangeproduct = $change->getProduct();
-// var_dump($dbChangeproduct);
+var_dump($dbChangeproduct);
 
 // select the sub category table
 $request = $change->getDatabase()->prepare('SELECT * FROM sub_category');
@@ -58,7 +58,7 @@ if (isset($_POST['send'])) {
         foreach ($categoryDB as $categoryName) {
             if ($category == $categoryName['name']) {
 
-                $categoryName['id'] = $_SESSION['category_id'];
+                $_SESSION['category_id'] = $categoryName['id'];
             }
         }
 
@@ -84,7 +84,7 @@ if (isset($_POST['send'])) {
         if ($filesize > 1024 * 1024) {
             die('Le fichier dépasse 1 Mo');
         }
-
+        var_dump($image['name']);
         // we generate a complete path
         $newfilename = __DIR__ . "/src/upload/" . $image['name'];
 
@@ -99,13 +99,13 @@ if (isset($_POST['send'])) {
                 set product.name = (?), product.image = (?), product.price = (?), product.description = (?), product.id_category = (?), inventory.quantity = (?)
                 WHERE product.id = (?)";
         $request = $change->getDatabase()->prepare($sql);
-        $request->execute(array($name, $image['name'], $price, $description, $_SESSION['category_id'], $quantity, $dbChangeproduct[0]['product_id']));
+        $request->execute(array($name, $image['name'], $price, $description, $_SESSION['category_id'], $quantity, $dbChangeproduct[0]['id']));
 
         //update sub category
         $sql2 = "DELETE FROM sub_category_product
                  WHERE id_product = (?)";
         $request2 = $change->getDatabase()->prepare($sql2);
-        $request2->execute(array($dbChangeproduct[0]['product_id']));
+        $request2->execute(array($dbChangeproduct[0]['id']));
 
         foreach ($_POST['sub_category'] as $postSubCategory) {
             foreach ($subCategoryDB as $subCategoryName) {
@@ -114,7 +114,7 @@ if (isset($_POST['send'])) {
                     $sql2 = "INSERT INTO `sub_category_product` (`id_product`,`id_sub_category`) 
                     VALUE (?,?)";
                     $request2 = $change->getDatabase()->prepare($sql2);
-                    $request2->execute(array($dbChangeproduct[0]['product_id'], $subCategoryName['id']));
+                    $request2->execute(array($dbChangeproduct[0]['id'], $subCategoryName['id']));
                 }
             }
         }
