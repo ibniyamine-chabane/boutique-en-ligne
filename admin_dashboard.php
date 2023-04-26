@@ -45,7 +45,7 @@ $request->execute();
 
 // The values are retrieved in an associative array
 $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-var_dump($productDatabase);
+//var_dump($productDatabase);
 
 $request = $database->prepare("SELECT image, price, quantity, product.name 
                                 AS productName, category.name 
