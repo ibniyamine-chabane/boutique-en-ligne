@@ -2,10 +2,8 @@
 
 session_start();
 
-//var_dump($_SESSION["rights"]);
 require_once("src/class/users.php");
 $user = new users;
-//var_dump($user->getProfil());  
 $userDb = $user->getProfil()[0];
 
 

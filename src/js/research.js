@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', function() {
       const query = searchInput.value;
   
-      if (query.trim().length < 0) {
+      if (query.trim().length < 2) {
         suggestions.innerHTML = '';
         return;
       } 

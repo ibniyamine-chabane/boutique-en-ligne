@@ -63,9 +63,7 @@ section:first-child  {
     flex-wrap: wrap; 
 }
 
-.container-product a {
-    
-}
+
 
 .image_box {
     width: 62%;
@@ -221,3 +219,17 @@ h1 {
     margin: 10px;
 }
 
+
+
+/*--footer-*/
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    position: relative;
+}

@@ -3,3 +3,5 @@
         <p>copyright</p>
     </div>
 </footer>
+
+<script src="footer.js"></script>

@@ -43,6 +43,7 @@ if (!empty($_POST)) {
         
         if ($stmt->execute()) {
             echo "L'adresse a été ajoutée avec succès!";
+            header("location: payement.php");
         } else {
             echo "Erreur lors de l'ajout de l'adresse.";
         }
@@ -51,7 +52,6 @@ if (!empty($_POST)) {
     }
 }
 
-var_dump($_POST);
 
 ?>
 
@@ -101,10 +101,13 @@ var_dump($_POST);
         <input type="text" name="mobile" id="mobile">
         <br>
 
-        <input type="submit" value="Ajouter l'adresse">
+        <input type="submit" value="Ajouter l'adresse et passer au payement">
+
+
     </form>
     </div>
 </section>
     </main>
+    <?php include('footer.php') ?>
 </body>
 </html>
