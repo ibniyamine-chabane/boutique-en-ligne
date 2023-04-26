@@ -89,10 +89,10 @@ class  products
                         $request = $this->database->prepare('SELECT * FROM category');
 
                         $request->execute(array());
-                        $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+                        $categoryDB = $request->fetchAll(PDO::FETCH_ASSOC);
                         //var_dump($boutiqueDB);
 
-                        foreach ($boutiqueDB as $categoryName) {
+                        foreach ($categoryDB as $categoryName) {
                             if ($_POST['category'] == $categoryName['name']) {
                                 //echo $categoryName['id'];
                                 $_SESSION['category_id'] = $categoryName['id'];
@@ -165,11 +165,11 @@ class  products
                                     // var_dump($_POST['sub_category'][1]);
                                     $request = $this->database->prepare('SELECT * FROM sub_category');
                                     $request->execute(array());
-                                    $boutiqueDB = $request->fetchAll(PDO::FETCH_ASSOC);
+                                    $subCategoryDB = $request->fetchAll(PDO::FETCH_ASSOC);
                                     //var_dump($boutiqueDB);
 
                                     foreach ($_POST['sub_category'] as $postSubCategory) {
-                                        foreach ($boutiqueDB as $subCategoryName) {
+                                        foreach ($subCategoryDB as $subCategoryName) {
                                             if ($postSubCategory == $subCategoryName['name']) {
                                                 //echo $subCategoryName['id'];
                                                 $_SESSION['sub_category_id'] = $subCategoryName['id'];
