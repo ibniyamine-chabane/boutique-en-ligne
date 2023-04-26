@@ -21,6 +21,11 @@ class  products
     }
 
     //Méthodes
+    public function getDB()
+    {
+        return $this->database;
+    }
+
     public function getName()
     {
         return $this->name;
