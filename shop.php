@@ -4,7 +4,12 @@ require_once('src/class/shopClass.php');
 $shop = new shop;
 $database = $shop->getDatabase();
 
-//$database = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
+// $request = $database->prepare('SELECT * FROM product');
+// $request->execute(array());
+// $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($productDatabase);
+//echo $productDatabase[0]['image'];
+
 
 // on determine dans quel page on se trouve 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -76,31 +81,30 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="src/css/style.css">
     <script defer src="src/js/shop.js"></script>
     <title>Boutique</title>
 </head>
 <body>
     <?php require_once("header.php"); ?>
     <main>
-        <style> .container-thumbnail { border: 1px solid black;
-    width: 365px;} .container-product { display: flex; justify-content: space-evenly; flex-wrap: wrap; }
-    .disabled { pointer-events: none; } .pagination {margin: auto; width: 627px;} ul {display:flex; justify-content: space-evenly;}</style>
         <section>
             <h2>Produit de la boutique</h2>
             <div class="container-product">
                 <?php foreach ($productDatabase as $product ) : ?>
-                <a href="product.php?id=<?= $product['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
-                    <div>
+                    <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
+                    <a href="product.php?id=<?= $product['id'] ?>">
                         <div>
-                            <img src="src/upload/<?=$product['image']?>" alt="">
+                            <div class="image_box">
+                                <img src="src/upload/<?=$product['image']?>" alt="">
+                            </div>
+                            <div class="box_title_product">
+                                <h4><?= $product['name'] ?></h4>
+                                <p><?= $product['price'] ?>€</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4><?= $product['name'] ?></h4>
-                            <p><?= $product['price'] ?>€</p>
-                        </div>
-                    </div>
-                </div></a>
+                    </a>
+                </div>
                 <?php endforeach; ?>
             </div>
             <div><!-- les catégorie ici -->
@@ -165,7 +169,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="pagination">
                 <ul>                
-                    <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="shop?page=<?= $currentPage - 1 ?>">Précèdent</a></li>
+                    <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="shop.php?page=<?= $currentPage - 1 ?>">Précédent</a></li>
                     <?php for ($page = 1; $page <= $pages; $page++) : ?>
                     <li><a href="shop.php?page=<?= $page ?>"><?= $page ?></a></li>
                     <?php endfor; ?>
@@ -174,5 +178,6 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </section>
     </main>
+    <?php require_once("footer.php"); ?>
 </body>
 </html>
