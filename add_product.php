@@ -1,22 +1,9 @@
 <?php
 session_start();
 
-<<<<<<< HEAD
 require_once 'src/class/productsClass.php';
 
 $product = new products;
-=======
-//require_once 'src/class/products.php/';
-
-// Connect to database
-try {
-    $this->datgitabase = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-
-//var_dump($_FILES['image']);
->>>>>>> panier
 
 if (isset($_POST['send'])) {
 
