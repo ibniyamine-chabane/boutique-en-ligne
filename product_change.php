@@ -7,7 +7,7 @@ require_once('src/class/shopClass.php');
 $change = new shop;
 
 $dbChangeproduct = $change->getProduct();
-var_dump($dbChangeproduct);
+//var_dump($dbChangeproduct);
 
 // select the sub category table
 $request = $change->getDatabase()->prepare('SELECT * FROM sub_category');
