@@ -3,7 +3,7 @@
 session_start();
 
 require_once("src/class/users.php");
-require_once("src/class/cartClass.php");
+require_once("src/class/cartClass.php");    
 $user = new users; 
 $userDb = $user->getProfil()[0];
 $prefilled_email = $userDb["email"];
