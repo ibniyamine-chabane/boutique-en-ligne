@@ -59,12 +59,14 @@ $subCategoryDB = $request2->fetchAll(PDO::FETCH_ASSOC);
                             <?php endforeach; ?>
                         </select>
                         <legend>Sous-catégorie :</legend>
+                        <div class="category">
                         <?php foreach ($subCategoryDB as $subCategory) : ?>
                             <div>
                                 <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>">
                                 <label for="Action"><?= $subCategory['name'] ?></label>
                             </div>
                         <?php endforeach; ?>
+                        </div>
                         <label for="">description</label>
                         <textarea name="description" id="" cols="80" rows="5"></textarea>
                         <input type="submit" value="ajouter le produit" name="send">

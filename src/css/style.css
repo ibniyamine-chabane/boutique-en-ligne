@@ -333,7 +333,7 @@ input {
     margin: auto;
 }
 
-/* -------- admin dashboarf ---------*/
+/* -------- admin dashboard ---------*/
 
 .width-category-dashbord {
     width: 29% ;
@@ -376,4 +376,41 @@ a.add-product-button {
     width: 95%;
     display: flex;
     padding-bottom: 12px;
+}
+
+/*  ---------- cart.php ------- */
+
+.container-button-cart {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.container-button-cart button {
+    background-color: #44c767;
+    border-radius: 10px;
+    border: 1px solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 16px;
+    padding: 16px 20px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.container-button-cart button:hover {
+	background-color:#5cbf2a;
+}
+.container-button-cart:active {
+	position:relative;
+	top:2px;
+}
+
+.red {
+    background-color: red;
 }
