@@ -56,7 +56,12 @@ section:first-child  {
     margin-top: 50px;
     overflow: auto;
 }
-    
+
+.big-box {
+    display: flex;
+    justify-content: space-between;
+}
+
 .container-product { 
     display: flex; 
     justify-content: space-evenly; 
@@ -208,28 +213,167 @@ input {
     padding-top: 28px;
 }
 
-/*--cart.php--*/
+/* --------- profil ----------- */ 
 
-
-h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 10px;
+.container-cart-profil {
+    margin: auto;
+    width: 80%;
+    border: #333;
 }
 
+.container-table {
+    margin: auto;
+    margin-top: 40px;
+} 
 
+#cart {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #cart td, #cart th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #cart tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #cart tr:hover {background-color: #ddd;}
+  
+  #cart th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+/* --------- product ---------- */
 
-/*--footer-*/
-
-
-footer {
+.container-product-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 73px;
+}
+
+.image-box {
+    /* width: 60%; */
+    margin: auto;
+    width: 588px;
+}
+
+.container-image {
+    /* width: 300%; */
+    width: 832px;
+}
+
+.container-image img {
+    width: 100%;
+}
+
+.right-side {
+    width: 40%;
+}
+
+.right-side article {
+    /* padding-top: 63px; */
+    text-align: justify;
+}
+
+.right-side article h3 {
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.container-form-quantity {
+    width: 165px;
+    margin: auto;
+    padding-top: 48px;
+}
+
+.login-button {
+    background-color:#44c767;
+	border-radius:10px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:16px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.login-button:hover {
+	background-color:#5cbf2a;
+}
+.login-button:active {
+	position:relative;
+	top:1px;
+}
+
+.green-button {
+    color: white;
+    background-color: #14B8A6;
+}
+
+/* --------  add_product.php ------- */
+
+.flex {
+    display: flex;
+}
+
+.category input {
+    width: inherit;
+}
+
+/* -------- product_change.php -------- */
+
+.box-img {
+    width: 37%;
+    margin: auto;
+}
+
+/* -------- admin dashboarf ---------*/
+
+.width-category-dashbord {
+    width: 29% ;
+}
+
+.add-product-button {
+    background-color:#44c767;
+	border-radius:10px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:16px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
     text-align: center;
-    left: 0;
-    bottom: 0;
-    position: relative;
+}
+.add-product-button:hover {
+	background-color:#5cbf2a;
+}
+.add-product-button:active {
+	position:relative;
+	top:2px;
+}
+
+a.add-product-button {
+    display: block;
+    margin: auto;
+    width: 190px;
+    margin-top: 25px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.button-box {
+    width: 95%;
+    display: flex;
+    padding-bottom: 12px;
 }

@@ -36,8 +36,9 @@ class cart
         $request->execute(array($_SESSION['id_user'], 0));
          //étape 2 on select la table cart ou la colonne id user correspont a notre user pour récupérer l'id de cart
         $request2 = $this->getDatabase()->prepare('SELECT id 
-                                                 FROM cart 
-                                                 WHERE id_user = (?)'
+                                                 FROM cart
+                                                 WHERE id_user = (?)
+                                                 ORDER BY id DESC'
                                                  );
 
         $request2->execute(array($_SESSION['id_user']));
@@ -71,14 +72,28 @@ class cart
         //derniere étape ajouter le montant dans notre table cart qui correspont a notre id.
         $update = $this->getDatabase()->prepare('UPDATE cart
                                                    SET `amount` = (?)
-                                                   WHERE id_user = (?)'
+                                                   WHERE id_user = (?) AND cart.id = (?)'
                                                    );
 
-        $update->execute(array($amount ,$_SESSION['id_user']));
+        $update->execute(array($amount ,$_SESSION['id_user'], $id_cart));
         
-        echo "votre produit à bien été ajouté dans votre panier";
+        // $_SESSION['message'] = "votre produit à bien été ajouté dans votre panier";
 
     }
+
+    public function getCartProductsByUserId($user_id) {
+        // Vérification que $user_id est un scalaire avant de l'utiliser dans la requête SQL
+        if (!is_scalar($user_id)) {
+            return array();
+        }
+
+        // Requête SQL pour récupérer les produits du panier de l'utilisateur
+        $stmt = $this->getDatabase()->prepare('SELECT product.id, product.name, product.price, product.image, cart_product.quantity, cart.amount FROM product INNER JOIN cart_product ON product.id = cart_product.id_product INNER JOIN cart ON cart.id = cart_product.id_cart WHERE cart.id_user = :user_id');
+        $stmt->execute(array(':user_id' => $user_id));
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $products;
+
+    }    
 
     public function setProductsPerPages(int $Product_per_pages) {
       

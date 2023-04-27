@@ -21,7 +21,7 @@
             <?php else: ?>  
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="shop.php">boutique</a></li>
-                <li><a href="connection.php">Connexion</a></li>
+                <li><a href="login.php">Connexion</a></li>
                 <li><a href="register.php">inscription</a></li>
             <?php endif; ?>
         </ul>

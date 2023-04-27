@@ -109,15 +109,15 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div><!-- les catégorie ici -->
                 <div>
-                    <form action="" method="post" id="filter_form">
+                    <form action="" method="post" id="filter_form" class="category">
                         <label for="categories">Catégories</label>
                         <select name="category" id="">
-                    <option value="Comics">Comics</option>
-                    <option value="Bande dessinée">Bande dessinée</option>
-                    <option value="Manga">Manga</option>
-                    <option value="Manhwa">Manhwa</option>
-                    <option value="Manhua">Manhua</option>
-                </select>
+                            <option value="Comics">Comics</option>
+                            <option value="Bande dessinée">Bande dessinée</option>
+                            <option value="Manga">Manga</option>
+                            <option value="Manhwa">Manhwa</option>
+                            <option value="Manhua">Manhua</option>
+                        </select>
                 <legend>Sous-catégorie :</legend>
                 <div>
                     <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">

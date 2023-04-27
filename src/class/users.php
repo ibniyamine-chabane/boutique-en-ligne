@@ -88,7 +88,7 @@ class users
         if( $logged ) {
             echo "vous êtes connecté ".$_SESSION['firstname']." en tant que: ".$_SESSION['rights'];
             //var_dump($user);
-           header('Location: profil.php');
+           header('Location: index.php');
         } else {
             echo "erreur dans l'email ou le password</br>";
         }
@@ -120,7 +120,7 @@ class users
             if ($this->email == $_SESSION['email']) {
                 $emailOk = true;
             } else if ( $this->email == $user['email']){
-                echo "cette adresse appartient à un autre utilisateur";
+                $_SESSION['message_profil'] = "cette adresse appartient à un autre utilisateur";
                 $emailOk = false;
                 break;
             } else {
@@ -132,9 +132,10 @@ class users
         if ($emailOk == true){
             
             $request = $this->database->prepare("UPDATE user SET `email` = (?) , `first_name` = (?) , `last_name` = (?) , `password` = (?) WHERE `user`.`id` = (?)");
-            $request->execute(array($email, $firstname, $lastname, $password, $_SESSION['id']));
+            $request->execute(array($email, $firstname, $lastname, $password, $_SESSION['id_user']));
         
-              echo "votre profil a bien été modifier";
+              //echo "votre profil a bien été modifier";
+              $_SESSION['message_profil'] = "votre profil a bien été modifier";
             }               
     }
 
