@@ -332,3 +332,48 @@ input {
     width: 37%;
     margin: auto;
 }
+
+/* -------- admin dashboarf ---------*/
+
+.width-category-dashbord {
+    width: 29% ;
+}
+
+.add-product-button {
+    background-color:#44c767;
+	border-radius:10px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:16px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+    text-align: center;
+}
+.add-product-button:hover {
+	background-color:#5cbf2a;
+}
+.add-product-button:active {
+	position:relative;
+	top:2px;
+}
+
+a.add-product-button {
+    display: block;
+    margin: auto;
+    width: 190px;
+    margin-top: 25px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.button-box {
+    width: 95%;
+    display: flex;
+    padding-bottom: 12px;
+}

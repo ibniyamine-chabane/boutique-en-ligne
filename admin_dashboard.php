@@ -45,7 +45,7 @@ $request->execute();
 
 // The values are retrieved in an associative array
 $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-var_dump($productDatabase);
+//var_dump($productDatabase);
 
 $request = $database->prepare("SELECT image, price, quantity, product.name 
                                 AS productName, category.name 
@@ -98,6 +98,7 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>admin dashboard</title>
 </head>
 
@@ -105,38 +106,7 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once("header.php"); ?>
     <main>
         <section>
-
-            <style>
-                .container-thumbnail {
-                    border: 1px solid black;
-                    width: 365px;
-                }
-
-                img {
-                    width: 100%;
-                }
-
-                .container-product {
-                    display: flex;
-                    justify-content: space-evenly;
-                    flex-wrap: wrap;
-                }
-
-                .disabled {
-                    pointer-events: none;
-                }
-
-                .pagination {
-                    margin: auto;
-                    width: 627px;
-                }
-
-                ul {
-                    display: flex;
-                    justify-content: space-evenly;
-                }
-            </style>
-
+            <div class="container-form-register width-category-dashbord">
             <form action="" method="post">
                 <?php
                 // envoyé une catégory dans la base de données
@@ -151,9 +121,10 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                     }
                 }
                 ?>
+                <a href="add_product.php" class="add-product-button">Ajouter un produit</a>
                 <h2>Ajouter une catégorie</h2>
-                <input type="text" name="category">
-                <input type="submit" name="submit_category">
+                <input type="text" name="category" placeholder="ajouter une catégorie">
+                <input type="submit" name="submit_category" value="ajouter la catégorie">
                 <?php
                 // envoyé une sous catégory dans la base de données
                 if (isset($_POST['submit_sub_category'])) {
@@ -167,15 +138,16 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                     }
                 }
                 ?>
+                <h2>Ajouter un produit</h2>
                 <h2>Ajouter une sous catégorie</h2>
-                <input type="text" name="sub_category">
-                <input type="submit" name="submit_sub_category">
-
+                <input type="text" name="sub_category" placeholder="ajouter une sous-catégorie">
+                <input type="submit" name="submit_sub_category" value="ajouter la sous-catégorie">
+                </div>
 
                 <h2>Produit</h2>
                 <div class="container-product">
                     <?php foreach ($display as $product) : ?>
-                        <a href="product.php?id=<?= $product['productId'] ?>">
+                        <a href="product.php?id=<?= $product['productId'] ?>" class="no-underline">
                             <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
                                 <div>
                                     <div>
@@ -195,8 +167,10 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                                                 <p><?= $subCategory['subName'] ?></p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
-                                        <button><a href="product_change.php?id=<?= $product['productId'] ?>">Modifier le produit</a></button>
-                                        <button><a href="delete_product.php?id=<?= $product['productId'] ?>">suprimmer le produit</a></button>
+                                        <div class="button-box">
+                                            <a href="product_change.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">Modifier le produit</a>
+                                            <a href="delete_product.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">suprimmer le produit</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +178,7 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </div>
             </form>
-
+            <?php if (isset($comment)) : ?> <!-- ici c'est pour que la pagination n'apparait pas, $comment n'existe pas -->
             <div class="pagination">
                 <ul>
                     <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage - 1 ?>">Précèdent</a></li>
@@ -214,12 +188,11 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                     <li class="<?= ($currentPage == $pages) ? "disabled" : "" ?>"><a href="admin_dashboard.php?page=<?= $currentPage + 1 ?>">Suivant</a></li>
                 </ul>
             </div>
-
-            <h2>Ajouter un produit</h2>
-            <button><a href="add_product.php">Ajouter un produit</a></button>
+            <?php endif; ?>
+            
 
         </section>
     </main>
+    <?php require_once("footer.php") ?>
 </body>
-
 </html>
