@@ -18,14 +18,14 @@ $addProductCart = new cart;
 if (isset($_POST['submit'])) {
 
     if ($_POST['quantity']) {
-        $quantity = (int) strip_tags($_POST['quantity']);
-        $addProductCart->addProductInCart($quantity);
-
+        
         if($_POST['quantity'] > $productDatabase[0]['quantity']) {
             die('vous ne pouvez pas dépasser la quantité disponible pour ce produit');
         } else if ($_POST['quantity'] == 0) {
             die('vous ne pouvez pas choisir la valeur 0');
         }
+        $quantity = (int) strip_tags($_POST['quantity']);
+        $addProductCart->addProductInCart($quantity);
     } else {
         echo "veuillez choisir une quantité";
     }
