@@ -5,6 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    list-style: none;
+    list-style-type: none;
 }
 /* -------    Header   ------  */
 header {
