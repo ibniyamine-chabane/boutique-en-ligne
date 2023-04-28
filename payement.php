@@ -19,6 +19,7 @@ include('src/class/users.php');
 
 </head>
 <body>
+  <?php include('header.php') ?>
     <form id="payment-form" method="post">
       <div>
         <label for="card-number">Numero de carte de crédit :</label>
@@ -37,6 +38,7 @@ include('src/class/users.php');
     </form>
 
     <script src="./src/js/checkout.js"></script>
+    <?php include('footer.php') ?>
 </body>
 </html>
 

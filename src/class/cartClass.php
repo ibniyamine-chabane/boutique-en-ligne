@@ -82,18 +82,13 @@ class cart
     }
 
     public function getCartProductsByUserId($user_id) {
-        // Vérification que $user_id est un scalaire avant de l'utiliser dans la requête SQL
-        if (!is_scalar($user_id)) {
-            return array();
-        }
-
         // Requête SQL pour récupérer les produits du panier de l'utilisateur
         $stmt = $this->getDatabase()->prepare('SELECT product.id as id_product, product.name, product.price, product.image, cart_product.quantity, cart.amount, cart.id as id_cart FROM product INNER JOIN cart_product ON product.id = cart_product.id_product INNER JOIN cart ON cart.id = cart_product.id_cart WHERE cart.id_user = :user_id');
         $stmt->execute(array(':user_id' => $user_id));
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $products;
-
-    }    
+    }
+       
 
     public function setProductsPerPages(int $Product_per_pages) {
       
