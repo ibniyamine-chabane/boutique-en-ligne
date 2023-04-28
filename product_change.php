@@ -118,6 +118,7 @@ if (isset($_POST['send'])) {
                 }
             }
         }
+        header("Location: admin_dashboard.php");
     } else {
         echo "veuillez remplir tous les champs";
     }
@@ -139,45 +140,45 @@ if (isset($_POST['send'])) {
     <?php require_once("header.php"); ?>
     <main>
         <section>
-        <div class="container-register">
-            <h2>Image du produit</h2>
-            <div class="box-img">
-                <img src="src/upload/<?= $dbChangeproduct[0]['image'] ?>" alt="">
+            <div class="container-register">
+                <h2>Image du produit</h2>
+                <div class="box-img">
+                    <img src="src/upload/<?= $dbChangeproduct[0]['image'] ?>" alt="">
+                </div>
+                <h2>Modification du produit</h2>
+                <div class="container-form-register">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <label for="">Nom du produit</label>
+                        <input type="text" name="name" value="<?= $dbChangeproduct[0]['name'] ?>">
+                        <label for="">Image du produit (png, jpg, jpeg, d'1 Mo max)</label>
+                        <input type="file" name="image" accept=".png,.jpg,.jpeg" value="<?= $dbChangeproduct[0]['image'] ?>">
+                        <label for="">Prix</label>
+                        <input type="text" name="price" value="<?= $dbChangeproduct[0]['price'] ?>">
+                        <label for="">Quantité</label>
+                        <input type="text" name="quantity" value="<?= $dbChangeproduct[0]['quantity'] ?>">
+                        <label for="">Catégorie</label>
+                        <select name="category" id="">
+                            <?php foreach ($categoryDB as $category) : ?>
+                                <option value="<?= $category['name'] ?>" <?php
+                                                                            if ($category['id'] == $dbChangeproduct[0]['id_category']) :
+                                                                            ?> <?= "selected"; ?> <?php endif; ?>>
+                                    <?= $category['name'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <legend>Sous-catégorie :</legend>
+                        <?php foreach ($subCategoryDB as $subCategory) : ?>
+                            <div class="category">
+                                <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $dbChangeproduct[0]['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
+                                <label for="Action"><?= $subCategory['name'] ?></label>
+                            </div>
+                        <?php endforeach; ?>
+                        <label for="">description</label>
+                        <textarea name="description" id="" cols="80" rows="5"><?= $dbChangeproduct[0]['description'] ?></textarea>
+                        <input type="submit" value="Modifier le produit" name="send">
+                    </form>
+                </div>
             </div>
-            <h2>Modification du produit</h2>
-            <div class="container-form-register">
-            <form action="" method="post" enctype="multipart/form-data">
-                <label for="">Nom du produit</label>
-                <input type="text" name="name" value="<?= $dbChangeproduct[0]['name'] ?>">
-                <label for="">Image du produit (png, jpg, jpeg, d'1 Mo max)</label>
-                <input type="file" name="image" accept=".png,.jpg,.jpeg" value="<?= $dbChangeproduct[0]['image'] ?>">
-                <label for="">Prix</label>
-                <input type="text" name="price" value="<?= $dbChangeproduct[0]['price'] ?>">
-                <label for="">Quantité</label>
-                <input type="text" name="quantity" value="<?= $dbChangeproduct[0]['quantity'] ?>">
-                <label for="">Catégorie</label>
-                <select name="category" id="">
-                    <?php foreach ($categoryDB as $category) : ?>
-                        <option value="<?= $category['name'] ?>" <?php
-                                                                    if ($category['id'] == $dbChangeproduct[0]['id_category']) :
-                                                                    ?> <?= "selected"; ?> <?php endif; ?>>
-                            <?= $category['name'] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <legend>Sous-catégorie :</legend>
-                <?php foreach ($subCategoryDB as $subCategory) : ?>
-                    <div class="category">
-                        <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $dbChangeproduct[0]['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
-                        <label for="Action"><?= $subCategory['name'] ?></label>
-                    </div>
-                <?php endforeach; ?>
-                <label for="">description</label>
-                <textarea name="description" id="" cols="80" rows="5"><?= $dbChangeproduct[0]['description'] ?></textarea>
-                <input type="submit" value="Modifier le produit" name="send">
-            </form>
-            </div>
-        </div>
         </section>
     </main>
 </body>
