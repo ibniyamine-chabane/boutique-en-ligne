@@ -1,6 +1,10 @@
 <footer>
     <div class="container-footer">
-        <p>copyright</p>
+        <ul>
+            <li><a href="index.php">accueil</a></li>
+            <li><a href="login.php">login</a></li>
+            <li><a href=""></a></li>
+        </ul>
     </div>
 </footer>
 
