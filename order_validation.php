@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('src/class/users.php');
 // Connexion à la base de données avec PDO
@@ -15,7 +15,7 @@ try {
 
 if (!empty($_POST)) {
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
-    if($id_user === null){
+    if ($id_user === null) {
         die("erreur aucun user connecter");
     }
 
@@ -29,7 +29,7 @@ if (!empty($_POST)) {
 
     try {
         $query = "INSERT INTO `users_address`(`adresse_line1`, `adresse_line2`, `city`, `postal_code`, `country`, `telephone`, `mobile`, `id_user`) VALUES (:adresse_line1, :adresse_line2, :city, :postal_code, :country, :telephone, :mobile, :id_user)";
-    
+
         $stmt = $connexion->prepare($query);
         $stmt->bindParam(":adresse_line1", $adresse_line1);
         $stmt->bindParam(":adresse_line2", $adresse_line2);
@@ -38,12 +38,14 @@ if (!empty($_POST)) {
         $stmt->bindParam(":country", $country);
         $stmt->bindParam(":telephone", $telephone);
         $stmt->bindParam(":mobile", $mobile);
-        $stmt->bindParam(":id_user", $id_user); 
+        $stmt->bindParam(":id_user", $id_user);
 
-        
+
         if ($stmt->execute()) {
             echo "L'adresse a été ajoutée avec succès!";
-            header("location: payement.php");
+            $_SESSION['cart_id'] = $_SESSION['cart']['id'];
+            header("location: payement.php?cart_id=" . $_SESSION['cart_id']);
+            exit();
         } else {
             echo "Erreur lors de l'ajout de l'adresse.";
         }
@@ -59,6 +61,7 @@ if (!empty($_POST)) {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,48 +69,42 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="./src/css/style.css">
     <title>validation commande</title>
 </head>
+
 <body>
     <?php require_once("header.php"); ?>
     <main>
-    <section>
-    <h2>Détail de facturation</h2>
-    <div>
-    <form  method="post">
-        <label for="adresse_line1">Adresse ligne 1:</label>
-        <input type="text" name="adresse_line1" id="adresse_line1" required>
-        <br>
-
-        <label for="adresse_line2">Adresse ligne 2:</label>
-        <input type="text" name="adresse_line2" id="adresse_line2">
-        <br>
-
-        <label for="city">Ville:</label>
-        <input type="text" name="city" id="city" required>
-        <br>
-
-        <label for="postal_code">Code postal:</label>
-        <input type="text" name="postal_code" id="postal_code" required>
-        <br>
-
-        <label for="country">Pays:</label>
-        <input type="text" name="country" id="country" required>
-        <br>
-
-        <label for="telephone">Téléphone:</label>
-        <input type="text" name="telephone" id="telephone">
-        <br>
-
-        <label for="mobile">Mobile:</label>
-        <input type="text" name="mobile" id="mobile">
-        <br>
-
-        <input type="submit" value="Ajouter l'adresse et passer au payement">
-
-
-    </form>
-    </div>
-</section>
+        <section>
+            <h2>Détail de facturation</h2>
+            <div>
+                <form class="form-fact" method="post" id="form-adresse">
+                    <label for="adresse-line1">Adresse ligne 1 :</label>
+                    <input type="text" name="adresse_line1" id="adresse-line1" required>
+                    <br>
+                    <label for="adresse-line2">Adresse ligne 2 :</label>
+                    <input type="text" name="adresse_line2" id="adresse-line2">
+                    <br>
+                    <label for="city">Ville :</label>
+                    <input type="text" name="city" id="city" required>
+                    <br>
+                    <label for="postal-code">Code postal :</label>
+                    <input type="text" name="postal_code" id="postal-code" required>
+                    <br>
+                    <label for="country">Pays :</label>
+                    <input type="text" name="country" id="country" required>
+                    <br>
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" name="telephone" id="telephone">
+                    <br>
+                    <label for="mobile">Mobile :</label>
+                    <input type="text" name="mobile" id="mobile">
+                    <br>
+                    <input type="submit" value="Ajouter l'adresse et passer au paiement">
+                </form>
+            </div>
+        </section>
     </main>
+
     <?php include('footer.php') ?>
 </body>
+
 </html>
