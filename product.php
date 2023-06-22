@@ -3,12 +3,7 @@ session_start();
 require_once("src/class/shopClass.php");
 require_once("src/class/cartClass.php");
 
-// if (isset($_SESSION['message'])) {
-//     $message = $_SESSION['message'];
-// } else {
-//     $message = "";
-// }
-
+$message = "";
 $products = new shop;
 $productDatabase = $products->getProduct();
 
@@ -20,14 +15,19 @@ if (isset($_POST['submit'])) {
     if ($_POST['quantity']) {
         
         if($_POST['quantity'] > $productDatabase[0]['quantity']) {
-            die('vous ne pouvez pas dépasser la quantité disponible pour ce produit');
+            $message = 'vous ne pouvez pas dépasser la quantité disponible pour ce produit';
         } else if ($_POST['quantity'] == 0) {
-            die('vous ne pouvez pas choisir la valeur 0');
+            $message = 'vous ne pouvez pas choisir la valeur 0';
+        } else if ($_POST['quantity'] < 0) {
+            $message = 'vous ne pouvez pas choisir une valeur négative';
+        } else {
+            $quantity = (int) htmlspecialchars(trim(strip_tags($_POST['quantity'])));
+            $addProductCart->addProductInCart($quantity);
+            $message = $addProductCart->getMessage();
         }
-        $quantity = (int) strip_tags($_POST['quantity']);
-        $addProductCart->addProductInCart($quantity);
+
     } else {
-        echo "veuillez choisir une quantité";
+        $message = "veuillez choisir une quantité";
     }
    
 } 
@@ -71,17 +71,23 @@ if (isset($_POST['submit'])) {
                                 <input type="hidden" name="" value=""><!-- ici la value sera l'id de l'user inscrit -->
                                 <input type="hidden" value=""><!-- ici la value sera l'id du produit -->
                                 <input type="number" id="quantity" name="quantity" value="1" maxlength="4" size="3" min="1" max="<?= $productDatabase[0]['quantity'] ?>"><!-- le max sera la quantité disponible pour ce produit, ce champ a mettre en width: 39px ne pas oublier de transformer le number en string-->
-                                <?php if ($productDatabase[0]['quantity'] == 0):?>
-                                <p>rupture de stock</p>
-                                <?php else : ?>
-                                <p><?= $productDatabase[0]['quantity'] ?> en stock</p>
-                                <?php endif; ?>
-                                <?php if (empty($_SESSION['firstname'])) : ?>
-                                <a href="login.php" class="login-button">connecter vous</a>
-                                <?php else : ?>
-                                <input type="submit" name="submit" value="ajouté au panier" class="green-button">
-                                <p id="message"></p>
-                                <?php endif; ?>
+                                    <?php if ($productDatabase[0]['quantity'] == 0):?>
+                                        <p>rupture de stock</p>
+                                    <?php else : ?>
+                                        <p><?= $productDatabase[0]['quantity'] ?> en stock</p>
+                                    <?php endif; ?>
+                                    <?php if (empty($_SESSION['firstname'])) : ?>
+                                        <a href="login.php" class="login-button">connecter vous</a>
+                                    <?php else : ?>
+                                        <input type="submit" name="submit" value="ajouté au panier" class="green-button">
+                                    <p id="message"></p>
+                                    <?php endif; ?>
+                                    <?php if (isset($message) && isset($_POST['quantity']) && $_POST['quantity'] > $productDatabase[0]['quantity'] || 
+                                    isset($_POST['quantity']) && $_POST['quantity'] == 0 || isset($_POST['quantity']) && $_POST['quantity'] < 0) :?>
+                                        <span style="text-align: center;display: block;color: red;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
+                                    <?php else : ?>
+                                        <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
+                                    <?php endif; ?>
                             </form>
                         </div>
                     </div>

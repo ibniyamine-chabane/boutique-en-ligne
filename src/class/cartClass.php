@@ -7,6 +7,7 @@ class cart
     //attributs 
     private $database;
     
+    private $message;
 
     //Constructeur
     public function __construct(){ 
@@ -77,7 +78,7 @@ class cart
 
         $update->execute(array($amount ,$_SESSION['id_user'], $id_cart));
         
-        // $_SESSION['message'] = "votre produit à bien été ajouté dans votre panier";
+        $this->message = "votre produit à bien été ajouté dans votre panier";
 
     }
 
@@ -97,13 +98,16 @@ class cart
 
     public function setProductsPerPages(int $Product_per_pages) {
       
-   
-
     }
 
     public function getProductsPerPages() {
        
     }
+
+    public function getMessage(){
+        return $this->message;
+    }
+
     public function getDatabase() {
 
         try {
