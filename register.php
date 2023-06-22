@@ -1,6 +1,7 @@
 <?php
 require_once("src/class/users.php");
 $user = new users;
+$message = "";
 
 if (isset($_POST['submit'])) {
 
@@ -13,13 +14,13 @@ if (isset($_POST['submit'])) {
             $lastname =  htmlspecialchars(trim($_POST['lastname']));
             $password =  htmlspecialchars(trim($_POST['password']));
             $user->register($email, $firstname, $lastname, $password);
-
+            $message = $user->getMessage();
         }else {
-            echo "les mot de passe ne correspond pas";
+            $message = "les mot de passe ne correspond pas";
         }    
 
     } else {
-        echo "veuillez remplir tout les champs"; 
+        $message = "veuillez remplir tout les champs"; 
     } 
 } 
 
@@ -40,6 +41,9 @@ if (isset($_POST['submit'])) {
     <section>
         <div class="container-register">
             <h2>Inscription</h2>
+            <?php if (isset($message)) :?>
+                <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message ?></span>
+                <?php endif; ?>
             <div class="container-form-register">
                 <form action="" method="post"> <!-- le formulaire d'inscription -->
                     <label for="email">email</label>
