@@ -8,8 +8,8 @@
 </head>
 <body>
 <form method="get" id="mon-formulaire">
-  <label for="recherche">Rechercher:</label>
-  <input type="text" id="recherche" name="q" autocomplete="off" required>
+  <!-- <label for="recherche">Rechercher:</label> -->
+  <input type="text" id="recherche" name="q" autocomplete="off" placeholder="recherche..." required>
   <div id="suggestions"></div>
   <img src="" id="image" alt="">
   <button type="submit">Rechercher</button>

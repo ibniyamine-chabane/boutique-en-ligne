@@ -31,16 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const id = result.id;
             const name = result.name;
             const price = result.price;
+            const img = result.image;
             const category_id = result.category_id;
-            const element = document.createElement('div');
+            const box_search = document.createElement('div');
             const link = document.createElement('a');
-            //const img = document.createElement('img');
-            image.src = `src/upload/${image}`;
+            const image = document.createElement('img');
+            box_search.className = 'result-box';
+            image.className = 'img-search'; 
+            image.src = `src/upload/${img}`;
             link.href = `product.php?id=${id}`;
+            console.log(result);
+            box_search.appendChild(image);
             link.innerText = `${name} - ${price} € (catégorie ${category_id})`;
-            element.appendChild(link);
-            element.appendChild(image);
-            suggestions.appendChild(element);
+            box_search.appendChild(link);
+            suggestions.appendChild(box_search);
           });
         })
         .catch(error => {

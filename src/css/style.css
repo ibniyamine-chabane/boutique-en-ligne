@@ -471,6 +471,24 @@ a.add-product-button {
   padding: 5px;
 }
 
+.result-box {
+  display: flex;
+  align-items: center;
+  padding: 11px;
+}
+
+.result-box:hover {
+  background-color: #14B8A6;
+}
+
+.img-search {
+  width: 106px;
+}
+
+.result-box a {
+  text-decoration: none;
+}
+
 #mon-formulaire input[type="text"]:focus + #suggestions {
   display: block;
 }
