@@ -17,11 +17,46 @@ class shop
 
     public function getAllProducts() {
 
-        $request = $this->getDatabase()->prepare('SELECT * FROM product');
-        $request->execute(array());
-        return $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+        $request = $this->getDatabase()->prepare('SELECT image, price, quantity, product.name 
+                                                  AS productName, category.name 
+                                                  AS categoryName, 
+                                                  product.id 
+                                                  AS productId, inventory.id 
+                                                  AS inventoryId, product_inventory.id 
+                                                  AS prod_inv_id,  
+                                                  date_product  
+                                                  FROM product 
+                                                  INNER JOIN product_inventory
+                                                  on product.id = product_inventory.id_product
+                                                  INNER JOIN inventory
+                                                  on inventory.id = product_inventory.id_inventory
+                                                  INNER JOIN category
+                                                  on product.id_category = category.id
+                                                  ORDER BY date_product DESC');
+
+                                                  $request->execute(array());
+                                                  return $request->fetchAll(PDO::FETCH_ASSOC);
         
     }
+
+    public function getAllProductsSubCategory() {
+        $request = $this->getDatabase()->prepare('SELECT id_product, id_sub_category, product.name 
+                                                  AS productName, sub_category.name 
+                                                  AS subName, product.id 
+                                                  AS productId, sub_category.id 
+                                                  AS subId, sub_category_product.id 
+                                                  AS prod_sub_id, 
+                                                  date_product  
+                                                  FROM product
+                                                  INNER JOIN sub_category_product
+                                                  on product.id = sub_category_product.id_product
+                                                  INNER JOIN sub_category
+                                                  on sub_category.id = sub_category_product.id_sub_category
+                                                  ORDER BY date_product DESC
+                                                ');
+        $request->execute(array());
+        return $request->fetchAll(PDO::FETCH_ASSOC);
+    }   
 
     public function setProductsPerPages(int $Product_per_pages) {
       

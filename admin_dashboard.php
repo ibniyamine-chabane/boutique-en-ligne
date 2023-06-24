@@ -12,84 +12,12 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
     $currentPage = 1;
 }
 
-//var_dump($currentPage);
-// la requete pour compter le nombre de produit 
-$sql = 'SELECT COUNT(*) AS nb_product FROM `product`;';
-$request = $database->prepare($sql);
-$request->execute(array());
-$result = $request->fetch();
 
-$nbProduct = (int) $result['nb_product'];
-//var_dump($nbProduct);
+$display = $shop->getAllProducts();
 
-// on determine le nombre de produit par page.
-$perPages = 6;
 
-// on fait un calcule pour avoir le nombre de page total pour les produits
+$display2 = $shop->getAllProductsSubCategory();
 
-$pages = ceil($nbProduct / $perPages);
-//var_dump($pages);
-// Calculation of the 1st item on the page
-$premier = ($currentPage * $perPages) - $perPages;
-
-$sql = 'SELECT * FROM `product` LIMIT :premier, :parpage;';
-
-// We prepare the request
-$request = $database->prepare($sql);
-
-$request->bindValue(':premier', $premier, PDO::PARAM_INT);
-$request->bindValue(':parpage', $perPages, PDO::PARAM_INT);
-
-// We run
-$request->execute();
-
-// The values are retrieved in an associative array
-$productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($productDatabase);
-
-$request = $database->prepare("SELECT image, price, quantity, product.name 
-                                AS productName, category.name 
-                                AS categoryName, 
-                                -- sub_category.name AS subName, 
-                                product.id 
-                                AS productId, inventory.id 
-                                AS inventoryId, product_inventory.id 
-                                AS prod_inv_id,  
-                                date_product  
-                                FROM product 
-                                INNER JOIN product_inventory
-                                on product.id = product_inventory.id_product
-                                INNER JOIN inventory
-                                on inventory.id = product_inventory.id_inventory
-                                INNER JOIN category
-                                on product.id_category = category.id
-                                -- INNER JOIN sub_category_product
-                                -- on product.id = sub_category_product.id_product
-                                -- INNER JOIN sub_category
-                                -- on sub_category.id = sub_category_product.id_sub_category
-                                ORDER BY date_product DESC");
-$request->execute(array());
-
-$display = $request->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($display);
-
-$request2 = $database->prepare("SELECT id_product, id_sub_category, product.name 
-                                AS productName, sub_category.name 
-                                AS subName, product.id 
-                                AS productId, sub_category.id 
-                                AS subId, sub_category_product.id 
-                                AS prod_sub_id, 
-                                date_product  
-                                FROM product
-                                INNER JOIN sub_category_product
-                                on product.id = sub_category_product.id_product
-                                INNER JOIN sub_category
-                                on sub_category.id = sub_category_product.id_sub_category
-                                ORDER BY date_product DESC");
-$request2->execute(array());
-
-$display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($display2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
