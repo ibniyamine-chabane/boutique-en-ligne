@@ -158,15 +158,17 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
                                     <p><?= $product['price'] ?>€</p>
                                     <p><?= "Quantité : " . $product['quantity'] ?></p>
                                     <p><?= $product['date_product'] ?></p>
+                                    <div>
                                     <p><?= $product['categoryName'] ?></p>
                                     <?php foreach ($display2 as $subCategory) : ?>
                                         <?php if (
                                             $product['productId'] ==
                                             $subCategory['id_product']
                                         ) : ?>
-                                            <p><?= $subCategory['subName'] ?></p>
+                                            <span><?= $subCategory['subName'] ?></span>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
+                                    </div>
                                     <div class="button-box">
                                         <a href="product_change.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">Modifier le produit</a>
                                         <a href="delete_product.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">suprimmer le produit</a>
