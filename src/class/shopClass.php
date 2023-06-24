@@ -7,6 +7,7 @@ class shop
     //attributs 
     private $database;
     private $perPages = 10;
+    private $message;
 
     //Constructeur
     public function __construct(){ 
@@ -92,12 +93,23 @@ class shop
         return $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProfil() {
+    public function addCategory($category) {
 
-        $request = $this->database->prepare("SELECT * FROM user WHERE id = (?)");
-        $request->execute(array($_SESSION['id']));
-        $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-        return $userDatabase;
+        $request = $this->getDatabase()->prepare("INSERT INTO `category` (`name`,`description`) VALUE (?,?)");
+        $request->execute(array($category,""));
+        $this->message = "categorie ajouté avec succes";
+        
+    }
+
+    public function addSubCategory($subCategory) {
+
+        $request = $this->getDatabase()->prepare("INSERT INTO `sub_category` (`name`,`description`) VALUE (?,?)");
+        $request->execute(array($subCategory,""));
+        $this->message = "sous categorie ajouté avec succes";
+    }
+
+    public function getMessage() {
+        return $this->message;
     }
 
 }

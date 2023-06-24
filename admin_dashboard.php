@@ -2,8 +2,9 @@
 session_start();
 require_once('src/class/shopClass.php');
 $shop = new shop;
-$database = $shop->getDatabase();
-
+// $database = $shop->getDatabase();
+$message = "";
+$message2 = "";
 // pagination
 // on determine dans quel page on se trouve 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
@@ -15,8 +16,28 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 $display = $shop->getAllProducts();
 
-
 $display2 = $shop->getAllProductsSubCategory();
+
+// envoyé une catégory dans la base de données
+if (isset($_POST['submit_category'])) {
+    if ($_POST['category']) {
+        $category = htmlspecialchars(trim(strip_tags($_POST['category'])));
+        $shop->addCategory($category);
+        $message = $shop->getMessage();
+    } else {
+        $message = "veuillez entrer une categorie";
+    }
+}
+// envoyé une sous catégory dans la base de données
+if (isset($_POST['submit_sub_category'])) {
+    if ($_POST['sub_category']) {
+        $subCategory = htmlspecialchars(trim(strip_tags($_POST['sub_category'])));
+        $shop->addSubCategory($subCategory);
+        $message2 = $shop->getMessage();
+    } else {
+        $message2 = "veuillez entrer une sous categorie";
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -36,40 +57,24 @@ $display2 = $shop->getAllProductsSubCategory();
         <section>
             <div class="container-form-register width-category-dashbord">
                 <form action="" method="post">
-                    <?php
-                    // envoyé une catégory dans la base de données
-                    if (isset($_POST['submit_category'])) {
-                        if ($_POST['category']) {
-                            $category = $_POST['category'];
-
-                            $sql2 = "INSERT INTO `category` (`name`) 
-                        VALUE (?)";
-                            $request2 = $database->prepare($sql2);
-                            $request2->execute(array($category));
-                        }
-                    }
-                    ?>
                     <h2>Ajouter un produit</h2>
                     <a href="add_product.php" class="add-product-button">Ajouter un produit</a>
                     <h2>Ajouter une catégorie</h2>
                     <input type="text" name="category" placeholder="ajouter une catégorie">
                     <input type="submit" name="submit_category" value="ajouter la catégorie">
-                    <?php
-                    // envoyé une sous catégory dans la base de données
-                    if (isset($_POST['submit_sub_category'])) {
-                        if ($_POST['sub_category']) {
-                            $subCategory = $_POST['sub_category'];
-
-                            $sql2 = "INSERT INTO `sub_category` (`name`) 
-                        VALUE (?)";
-                            $request2 = $database->prepare($sql2);
-                            $request2->execute(array($subCategory));
-                        }
-                    }
-                    ?>
+                    <?php if (isset($message) && empty($_POST['category'])) :?>
+                        <span style="text-align: center;display: block;color: red;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message ?></span>
+                    <?php elseif (isset($message)) :?>
+                        <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message ?></span>
+                    <?php endif; ?>
                     <h2>Ajouter une sous catégorie</h2>
                     <input type="text" name="sub_category" placeholder="ajouter une sous-catégorie">
                     <input type="submit" name="submit_sub_category" value="ajouter la sous-catégorie">
+                    <?php if (isset($message2) && empty($_POST['sub_category'])) :?>
+                        <span style="text-align: center;display: block;color: red;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message2 ?></span>
+                    <?php elseif (isset($message2)) :?>
+                        <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message2 ?></span>
+                    <?php endif; ?>
             </div>
 
             <h2>Produit</h2>
