@@ -1,7 +1,7 @@
 
 <header>    
     <div class="logo">
-        <img src="src/image/" alt="logo">
+        <img src="src/images/logo_bookhouse.png" alt="logo">
     </div>
     <nav>
         <ul>

@@ -103,7 +103,8 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
             <h2>Nos derniers produits ajoutés</h2>
             <div class="container-product">
                 <?php foreach ($fourLastProducts as $lastProducts ) : ?>
-                <a href="product.php?id=<?= $lastProducts['id'] ?>"><div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
+                <a href="product.php?id=<?= $lastProducts['id'] ?>">
+                <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
                     <div>
                         <div class="image_box">
                             <img src="src/upload/<?=$lastProducts['image']?>" alt="">
@@ -113,7 +114,8 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
                             <p><?= $lastProducts['price'] ?>€</p>
                         </div>
                     </div>
-                </div></a>
+                </div>
+                </a>
                 <?php endforeach; ?>
             </div>
         </section>

@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
             $user->register($email, $firstname, $lastname, $password);
             $message = $user->getMessage();
         }else {
-            $message = "les mot de passe ne correspond pas";
+            $message = "les mots de passe ne correspond pas";
         }    
 
     } else {

@@ -29,6 +29,7 @@ class cart
     }
 
     public function addProductInCart(int $quantity) {
+
          //étape 1 on insert l'id de l'user dans la table cart
         $request = $this->getDatabase()->prepare('INSERT INTO cart(id_user , amount, creation_date) 
                                                   VALUES (?, ?, NOW())'
@@ -45,6 +46,7 @@ class cart
         $request2->execute(array($_SESSION['id_user']));
         $cartDb = $request2->fetchAll(PDO::FETCH_ASSOC);
         $id_cart = $cartDb[0]['id'];
+        
          //étape 3 on insert l'id_cart , l'id_product ,et la quantité entré dans le champ par l'user
         $request3 = $this->getDatabase()->prepare('INSERT INTO cart_product(id_cart , id_product , quantity)
                                                 VALUES (?, ?, ?)'
