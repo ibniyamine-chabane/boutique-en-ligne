@@ -145,18 +145,21 @@ h2 {
 }
 
 footer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
   height: 110px;
   background-color: #0F766E;
 }
 
-.container-footer {
-  height: 55px;
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  padding-top: 40px;
-  color: white;
+footer a {
+  justify-content: space-around;
+  margin: 10px;
 }
+
+.
 
 /* -------- login ---------- */
 
