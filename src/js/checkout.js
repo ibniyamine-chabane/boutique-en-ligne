@@ -1,28 +1,34 @@
-// Vérifier la validité de la carte de crédit avant la soumission du formulaire
-const form = document.getElementById('payment-form');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  
-  const cardNumber = document.getElementById('card-number').value;
-  const cardExpiry = document.getElementById('card-expiry').value;
-  const cardCvc = document.getElementById('card-cvc').value;
+function validatecreditcard() {
+  var creditCardNumber = document.getElementById("number_entered").value;
+  var validateLabel = document.getElementById("validate");
 
-  // Créer un jeton de carte à l'aide de la bibliothèque Stripe
-  const stripe = Stripe('pk_test_51N0lGVDr3X21HmBd8Nt0wp3Ycl4fEHvBypYB3az5A05jsYlQX3hPTkYsUHHdYzwCpftybkuGS5sSjllgxK1kTU7L00KPLgLD4z');
-  const card = {
-    number: cardNumber,
-    exp_month: cardExpiry.split('/')[0],
-    exp_year: cardExpiry.split('/')[1],
-    cvc: cardCvc
-  };
-  stripe.createToken(card).then(function(result) {
-    if (result.error) {
-      // Si la carte de crédit est invalide, afficher un message d'erreur
-      alert('La carte de crédit est invalide : ' + result.error.message);
-    } else {
-      // Si la carte de crédit est valide, passer la commande
-      // Votre code de traitement de commande ici...
-      alert('La carte de crédit est valide. La commande a été passée.');
+  // Supprimez les espaces et les tirets du numéro de carte
+  var strippedNumber = creditCardNumber.replace(/[\s-]/g, "");
+
+  // Vérifiez si le numéro de carte est vide ou contient des caractères non numériques
+  if (strippedNumber === "" || /\D/.test(strippedNumber)) {
+    validateLabel.textContent = "Numéro de carte de crédit invalide";
+    return;
+  }
+
+  // Vérifiez la validité du numéro de carte en utilisant l'algorithme de Luhn
+  var sum = 0;
+  var shouldDouble = false;
+  for (var i = strippedNumber.length - 1; i >= 0; i--) {
+    var digit = parseInt(strippedNumber.charAt(i), 10);
+    if (shouldDouble) {
+      digit *= 2;
+      if (digit > 9) {
+        digit -= 9;
+      }
     }
-  });
-});
+    sum += digit;
+    shouldDouble = !shouldDouble;
+  }
+
+  if (sum % 10 === 0) {
+    validateLabel.textContent = "Numéro de carte de crédit valide";
+  } else {
+    validateLabel.textContent = "Numéro de carte de crédit invalide";
+  }
+}

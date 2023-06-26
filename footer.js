@@ -15,4 +15,9 @@ window.addEventListener("load", function() {
       footer.style.position = "absolute";
       footer.style.bottom = "0";
     }
+<<<<<<< HEAD
   });
+=======
+  });
+  
+>>>>>>> panier
