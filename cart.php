@@ -4,17 +4,17 @@ session_start();
 include('src/class/users.php');
 include('src/class/cartClass.php');
 
-$user_id = $_SESSION['id_user'];
+$user_id = $_SESSION['id_user']; // Récupération de l'ID de l'utilisateur connecté
 
 $cart = new Cart();
 
-
+// Se connecter à la base de données
 $connexion = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['id_user'])) {
     // Rediriger l'utilisateur vers la page de connexion
-    header('Location: login.php');
+    header('Location: connection.php');
     exit();
 }
 
@@ -25,10 +25,39 @@ if (isset($_POST['delete_cart'])) {
     $requete->bindParam(':id_user', $user_id);
     $requete->execute();
 
+    // Rediriger l'utilisateur vers la page d'accueil
+    header('Location: cart.php');
     exit();
 }
+if (isset($_POST['delete_simple'])) {
+    // Vérifier si l'ID du produit à supprimer est présent dans le formulaire
+    if (isset($_POST['id_product'])) {
+        $product = $_POST['id_product'];
 
-// Vérifier si le bouton "Valider" a été cliquer
+        // Récupérer l'ID du panier de l'utilisateur connecté
+        $requete = $connexion->prepare("SELECT id FROM cart WHERE id_user = :id_user");
+        $requete->bindParam(':id_user', $user_id);
+        $requete->execute();
+        $cart_id = $requete->fetch(PDO::FETCH_ASSOC)['id'];
+
+        // Supprimer le produit du panier de l'utilisateur connecté
+        $requete = $connexion->prepare("DELETE FROM `cart_product` WHERE id_cart = :cart_id AND id_product = :product");
+        $requete->bindParam(':cart_id', $cart_id);
+        $requete->bindParam(':product', $product);
+        $requete->execute();
+
+        // Vérifier si le produit a été supprimé
+        if ($requete->rowCount() > 0) {
+            // Rediriger l'utilisateur vers la page du panier
+            header('Location: cart.php');
+            exit();
+        } else {
+            echo "Le produit n'a pas été supprimé.";
+        }
+    }
+}
+
+// Vérifier si le bouton "Valider" a été envoyer
 if (isset($_POST['validate_cart'])) {
     // Récupérer le panier de l'utilisateur connecté
     $requete = $connexion->prepare("SELECT * FROM cart WHERE id_user = :id_user");
@@ -37,11 +66,11 @@ if (isset($_POST['validate_cart'])) {
     $cart = $requete->fetch(PDO::FETCH_ASSOC);
 
     // Stocker le panier de l'utilisateur connecté dans la session
+    session_start();
     $_SESSION['cart'] = $cart;
 
-    // Ajouter l'id du panier dans l'URL de la page de validation de commande
-    $cart_id = $cart['id'];
-    header("Location: order_validation.php?cart_id=$cart_id");
+    // Rediriger l'utilisateur vers la page de validation de commande
+    header('Location: order_validation.php');
     exit();
 }
 
@@ -52,7 +81,7 @@ if (isset($_POST['validate_cart'])) {
 
 $products = $cart->getCartProductsByUserId($user_id); // Récupération des produits du panier de l'utilisateur
 
-$total = 0; // le prix est de zero sans produit
+$total = 0; // initialisation de la variable total
 
 ?>
 
@@ -95,7 +124,7 @@ $total = 0; // le prix est de zero sans produit
                         <?php $total += $product_total; }?>
                         <tr>
                             <td colspan="4">Total :</td>
-                            <td><?php echo $total; ?> €</td> <!-- Afficher le prix total-->
+                            <td><?php echo $total; ?> €</td> <!-- Affichage du total en euros -->
 
                         </tr>
                 </tbody>
