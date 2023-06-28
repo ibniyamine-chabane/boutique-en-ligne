@@ -107,66 +107,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <?php endforeach; ?>
             </div>
-            <div><!-- les catégorie ici -->
-                <div>
-                    <form action="" method="post" id="filter_form" class="category">
-                        <label for="categories">Catégories</label>
-                        <select name="category" id="">
-                            <option value="Comics">Comics</option>
-                            <option value="Bande dessinée">Bande dessinée</option>
-                            <option value="Manga">Manga</option>
-                            <option value="Manhwa">Manhwa</option>
-                            <option value="Manhua">Manhua</option>
-                        </select>
-                <legend>Sous-catégorie :</legend>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Action">
-                    <label for="Action">Action</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Fantaisie">
-                    <label for="Fantaisie">Fantaisie</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Isekai">
-                    <label for="Isekai">Isekaï</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Drame">
-                    <label for="Drame">Drame</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Psychologique">
-                    <label for="Psychologique">Psychologique</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Comedie">
-                    <label for="Comedie">Comedie</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Policier">
-                    <label for="Policier">Policier</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Science fiction">
-                    <label for="Science fiction">Science fiction</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Aventure">
-                    <label for="Aventure">Aventure</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Mecha">
-                    <label for="Mecha">Mecha</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="sub_category" name="sub_category[]" value="Horreur">
-                    <label for="Mecha">Horreur</label>
-                </div>
-                        <input type="submit" name="" id="">
-                    </form>
-                </div>
-            </div>
+
             <div class="pagination">
                 <ul>                
                     <li class="<?= ($currentPage == 1) ? "disabled" : "" ?>"><a href="shop.php?page=<?= $currentPage - 1 ?>">Précédent</a></li>

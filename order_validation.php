@@ -140,11 +140,15 @@ function isTestCreditCardValid($number, $expiration, $cvv) {
                     <label for="cvv">Code de sécurité (CVV) :</label>
                     <input type="text" name="cvv" id="cvv" required>
                     <br>
-                    <input type="submit" value="Ajouter l'adresse et passer au paiement">
+                    <input type="submit" value="Ajouter l'adresse et payer">
                 </form>
             </div>
         </section>
     </main>
     <?php include('footer.php') ?>
 </body>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 </html>

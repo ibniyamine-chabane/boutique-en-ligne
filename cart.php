@@ -22,6 +22,8 @@ if (!isset($_SESSION['id_user'])) {
 if (isset($_POST['delete_cart'])) {
     // Supprimer le panier de l'utilisateur connecté
     $requete = $connexion->prepare("DELETE FROM `cart` WHERE id_user = :id_user");
+    header("Location: cart.php");
+
     $requete->bindParam(':id_user', $user_id);
     $requete->execute();
 
