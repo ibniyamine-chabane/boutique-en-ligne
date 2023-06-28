@@ -36,7 +36,7 @@ class cart
                                                   );
 
         $request->execute(array($_SESSION['id_user'], 0));
-         //étape 2 on select la table cart ou la colonne id user correspont a notre user pour récupérer l'id de cart
+         //étape 2 on select la table cart ou la colonne id user correspond a notre user pour récupérer l'id de cart
         $request2 = $this->getDatabase()->prepare('SELECT id 
                                                  FROM cart
                                                  WHERE id_user = (?)
@@ -69,8 +69,8 @@ class cart
         $request4->execute(array($_SESSION['id_user']));
         $displaySelect = $request4->fetchAll(PDO::FETCH_ASSOC);
         $priceDb = $displaySelect[0]['price'];
-        $quantityDb = $displaySelect[0]['quantity'];
-        $amount = $priceDb * $quantityDb;
+        // $quantityDb = $displaySelect[0]['quantity'];
+        $amount = $priceDb * $quantity;
 
         //derniere étape ajouter le montant dans notre table cart qui correspont a notre id.
         $update = $this->getDatabase()->prepare('UPDATE cart

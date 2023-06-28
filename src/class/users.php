@@ -57,8 +57,7 @@ class users
     }
 
     public function connection($email, $password) {
-        //session_start();
-
+        // préparation de la requête
         $request = $this->database->prepare('SELECT u.`id` , `email` , `first_name` , `last_name` , `password` , `rights` 
                                              FROM user u 
                                              INNER JOIN role 
@@ -70,8 +69,7 @@ class users
         $this->email = $email;
         $password;
         $logged = false;
-                             
-        
+                                  
         foreach ($userDatabase as $user) { //je lis le contenu de la table de la BDD
 
             if ($email === $user['email'] && password_verify($password, $user['password'])) {   
@@ -88,14 +86,10 @@ class users
             }
         }
 
-        //echo $_SESSION["username"];
-
         if( $logged ) {
-            $this->message = "vous êtes connecté ".$_SESSION['firstname']." en tant que: ".$_SESSION['rights'];
-            //var_dump($user);
             header('Location: index.php');
         } else {
-            $this->message = "erreur dans l'email ou le password</br>";
+            $this->message = "erreur dans l'email ou le password";
         }
 
     }
@@ -139,7 +133,7 @@ class users
         }
 
         if ($emailOk == true){
-            
+            $password = password_hash($password, PASSWORD_DEFAULT);
             $request = $this->database->prepare("UPDATE user SET `email` = (?) , `first_name` = (?) , `last_name` = (?) , `password` = (?) WHERE `user`.`id` = (?)");
             $request->execute(array($email, $firstname, $lastname, $password, $_SESSION['id_user']));
         

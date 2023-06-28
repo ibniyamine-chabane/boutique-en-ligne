@@ -168,7 +168,7 @@ h2 {
   text-align: center;
   padding-top: 60px;
 }
-
+/* 
 footer {
   height: 110px;
   background-color: #0F766E;
@@ -182,7 +182,55 @@ footer {
   text-align: center;
   padding-top: 40px;
   color: white;
+} */
+
+/***** footer ************/
+
+footer {
+  background-color: #0F766E;
+  padding: 20px;
+  /* display: flex; */
+  justify-content: space-between;
+  color: white;
+  width: 100%;
 }
+
+.footer-contact h3,
+.footer-links h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  /* display: inherit; */
+}
+
+.footer-contact ul,
+.footer-links ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.footer-contact ul li,
+.footer-links ul li {
+  margin-bottom: 5px;
+}
+
+.footer-contact ul li a,
+.footer-links ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact ul li a:hover,
+.footer-links ul li a:hover {
+  color: #FFC50B;
+  /* text-decoration: underline; */
+}
+
+
 
 /* -------- login ---------- */
 
@@ -622,4 +670,15 @@ border-bottom-color: #f00;
 font-size: 14px;
 color: #f00;
 margin-top: 5px;
+}
+
+/**** success *****/
+
+#succes {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;  
+  background-color: inherit;
 }

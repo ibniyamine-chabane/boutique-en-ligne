@@ -107,7 +107,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <?php endforeach; ?>
             </div>
-            <div><!-- les catégorie ici -->
+            <!--<div>
                 <div>
                     <form action="" method="post" id="filter_form" class="category">
                         <label for="categories">Catégories</label>
@@ -165,7 +165,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                         <input type="submit" name="" id="">
                     </form>
-                </div>
+                </div>-->
             </div>
             <div class="pagination">
                 <ul>                

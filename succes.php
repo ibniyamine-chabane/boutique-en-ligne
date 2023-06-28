@@ -15,12 +15,13 @@ include('src/class/users.php');
 </head>
 <body>
 <?php require_once("header.php"); ?>
-
+<main>
+    <section id="succes">
     <h1>Commande réussie !</h1>
     <p>Votre numéro de commande est : <span id="order-number"></span></p>
+    </section>
     <script src="./src/js/validcard.js"></script>
-
-    <?php require_once("footer.php"); ?>
-
+</main>
+<?php require_once("footer.php"); ?>
 </body>
 </html>

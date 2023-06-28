@@ -112,9 +112,9 @@ if (isset($_POST['submit'])) {
                 <?php foreach ($cartDb as $cart) :?> 
                 <tr>     
                     <td><img src="src/upload/<?= $cart['image'] ?>" width="100px" style="margin-left:66px;" alt=""> <?= $cart['name'] ?> </td>
-                    <td><?= $cart['price'] ?></td>
+                    <td><?= $cart['price'] ?> €</td>
                     <td><?= $cart['quantity'] ?></td>
-                    <td><?= $cart['amount'] ?></td>
+                    <td><?= $cart['amount'] ?> €</td>
                 </tr>
                 <?php endforeach; ?>       
                 </table>

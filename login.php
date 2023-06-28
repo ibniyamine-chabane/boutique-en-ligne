@@ -2,13 +2,14 @@
 session_start();
 require_once("src/class/users.php");
 $user = new users;
+$message = "";
 
 if (isset($_POST['submit'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $user->connection($email, $password);
-
+    $message = $user->getMessage();
 }
 
 
@@ -30,6 +31,9 @@ if (isset($_POST['submit'])) {
         <div class="container-login">
             <div class="container-form-login">
             <h2>Connexion</h2>
+            <?php if(isset($message)):?>
+                <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 60%;margin: auto;"><?= $message ?></span>
+            <?php endif; ?>
                 <form action="" method="post">
                     <label for="email">email</label>
                     <input type="email" name="email" required>
