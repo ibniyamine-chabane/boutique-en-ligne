@@ -55,7 +55,7 @@ class cart
         $request3->execute(array($id_cart, $_GET['id'], $quantity));
 
         //étape 4 on fait un select des table pour récupérer le prix par rapport a la quantité sur le bon produit
-        $request4 = $this->getDatabase()->prepare('SELECT user.id , product.id , price , amount , quantity
+        $request4 = $this->getDatabase()->prepare('SELECT user.id , product.id , price , amount , quantity, cart.id
                                                    FROM user
                                                    INNER JOIN cart 
                                                    ON user.id = cart.id_user
@@ -63,13 +63,12 @@ class cart
                                                    ON cart_product.id_cart = cart.id
                                                    INNER JOIN product
                                                    ON cart_product.id_product = product.id
-                                                   WHERE id_user = (?)'
+                                                   WHERE id_user = (?) AND cart.id = (?)'
                                                 );
 
-        $request4->execute(array($_SESSION['id_user']));
+        $request4->execute(array($_SESSION['id_user'],$id_cart));
         $displaySelect = $request4->fetchAll(PDO::FETCH_ASSOC);
         $priceDb = $displaySelect[0]['price'];
-        // $quantityDb = $displaySelect[0]['quantity'];
         $amount = $priceDb * $quantity;
 
         //derniere étape ajouter le montant dans notre table cart qui correspont a notre id.
