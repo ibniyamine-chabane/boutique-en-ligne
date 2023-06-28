@@ -25,16 +25,16 @@ if (!empty($_POST)) {
         die("erreur aucun user connecter");
     }
 
-    $adresse_line1 = htmlspecialchars(trim($_POST["adresse_line1"]));
-    $adresse_line2 = htmlspecialchars(trim($_POST["adresse_line2"])) ?? null;
-    $city = htmlspecialchars(trim($_POST["city"]));
-    $postal_code = htmlspecialchars(trim($_POST["postal_code"]));
-    $country = htmlspecialchars(trim($_POST["country"]));
-    $telephone = htmlspecialchars(trim($_POST["telephone"])) ?? null;
-    $mobile = htmlspecialchars(trim($_POST["mobile"])) ?? null;
-    $credit_card_number = htmlspecialchars(trim($_POST["credit_card_number"]));
-    $expiration_date = htmlspecialchars(trim($_POST["expiration_date"]));
-    $cvv = (int) htmlspecialchars(trim($_POST["cvv"]));
+    $adresse_line1 = ($_POST["adresse_line1"]);
+    $adresse_line2 = $_POST["adresse_line2"] ?? null;
+    $city = $_POST["city"];
+    $postal_code = $_POST["postal_code"];
+    $country = $_POST["country"];
+    $telephone = $_POST["telephone"] ?? null;
+    $mobile = $_POST["mobile"] ?? null;
+    $credit_card_number = $_POST["credit_card_number"];
+    $expiration_date = $_POST["expiration_date"];
+    $cvv = $_POST["cvv"];
 
     // Vérification de la carte de crédit
     if (!isTestCreditCardValid($credit_card_number, $expiration_date, $cvv)) {
