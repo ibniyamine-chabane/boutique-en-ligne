@@ -67,7 +67,7 @@
                     <a href="profil.php" class="action-button pro">Profil</a>
                     <a href="logout.php" class="action-button">Se déconnecter</a>
                 <?php else: ?>
-                    <a class="action-button pro">Inscription</a>
+                    <a href="register.php" class="action-button pro">Inscription</a>
                     <a href="login.php" class="action-button">Se connecter</a> 
                 <?php endif; ?>    
                 </div>

@@ -153,9 +153,9 @@ if (isset($_POST['send'])) {
                         <label for="">Image du produit (png, jpg, jpeg, d'1 Mo max)</label>
                         <input type="file" name="image" accept=".png,.jpg,.jpeg" value="<?= $dbChangeproduct[0]['image'] ?>">
                         <label for="">Prix</label>
-                        <input type="text" name="price" value="<?= $dbChangeproduct[0]['price'] ?>">
+                        <input type="number" name="price" value="<?= $dbChangeproduct[0]['price'] ?>">
                         <label for="">Quantité</label>
-                        <input type="text" name="quantity" value="<?= $dbChangeproduct[0]['quantity'] ?>">
+                        <input type="number" name="quantity" value="<?= $dbChangeproduct[0]['quantity'] ?>">
                         <label for="">Catégorie</label>
                         <select name="category" id="">
                             <?php foreach ($categoryDB as $category) : ?>

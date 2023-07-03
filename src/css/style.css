@@ -150,33 +150,6 @@ header {
   display: inherit;
 }
 
-/* ---------- RESPONSIVE ------------*/ 
-
-@media (max-width: 990px) {
-
-  header {
-      background: #0F766E;
-  }
-
-  .navbar .links,
-  .navbar .action-button {
-      display: none;
-  }
-
-  .navbar .burger-menu-button {
-      display: block;
-  }
-
-  .burger-menu {
-      display: block;
-  }
-}
-
-
-
-
-
-
 
 /* header {
   display: flex;
@@ -242,6 +215,7 @@ section:first-child  {
 text-align: center;
 text-decoration: none;
 color: white;
+font-size: 12px;
 }
 
 .container-thumbnail a:hover, .container-product a:hover {
@@ -376,6 +350,7 @@ footer {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
 
 }
 
@@ -569,8 +544,16 @@ top:1px;
 /* -------- product_change.php -------- */
 
 .box-img {
-  width: 37%;
+  width: 45%;
   margin: auto;
+}
+
+.box-img img {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
 }
 
 /* -------- admin dashboard ---------*/
@@ -610,6 +593,18 @@ a.add-product-button {
 
 .no-underline {
   text-decoration: none;
+}
+
+.card-font-size {
+  font-size: 12px;
+  padding: 0px 11px;
+}
+
+a.admin-action-button {
+  width: 126px;
+  font-size: 12px;
+  padding: 3px 17px;
+  
 }
 
 .button-box {
@@ -850,4 +845,64 @@ margin-top: 5px;
   align-items: center;
   margin: 50px auto;  
   background-color: inherit;
+}
+
+/* ---------- RESPONSIVE ------------*/ 
+
+@media (max-width: 1331px) {
+
+  .image_box {
+    width: 62%;
+    height: 193px;
+    position: relative;
+    margin: auto;
+  }
+
+  .container-thumbnail {
+  width: 270px;
+  }
+
+}
+
+
+@media (max-width: 990px) {
+
+  header {
+      background: #0F766E;
+  }
+
+  .navbar .links,
+  .navbar .action-button {
+      display: none;
+  }
+
+  .navbar .burger-menu-button {
+      display: block;
+  }
+
+  .burger-menu {
+      display: block;
+  }
+}
+
+@media (max-width: 561px) {
+
+  .image_box {
+    width: 62%;
+    height: 131px;
+    position: relative;
+    margin: auto;
+  }
+
+  .container-thumbnail {
+    width: 177px;
+  }
+
+  /*** admin dash board ***/
+
+  a.admin-action-button {
+    width: 74px;
+    padding: 4px 4px;
+
+  }
 }

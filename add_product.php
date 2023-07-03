@@ -47,9 +47,9 @@ $subCategoryDB = $request2->fetchAll(PDO::FETCH_ASSOC);
                         <label for="">image du produit (png, jpg, jpeg, d'1 Mo max)</label>
                         <input type="file" name="image" accept=".png,.jpg,.jpeg">
                         <label for="">prix</label>
-                        <input type="text" name="price">
+                        <input type="number" name="price">
                         <label for="">quantité</label>
-                        <input type="text" name="quantity">
+                        <input type="number" name="quantity">
                         <label for="">Catégorie</label>
                         <select name="category" id="">
                             <?php foreach ($categoryDB as $category) : ?>
