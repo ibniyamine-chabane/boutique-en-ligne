@@ -9,32 +9,198 @@
   list-style-type: none;
 }
 /* -------    Header   ------  */
+
+
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+a:hover {
+  color: #63C7B2
+}
+
 header {
-  /* background-color: aqua; */
-  /* height: 70px; */
+  position: relative;
+  padding: 0 8px;
+  background-color: #0F766E;
+}
+
+.navbar {
+   width: 100%;
+   max-width: 1200px;
+   height: 60px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar .links {
+  display: flex;
+  gap: 2rem
+}
+
+.navbar .burger-menu-button {
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px
+}
+
+.action-button {
+  background-color: #63C7B2;
+  color: #120d31;
+  border: 1px solid #63C7B2;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.pro {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.pro:hover {
+  background-color: #fff;
+  color: #120d31
+}
+
+/* ---------- BURGER MENU -----------*/
+
+.burger-menu {
+  display: none;
+  height: 0;
+  /* height: 310px; */
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.burger-menu.open {
+  height: 310px;
+  z-index: 1;
+}
+
+.burger-menu li {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  background-color: #fff;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.burger-menu .action-button {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.buttons-burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px
+}
+
+.burger-menu.open ul {
+  display: inherit;
+}
+
+/* ---------- RESPONSIVE ------------*/ 
+
+@media (max-width: 990px) {
+
+  header {
+      background: #0F766E;
+  }
+
+  .navbar .links,
+  .navbar .action-button {
+      display: none;
+  }
+
+  .navbar .burger-menu-button {
+      display: block;
+  }
+
+  .burger-menu {
+      display: block;
+  }
+}
+
+
+
+
+
+
+
+/* header {
   display: flex;
   background-color: #0F766E;
   color: white;
 }
-
+*/
 .logo {
 position: relative;
-width: 106px;
+width: 57px;
+padding-top: 5px;
 }
 
 .logo img {
 width: 100%;
 height: 100%;
 }
-
+/*
 nav {
-  /* background-color: azure; */
   width: 90%;
   margin: auto;
   display: flex;
   height: 60px;
   align-items: center;
-  /* justify-content:space-around; */
 }
 
 nav ul {
@@ -51,7 +217,7 @@ li a {
 
 nav li a:hover {
 color: #FFC50B;
-}
+} */
 /*  ------  Fin Header ------   */
                           /* page index */ 
 
@@ -450,6 +616,7 @@ a.add-product-button {
   width: 95%;
   display: flex;
   padding-bottom: 12px;
+  margin: auto;
 }
 
 /*  ---------- cart.php ------- */
@@ -498,8 +665,8 @@ position: relative;
 display: flex;
 align-items: center;
 max-width: 500px;
-margin: 0 auto;
-width: 52%;
+/* margin: 0 auto; */
+/* width: 52%; */
 }
 
 #mon-formulaire input[type="text"] {
@@ -510,6 +677,7 @@ border-bottom: 2px solid #ccc;
 outline: none;
 width: 100%;
 transition: border-bottom-color 0.2s ease-in-out;
+margin-top: 15px;
 }
 
 #mon-formulaire input[type="text"]:hover,
@@ -533,7 +701,7 @@ background-color: #333;
 
 #mon-formulaire #suggestions {
 position: absolute;
-top: 139%;
+top: 91%;
 left: 0;
 right: 0;
 background-color: #fff;
@@ -542,6 +710,7 @@ z-index: 1;
 width: 100%;
 box-sizing: border-box;
 padding: 0px;
+border-top: 1px solid #0F766E;
 }
 
 .result-box {

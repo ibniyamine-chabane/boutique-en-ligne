@@ -83,24 +83,25 @@ if (isset($_POST['submit_sub_category'])) {
                     <a href="product.php?id=<?= $product['productId'] ?>" class="no-underline">
                         <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
                             <div>
-                                <div>
+                                <div class="image_box">
                                     <img src="src/upload/<?= $product['image'] ?>" alt="">
                                 </div>
                                 <div>
                                     <h4><?= $product['productName'] ?></h4>
-                                    <p><?= $product['price'] ?>€</p>
-                                    <p><?= "Quantité : " . $product['quantity'] ?></p>
+                                    <p><?= "Quantité : " . $product['quantity'] . " " . "prix : " . $product['price'] ."€" ?></p>
                                     <p><?= $product['date_product'] ?></p>
                                     <div>
-                                    <p><?= $product['categoryName'] ?></p>
-                                    <?php foreach ($display2 as $subCategory) : ?>
-                                        <?php if (
+                                    <span><?php echo $product['categoryName']." : ";  
+                                    foreach ($display2 as $subCategory) {
+                                        if (
                                             $product['productId'] ==
                                             $subCategory['id_product']
-                                        ) : ?>
-                                            <span><?= $subCategory['subName'] ?></span>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                        ) {
+                                            echo $subCategory['subName']." ";
+                                        }
+
+                                    }?></span>
+                                  
                                     </div>
                                     <div class="button-box">
                                         <a href="product_change.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">Modifier le produit</a>
