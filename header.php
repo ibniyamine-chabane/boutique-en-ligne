@@ -34,7 +34,7 @@
             <?php require_once("research.php"); ?>    
             <div class="buttons">
             <?php if(isset($_SESSION['rights']) && $_SESSION["rights"] == "administrator" || isset($_SESSION['rights']) && $_SESSION["rights"] == "subscribed") :?>
-                <a href="cart.php" class="action-button pro">Panier</a>
+                <a href="cart.php" class="action-button pro"><i class="fa-solid fa-cart-shopping"></i>Panier</a>
                 <a href="profil.php" class="action-button pro">Profil</a>
                 <a href="logout.php" class="action-button">Se déconnecter</a>
             <?php else: ?>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="buttons-burger-menu">
                 <?php if(isset($_SESSION['rights']) && $_SESSION["rights"] == "administrator" || isset($_SESSION['rights']) && $_SESSION["rights"] == "subscribed") :?>
-                    <a href="cart.php" class="action-button pro">Panier</a>
+                    <a href="cart.php" class="action-button pro"><i class="fa-solid fa-cart-shopping"></i> Panier</a>
                     <a href="profil.php" class="action-button pro">Profil</a>
                     <a href="logout.php" class="action-button">Se déconnecter</a>
                 <?php else: ?>

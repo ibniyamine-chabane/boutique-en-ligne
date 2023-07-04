@@ -468,17 +468,20 @@ input {
 .container-product-page {
   display: flex;
   padding-top: 73px;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
 }
 
 .image-box {
   /* width: 60%; */
   margin: auto;
-  width: 588px;
+  width: 100%;
 }
 
 .container-image {
   /* width: 300%; */
-  width: 832px;
+  width: 488px;
 }
 
 .container-image img {
@@ -724,6 +727,7 @@ width: 106px;
 
 .result-box a {
 text-decoration: none;
+color: black
 }
 
 #mon-formulaire input[type="text"]:focus + #suggestions {
@@ -850,7 +854,7 @@ margin-top: 5px;
 /* ---------- RESPONSIVE ------------*/ 
 
 @media (max-width: 1331px) {
-
+  /** product card for index, shop page **/
   .image_box {
     width: 62%;
     height: 193px;
@@ -865,8 +869,8 @@ margin-top: 5px;
 }
 
 
-@media (max-width: 990px) {
-
+@media (max-width: 1008px) {
+/**** header ****/
   header {
       background: #0F766E;
   }
@@ -883,10 +887,38 @@ margin-top: 5px;
   .burger-menu {
       display: block;
   }
+
+ /**** product page ****/
+  
+  .container-image {
+    width: 347px;
+  }
+
+  .right-side {
+    width: 466px;
+  }
+
+}
+
+@media (max-width: 945px) {
+  .container-image {
+    width: 241px;
+  }
+
+  .right-side {
+    /* width: 389px; */
+    width: 50%;
+  }
+
+  .right-side p:nth-child(1) {
+    border-style: inset;
+    height: 190px;
+    overflow: auto;
+  }
 }
 
 @media (max-width: 561px) {
-
+  /** product card for index, shop page **/
   .image_box {
     width: 62%;
     height: 131px;
@@ -897,6 +929,31 @@ margin-top: 5px;
   .container-thumbnail {
     width: 177px;
   }
+
+  /*** page producct ***/
+  .container-product-page {
+    display: unset;
+  }
+
+  .container-image {
+    margin: auto;
+  }
+
+  .container-image img {
+    width: 100%;
+    margin-top: 25px;
+  }  
+  
+  .right-side article h3 {
+    text-align: center;
+  }
+
+  .right-side {
+    padding-top: 25px;
+    /* width: 389px; */
+    width: 90%;
+    margin: auto;
+}
 
   /*** admin dash board ***/
 
