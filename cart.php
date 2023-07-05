@@ -29,6 +29,7 @@ if (isset($_POST['delete_cart'])) {
     header('Location: cart.php');
     exit();
 }
+
 if (isset($_POST['delete_simple'])) {
     // Vérifier si l'ID du produit à supprimer est présent dans le formulaire
     if (isset($_POST['id_product'])) {
@@ -82,6 +83,7 @@ if (isset($_POST['validate_cart'])) {
 $products = $cart->getCartProductsByUserId($user_id); // Récupération des produits du panier de l'utilisateur
 
 $total = 0; // initialisation de la variable total
+$totalR = 0; 
 
 ?>
 
@@ -131,6 +133,8 @@ $total = 0; // initialisation de la variable total
             </table>
         </div>
     </div>
+
+    
     <div class="container-button-cart">
     <form method="post">
         <button type="submit" name="delete_cart" class="red">Supprimer le panier</button>
@@ -139,6 +143,41 @@ $total = 0; // initialisation de la variable total
         <button type="submit" name="validate_cart">Valider le Panier</button>
     </form>
     </div>
+    
+    <h1 class="title">Panier</h1>
+    <div class="container-cart-responsive">
+    <?php foreach ($products as $productR) :?>
+        <div class="cart-product">
+            <div class="box-detail-cart">
+                <div class="container-cart-img">
+                    <div class="box-cart-img">
+                        <img src="src/upload/<?= $productR['image']?>" alt="">
+                    </div>
+                </div>
+                <div class="cart-description">
+                    <h2><?= $productR['name'] ?></h2>
+                    <p>prix : <?= $productR['price'] ?> €</p>
+                    <p>quantité : <?= $productR['quantity'] ?></p>
+                </div>
+            </div>
+            <div class="total-price">
+                <span>prix : <?php $product_totalR = $productR['price'] * $productR['quantity']; echo $product_totalR . " €"; ?></span>
+                <a href="delete_cart_product.php?id_c=<?= $productR['id_cart'] ?>&id_p=<?= $productR['id_product']?>" class="login-button">supprimer du panier</a>
+            </div>
+        </div>
+        <?php $totalR += $product_totalR; ?>
+        <?php endforeach; ?>
+        
+    </div>
+    <div class="total-cart">
+            <form method="post" class="red-button">
+                <button type="submit" name="delete_cart" class="red">Supprimer le panier</button>
+            </form> 
+            <p>prix total panier : <?= $totalR ?> €</p>
+            <form method="post" class="validation-button">
+                <button type="submit" name="validate_cart">Valider le Panier</button>
+            </form>            
+        </div>
     </main>
     <?php require_once('footer.php'); ?>
 </body>
