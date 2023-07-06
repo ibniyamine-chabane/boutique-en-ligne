@@ -81,17 +81,17 @@ if (isset($_POST['submit'])) {
                                     <?php else : ?>
                                         <input type="submit" name="submit" value="ajouté au panier" class="green-button">
                                     <p id="message"></p>
-                                    <?php endif; ?>
-                                    <?php if (isset($message) && isset($_POST['quantity']) && $_POST['quantity'] > $productDatabase[0]['quantity'] || 
-                                    isset($_POST['quantity']) && $_POST['quantity'] == 0 || isset($_POST['quantity']) && $_POST['quantity'] < 0) :?>
-                                        <span style="text-align: center;display: block;color: red;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
-                                    <?php else : ?>
-                                        <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
-                                    <?php endif; ?>
+                                    <?php endif; ?>             
                             </form>
                         </div>
                     </div>
                 </div>
+                <?php if (isset($message) && isset($_POST['quantity']) && $_POST['quantity'] > $productDatabase[0]['quantity'] || 
+                isset($_POST['quantity']) && $_POST['quantity'] == 0 || isset($_POST['quantity']) && $_POST['quantity'] < 0) :?>
+                    <span style="text-align: center;display: block;color: red;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
+                <?php else : ?>
+                    <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 313px;margin: auto;"><?= $message ?></span>
+                <?php endif; ?>
         </section>
         <?php endforeach; ?>
     </main>

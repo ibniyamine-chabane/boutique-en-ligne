@@ -109,42 +109,44 @@ function isTestCreditCardValid($number, $expiration, $cvv) {
     <?php require_once("header.php"); ?>
     <main>
         <section>
-            <h2>Détail de facturation</h2>
-            <div>
-                <form class="form-fact" method="post" id="form-adresse">
-                    <label for="adresse-line1">Adresse ligne 1 :</label>
-                    <input type="text" name="adresse_line1" id="adresse-line1" required>
-                    <br>
-                    <label for="adresse-line2">Adresse ligne 2 :</label>
-                    <input type="text" name="adresse_line2" id="adresse-line2">
-                    <br>
-                    <label for="city">Ville :</label>
-                    <input type="text" name="city" id="city" required>
-                    <br>
-                    <label for="postal-code">Code postal :</label>
-                    <input type="text" name="postal_code" id="postal-code" required>
-                    <br>
-                    <label for="country">Pays :</label>
-                    <input type="text" name="country" id="country" required>
-                    <br>
-                    <label for="telephone">Téléphone :</label>
-                    <input type="text" name="telephone" id="telephone">
-                    <br>
-                    <label for="mobile">Mobile :</label>
-                    <input type="text" name="mobile" id="mobile">
-                    <br>
-                    <label for="credit-card-number">Numéro de carte de crédit :</label>
-                    <input type="text" name="credit_card_number" id="credit-card-number" required>
-                    <br>
-                    <label for="expiration-date">Date d'expiration (MM/AAAA) :</label>
-                    <input type="text" name="expiration_date" id="expiration-date" required>
-                    <br>
-                    <label for="cvv">Code de sécurité (CVV) :</label>
-                    <input type="text" name="cvv" id="cvv" required>
-                    <br>
-                    <input type="submit" value="Ajouter l'adresse et passer au paiement">
-                </form>
-            </div>
+            <div class="container-addresse-form">
+                <h2>Détail de facturation</h2>
+                <div>
+                    <form class="form-fact" method="post" id="form-adresse">
+                        <label for="adresse-line1">Adresse ligne 1 :</label>
+                        <input type="text" name="adresse_line1" id="adresse-line1" required>
+                        <br>
+                        <label for="adresse-line2">Adresse ligne 2 :</label>
+                        <input type="text" name="adresse_line2" id="adresse-line2">
+                        <br>
+                        <label for="city">Ville :</label>
+                        <input type="text" name="city" id="city" required>
+                        <br>
+                        <label for="postal-code">Code postal :</label>
+                        <input type="text" name="postal_code" id="postal-code" required>
+                        <br>
+                        <label for="country">Pays :</label>
+                        <input type="text" name="country" id="country" required>
+                        <br>
+                        <label for="telephone">Téléphone :</label>
+                        <input type="text" name="telephone" id="telephone">
+                        <br>
+                        <label for="mobile">Mobile :</label>
+                        <input type="text" name="mobile" id="mobile">
+                        <br>
+                        <label for="credit-card-number">Numéro de carte de crédit :</label>
+                        <input type="text" name="credit_card_number" id="credit-card-number" required>
+                        <br>
+                        <label for="expiration-date">Date d'expiration (MM/AAAA) :</label>
+                        <input type="text" name="expiration_date" id="expiration-date" required>
+                        <br>
+                        <label for="cvv">Code de sécurité (CVV) :</label>
+                        <input type="text" name="cvv" id="cvv" required>
+                        <br>
+                        <input type="submit" value="Ajouter l'adresse et passer au paiement">
+                    </form>
+                </div>
+            </div>    
         </section>
     </main>
 

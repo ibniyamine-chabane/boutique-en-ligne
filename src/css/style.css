@@ -897,6 +897,12 @@ display: block;
 /*facturation*/
 
 /* Styles pour le formulaire d'adresse */
+
+.container-addresse-form {
+  width: 80%;
+  margin: auto;
+}
+
 .form-fact {
 
 display: flex;
@@ -1069,7 +1075,14 @@ margin-top: 5px;
 
   .title {
     display: block;
+    text-align: center;
   }
+
+  h3.cart-status  {
+    text-align: center;
+  }
+
+  /** footer ***/
 }
 
 
