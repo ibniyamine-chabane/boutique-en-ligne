@@ -198,6 +198,7 @@ color: #FFC50B;
 section:first-child  {
   background-color: azure;
   padding-bottom: 1px;
+  padding-top: 1px;
 }
 
 .container-thumbnail { 
@@ -420,6 +421,7 @@ input {
   border-radius: 8px;
   margin-top: 4%;
   padding-bottom: 63px;
+  margin-bottom: 70px;
 }
 
 .container-form-register {
@@ -868,7 +870,7 @@ display: block;
 }
 
 /* Styles pour rendre la barre de recherche responsive */
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
 #mon-formulaire {
   flex-direction: column;
   align-items: stretch;
@@ -893,7 +895,7 @@ display: block;
 #mon-formulaire #suggestions {
   padding: 5px 10px;
 }
-}
+} */
 /*facturation*/
 
 /* Styles pour le formulaire d'adresse */
@@ -1035,6 +1037,33 @@ margin-top: 5px;
       display: block;
   }
 
+  header #mon-formulaire {
+    /* margin: auto; */
+    width: 260px;
+  }
+
+ /**** index page *****/ 
+
+ section #mon-formulaire {
+  display: block;
+  margin: auto;
+ }
+ /*** autocomplection ***/
+
+ .img-search {
+  width: 73px;
+  }
+
+  .result-box a {
+    font-size: 11px;
+  }
+
+ /*** profil page ***/
+
+ .cart-profil {
+  display: none;
+ }
+
  /**** product page ****/
   
   .container-image {
@@ -1161,6 +1190,37 @@ margin-top: 5px;
     margin: auto;
 }
 
+  /*** connection page ***/ 
+
+  .container-login {
+    width: 85%;
+  }
+
+  .container-form-login {
+    width: 85%;
+    margin-top: 20px;
+  }
+
+  .container-form-login form input.button {
+    padding: 4px;
+  }
+
+  /*** register page ***/
+
+  .container-register{
+    width: 85%;
+  }
+
+  .container-form-register {
+    width: 85%;
+    margin-top: 20px;
+  }
+
+  .container-form-register form input.button {
+    padding: 4px;
+  }
+
+  
   /*** admin dash board ***/
 
   a.admin-action-button {
