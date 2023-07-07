@@ -767,6 +767,11 @@ top:2px;
   background-color: #cc2b56;
 }
 
+.cart-status {
+  text-align: center;
+  padding: 20px;
+}
+
 .validation-button button {
   border-radius: 10px;
   padding: 7px 9px;
