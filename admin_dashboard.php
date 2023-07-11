@@ -77,7 +77,7 @@ if (isset($_POST['submit_sub_category'])) {
                     <?php endif; ?>
             </div>
 
-            <h2>Produit</h2>
+            <h2>Produits de la boutique</h2>
             <div>
             <div class="container-product">
                 <?php foreach ($display as $product) : ?>

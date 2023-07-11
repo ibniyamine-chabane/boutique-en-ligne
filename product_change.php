@@ -45,9 +45,9 @@ $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
 
 // Update product
 if (isset($_POST['send'])) {
-    if ($_FILES['image'] && $_POST['name'] && $_POST['price'] && $_POST['quantity'] && $_POST['category'] && $_POST['sub_category'] && $_POST['description']) {
+    if ($_POST['name'] && $_POST['price'] && $_POST['quantity'] && $_POST['category'] && $_POST['sub_category'] && $_POST['description']) {
 
-        $image = $_FILES['image'];
+        
         $name = $_POST['name'];
         $price = intval($_POST['price']);
         $quantity = intval($_POST['quantity']);
@@ -62,44 +62,13 @@ if (isset($_POST['send'])) {
             }
         }
 
-        // // checks are carried out
-        // extension
-        $allowed = [
-            'jpg' => 'image/jpeg',
-            'jpeg' => 'image/jpeg',
-            'png' => 'image/png',
-        ];
-
-        $filetype = $_FILES['image']['type'];
-        $filesize = $_FILES['image']['size'];
-
-        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-
-        // we check the absence of the extension in the keys of the allowed variable or the absence of the MIME type in the values
-        if (!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
-            die('ERREUR : format de fichier incorrect');
-        }
-
-        // The limit is 1 MB
-        if ($filesize > 1024 * 1024) {
-            die('Le fichier dépasse 1 Mo');
-        }
-        var_dump($image['name']);
-        // we generate a complete path
-        $newfilename = __DIR__ . "/src/upload/" . $image['name'];
-
-        // insert the downloaded image in the upload folder
-        if (!move_uploaded_file($image['tmp_name'], $newfilename)) {
-            die("L'upload a échoué");
-        }
-
         $sql = "UPDATE product
                 INNER JOIN product_inventory on product.id = product_inventory.id_product
                 INNER JOIN inventory on inventory.id = product_inventory.id_inventory
-                set product.name = (?), product.image = (?), product.price = (?), product.description = (?), product.id_category = (?), inventory.quantity = (?)
+                set product.name = (?), product.price = (?), product.description = (?), product.id_category = (?), inventory.quantity = (?)
                 WHERE product.id = (?)";
         $request = $change->getDatabase()->prepare($sql);
-        $request->execute(array($name, $image['name'], $price, $description, $_SESSION['category_id'], $quantity, $dbChangeproduct[0]['id']));
+        $request->execute(array($name, $price, $description, $_SESSION['category_id'], $quantity, $dbChangeproduct[0]['id']));
 
         //update sub category
         $sql2 = "DELETE FROM sub_category_product
@@ -121,6 +90,48 @@ if (isset($_POST['send'])) {
         header("Location: admin_dashboard.php");
     } else {
         echo "veuillez remplir tous les champs";
+    }
+
+
+    if ($_FILES['image']) { 
+        
+        $image = $_FILES['image'];
+
+        $allowed = [
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+        ];
+
+        $filetype = $_FILES['image']['type'];
+        $filesize = $_FILES['image']['size'];
+
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+
+        // we check the absence of the extension in the keys of the allowed variable or the absence of the MIME type in the values
+        if (!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
+            die('ERREUR : format de fichier incorrect');
+        }
+
+        // The limit is 1 MB
+        if ($filesize > 1024 * 1024) {
+            die('Le fichier dépasse 1 Mo');
+        }
+       
+        // we generate a complete path
+        $newfilename = __DIR__ . "/src/upload/" . $image['name'];
+
+        // insert the downloaded image in the upload folder
+        if (!move_uploaded_file($image['tmp_name'], $newfilename)) {
+            die("L'upload a échoué");
+        }
+
+        $sql = "UPDATE product
+                set product.image = (?)
+                WHERE product.id = (?)";
+        $request = $change->getDatabase()->prepare($sql);
+        $request->execute(array($image['name'], $_GET['id']));
+
     }
 }
 
