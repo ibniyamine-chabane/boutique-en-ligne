@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if(isset($_SESSION['id_user']) && $_SESSION['rights'] != 'administrator') {
+    header("Location: index.php");
+} elseif (!isset($_SESSION['id_user'])) {
+    header("Location: index.php");
+}
+
 require_once('src/class/shopClass.php');
 $shop = new shop;
 // $database = $shop->getDatabase();

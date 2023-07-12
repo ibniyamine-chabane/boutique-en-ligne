@@ -1,5 +1,10 @@
 <?php 
 session_start();
+
+if(isset($_SESSION['id_user'])) {
+    header("Location: index.php");
+}
+
 require_once("src/class/users.php");
 $user = new users;
 $message = "";

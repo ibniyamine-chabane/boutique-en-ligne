@@ -1,7 +1,11 @@
 <?php
 
 session_start();
-if (!empty($_SESSION['email']) && $_SESSION['rights'] != "administrator") { // si l'utilisateur n'est pas connecté, il est rediriger vers la page d'accueil.php
+
+if(isset($_SESSION['id_user']) && $_SESSION['rights'] != 'administrator') {
+    header("Location: index.php");
+    exit;
+} elseif (!isset($_SESSION['id_user'])) {
     header("Location: index.php");
     exit;
 }

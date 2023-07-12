@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['id_user'])) {
+    header("Location: index.php");
+    exit;
+}
 require_once("src/class/users.php");
 require_once("src/class/cartClass.php");
 $select = new cart;
@@ -22,4 +27,4 @@ $request->execute(array($id_cart, $_SESSION['id_user']));
 $request = $user->getData()->prepare('DELETE FROM cart_product WHERE id_product = (?) AND id_cart = (?)');
 $request->execute(array($id_product, $id_cart));
 header("Location: cart.php");
-?>
+?>  
