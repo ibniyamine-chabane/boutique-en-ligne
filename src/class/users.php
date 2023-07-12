@@ -120,6 +120,10 @@ class users
         $request->execute(array($this->email));
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
         $emailOk = false;
+
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
+            die("<h1 style='text-align: center; color: red'>vous n'avez pas entrer une adresse email valide</h1>");
+        }
         
         foreach ($userDatabase as $user) {
             
