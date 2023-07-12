@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         <div class="container-register">
             <h2>Inscription</h2>
             <?php if (isset($message)) :?>
-                <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message ?></span>
+                <span class="msg" style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 58%;margin: auto;margin-top: 17px"><?= $message ?></span>
                 <?php endif; ?>
             <div class="container-form-register">
                 <form action="" method="post" id="register-form"> <!-- le formulaire d'inscription -->

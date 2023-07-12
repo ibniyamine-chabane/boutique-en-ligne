@@ -77,7 +77,8 @@ if (isset($_POST['submit_sub_category'])) {
                     <?php endif; ?>
             </div>
 
-            <h2>Produit</h2>
+            <h2>Produits de la boutique</h2>
+            <div>
             <div class="container-product">
                 <?php foreach ($display as $product) : ?>
                     <a href="product.php?id=<?= $product['productId'] ?>" class="no-underline">
@@ -87,10 +88,12 @@ if (isset($_POST['submit_sub_category'])) {
                                     <img src="src/upload/<?= $product['image'] ?>" alt="">
                                 </div>
                                 <div>
-                                    <h4><?= $product['productName'] ?></h4>
-                                    <p><?= "Quantité : " . $product['quantity'] . " " . "prix : " . $product['price'] ."€" ?></p>
-                                    <p><?= $product['date_product'] ?></p>
-                                    <div>
+                                    <div class="card-font-size">
+                                        <h4><?= $product['productName'] ?></h4>
+                                        <p><?= "Quantité : " . $product['quantity'] . " " . "prix : " . $product['price'] ."€" ?></p>
+                                        <p><?= $product['date_product'] ?></p>
+                                    </div>
+                                    <div class="card-font-size">
                                     <span><?php echo $product['categoryName']." : ";  
                                     foreach ($display2 as $subCategory) {
                                         if (
@@ -104,14 +107,15 @@ if (isset($_POST['submit_sub_category'])) {
                                   
                                     </div>
                                     <div class="button-box">
-                                        <a href="product_change.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">Modifier le produit</a>
-                                        <a href="delete_product.php?id=<?= $product['productId'] ?>" class="add-product-button" style="width:155px;font-size:12px;">suprimmer le produit</a>
+                                        <a href="product_change.php?id=<?= $product['productId'] ?>" class="add-product-button admin-action-button">Modifier le produit</a>
+                                        <a href="delete_product.php?id=<?= $product['productId'] ?>" class="add-product-button admin-action-button">suprimmer le produit</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 <?php endforeach; ?>
+            </div>
             </div>
             </form>
             <?php if (isset($comment)) : ?> <!-- ici c'est pour que la pagination n'apparait pas, $comment n'existe pas -->

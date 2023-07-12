@@ -35,7 +35,10 @@ class users
         $right = "";
         $role_id = 2; // le role id 2 correspond a un utilisateur normale.
         
-
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
+            die("<h1 style='text-align: center; color: red'>vous n'avez pas entrer une adresse email valide</h1>");
+        }
+ 
         foreach ($userDatabase as $user) {
             
             if ( $this->email == $user['email']){
@@ -116,8 +119,8 @@ class users
     public function updateProfil($email, $firstname, $lastname, $password) {
 
         $this->email = $email;
-        $request = $this->database->prepare('SELECT * FROM user');
-        $request->execute(array());
+        $request = $this->database->prepare('SELECT * FROM user WHERE email = (?)');
+        $request->execute(array($this->email));
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
         $emailOk = false;
         
@@ -126,7 +129,7 @@ class users
             if ($this->email == $_SESSION['email']) {
                 $emailOk = true;
             } else if ( $this->email == $user['email']){
-                $_SESSION['message_profil'] = "cette adresse appartient à un autre utilisateur";
+                $this->message = "cette adresse appartient à un autre utilisateur";
                 $emailOk = false;
                 break;
             } else {

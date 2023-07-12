@@ -10,6 +10,8 @@ class  products
     private $price;
     private $description;
 
+    public $message;
+
     //Constructeur
     public function __construct()
     {
@@ -44,6 +46,10 @@ class  products
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getMessage(){
+        return $this->message;
     }
 
     public function addProduct($title, $price, $description)
@@ -156,7 +162,6 @@ class  products
                                 $request2 = $this->database->prepare('SELECT * FROM inventory WHERE quantity = (?)');
                                 $request2->execute(array($_SESSION['quantity']));
                                 $boutiqueDB2 = $request2->fetchAll(PDO::FETCH_ASSOC);
-                                //var_dump($boutiqueDB2);
 
                                 $_SESSION['id_inventory'] = $boutiqueDB2[0]['id'];
 
@@ -166,12 +171,10 @@ class  products
                                 $request->execute(array($this->id, $_SESSION['id_inventory']));
 
                                 if ($_POST['sub_category']) {
-                                    //var_dump($_POST['sub_category']);
-                                    // var_dump($_POST['sub_category'][1]);
+                                
                                     $request = $this->database->prepare('SELECT * FROM sub_category');
                                     $request->execute(array());
                                     $subCategoryDB = $request->fetchAll(PDO::FETCH_ASSOC);
-                                    //var_dump($boutiqueDB);
 
                                     foreach ($_POST['sub_category'] as $postSubCategory) {
                                         foreach ($subCategoryDB as $subCategoryName) {
@@ -192,25 +195,25 @@ class  products
                                         }
                                     }
                                 } else {
-                                    echo "Veuillez ajouter au moins une sous catégorie au produit";
+                                    $this->message = "Veuillez ajouter au moins une sous catégorie au produit";
                                 }
                             } else {
-                                echo "Veuillez ajouter la quantité du produit";
+                                $this->message = "Veuillez ajouter la quantité du produit";
                             }
                         } else {
-                            echo "Veuillez ajouter un prix au produit";
+                            $this->message = "Veuillez ajouter un prix au produit";
                         }
                     } else {
-                        echo "Veuillez ajouter une catégorie au produit";
+                        $this->message = "Veuillez ajouter une catégorie au produit";
                     }
                 } else {
-                    echo "Veuillez ajouter une description au produit";
+                    $this->message = "Veuillez ajouter une description au produit";
                 }
             } else {
-                echo "Veuillez ajouter une image au produits";
+                $this->message = "Veuillez ajouter une image au produits";
             }
         } else {
-            echo "Veuillez ajouter un titre au produit";
+            $this->message = "Veuillez ajouter un titre au produit";
         }
     }
 }

@@ -95,10 +95,7 @@ if (isset($_POST['submit'])) {
                 </div>    
             </div>
         </section>
-        <section>
-    
-        </section> 
-        <section>
+        <section class="cart-profil">
             <div class="container-cart-profil">
                 <h2>mon panier</h2>
             <div class="container-table">

@@ -4,10 +4,13 @@ session_start();
 require_once 'src/class/productsClass.php';
 
 $product = new products;
-
+$message = "";
 if (isset($_POST['send'])) {
-
-    $product->addProduct($_POST['title'], $_POST['price'], $_POST['description']);
+    $title = htmlspecialchars(trim($_POST['title']));
+    $price = htmlspecialchars(trim($_POST['price']));
+    $description = htmlspecialchars(trim($_POST['description']));
+    $product->addProduct($title, $price, $description);
+    $message = $product->getMessage();
 }
 
 // select the category table
@@ -40,6 +43,9 @@ $subCategoryDB = $request2->fetchAll(PDO::FETCH_ASSOC);
         <section>
             <div class="container-register">
                 <h2>ajout de produit</h2>
+                <?php if(isset($message)):?>
+                    <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 60%;margin: auto;margin-top: 17px;margin-bottom: 17px;"><?= $message ?></span>
+                <?php endif; ?>
                 <div class="container-form-register">
                     <form action="" method="post" enctype="multipart/form-data">
                         <label for="">nom du produit</label>
@@ -47,9 +53,9 @@ $subCategoryDB = $request2->fetchAll(PDO::FETCH_ASSOC);
                         <label for="">image du produit (png, jpg, jpeg, d'1 Mo max)</label>
                         <input type="file" name="image" accept=".png,.jpg,.jpeg">
                         <label for="">prix</label>
-                        <input type="text" name="price">
+                        <input type="number" name="price">
                         <label for="">quantité</label>
-                        <input type="text" name="quantity">
+                        <input type="number" name="quantity">
                         <label for="">Catégorie</label>
                         <select name="category" id="">
                             <?php foreach ($categoryDB as $category) : ?>

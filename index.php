@@ -70,7 +70,7 @@ $fourLastProducts = $requestLastProduct->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once("header.php"); ?>
     <main>
         <section>
-            <h2>nos produits</h2>
+            <h2>Nos produits</h2>
             <div class="container-product">
                 <?php foreach ($productDatabase as $product ) : ?>
                     <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->
