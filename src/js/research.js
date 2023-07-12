@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const price = result.price;
             const img = result.image;
             const category_id = result.category_id;
+            const category = result.category_name;
             const box_search = document.createElement('div');
             const link = document.createElement('a');
             const image = document.createElement('img');
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.href = `product.php?id=${id}`;
             console.log(result);
             box_search.appendChild(image);
-            link.innerText = `${name} - ${price} € (catégorie ${category_id})`;
+            link.innerText = `${name} - ${price} € (catégorie : ${category})`;
             box_search.appendChild(link);
             suggestions.appendChild(box_search);
           });
