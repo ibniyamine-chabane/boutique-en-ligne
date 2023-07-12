@@ -33,7 +33,10 @@ class users
         $right = "";
         $role_id = 2; // le role id 2 correspond a un utilisateur normale.
         
-
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
+            die("<h1 style='text-align: center; color: red'>vous n'avez pas entrer une adresse email valide</h1>");
+        }
+ 
         foreach ($userDatabase as $user) {
             
             if ( $this->email == $user['email']){
