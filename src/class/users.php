@@ -23,6 +23,8 @@ class users
 
     public function register($email, $firstname, $lastname, $password) {
 
+
+
         $request = $this->database->prepare('SELECT * FROM user');
         $request->execute(array());
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -51,6 +53,7 @@ class users
           $request = $this->database->prepare("INSERT INTO user(email, first_name, last_name, password, id_role, register_date) VALUES (?, ?, ?, ?, ?,NOW())");
           $request->execute(array($this->email, $firstname, $lastname, $password, $role_id));
           $this->message = "inscription réussi";
+          header('location : login.php');
         }        
           
         

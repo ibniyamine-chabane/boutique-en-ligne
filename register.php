@@ -1,6 +1,8 @@
 <?php
 require_once("src/class/users.php");
 $user = new users;
+json_encode($user);
+
 $message = "";
 
 if (isset($_POST['submit'])) {
@@ -32,6 +34,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/style.css">
+    <script defer src="src\js\register.js"></script>
     <title>inscription</title>
 </head>
 <body>
@@ -45,7 +48,7 @@ if (isset($_POST['submit'])) {
                 <span style="text-align: center;display: block;color: green;font-weight: bold;background-color: #ffffffa3;width: 30%;margin: auto;"><?= $message ?></span>
                 <?php endif; ?>
             <div class="container-form-register">
-                <form action="" method="post"> <!-- le formulaire d'inscription -->
+                <form action="" method="post" id="register-form"> <!-- le formulaire d'inscription -->
                     <label for="email">email</label>
                     <input type="email" name="email">
                     <label for="firstname">prénom</label>
