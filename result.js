@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Récupération de la chaîne de recherche depuis l'URL
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query');
+    const query = urlParams.get('q');
     searchQuery.innerText = query;
 
     // Récupération des produits correspondant à la chaîne de recherche
@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Récupération des données du produit
                     const id = result.id;
                     const nom = result.name;
-                    const category = result.id_category;
+                    const category = result.category_name;
                     const price = result.price;
+                    const img = result.image;
+
 
                     // Création des éléments DOM pour chaque produit
                     const productDiv = document.createElement('div');
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const productCategory = document.createElement('p');
                     const productPrice = document.createElement('p');
                     const productLink = document.createElement('a');
+                    const productImage = document.createElement('img');
 
                     // Remplissage des éléments avec les données du produit
                     productName.innerText = nom;
@@ -39,12 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     productPrice.innerText = `Prix : ${price} €`;
                     productLink.href = `product.php?id=${id}`;
                     productLink.innerText = 'Voir le produit';
+                    productImage.src = `src/upload/${img}`;
 
                     // Ajout des éléments au produit dans le DOM
                     productDiv.appendChild(productName);
                     productDiv.appendChild(productCategory);
                     productDiv.appendChild(productPrice);
                     productDiv.appendChild(productLink);
+                    productDiv.appendChild(productImage);
                     products.appendChild(productDiv);
                 });
             }
