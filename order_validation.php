@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('src/class/users.php');
+include('src/class/AddressManager.php');
+
 
 try {
     $connexion = new PDO('mysql:host=localhost;dbname=boutique-en-ligne;charset=utf8;port=3307', 'root', '');
@@ -10,87 +12,31 @@ try {
     exit();
 }
 
-// Tableau carte test
-$testCreditCards = array(
-    array(
-        'number' => '4242424242424242',
-        'expiration' => '12/2024',
-        'cvv' => '123'
-    )
-);
+$addressManager = new AddressManager($connexion);
+
+if (!isset($_SESSION['id_user'])) {
+    die("erreur aucun utilisateur connecté");
+}
 
 if (!empty($_POST)) {
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
     if ($id_user === null) {
-        die("erreur aucun user connecter");
+        die("erreur aucun utilisateur connecté");
     }
 
-    $adresse_line1 = ($_POST["adresse_line1"]);
-    $adresse_line2 = $_POST["adresse_line2"] ?? null;
-    $city = $_POST["city"];
-    $postal_code = $_POST["postal_code"];
-    $country = $_POST["country"];
-    $telephone = $_POST["telephone"] ?? null;
-    $mobile = $_POST["mobile"] ?? null;
-    $credit_card_number = $_POST["credit_card_number"];
-    $expiration_date = $_POST["expiration_date"];
-    $cvv = $_POST["cvv"];
+    $adresse_line1 = isset($_POST["adresse_line1"]) ? htmlspecialchars($_POST["adresse_line1"]) : null;
+    $adresse_line2 = isset($_POST["adresse_line2"]) ? htmlspecialchars($_POST["adresse_line2"]) : null;
+    $city = isset($_POST["city"]) ? htmlspecialchars($_POST["city"]) : null;
+    $postal_code = isset($_POST["postal_code"]) ? htmlspecialchars($_POST["postal_code"]) : null;
+    $country = isset($_POST["country"]) ? htmlspecialchars($_POST["country"]) : null;
+    $telephone = isset($_POST["telephone"]) ? htmlspecialchars($_POST["telephone"]) : null;
+    $mobile = isset($_POST["mobile"]) ? htmlspecialchars($_POST["mobile"]) : null;
+    $credit_card_number = isset($_POST["credit_card_number"]) ? htmlspecialchars($_POST["credit_card_number"]) : null;
+    $expiration_date = isset($_POST["expiration_date"]) ? htmlspecialchars($_POST["expiration_date"]) : null;
+    $cvv = isset($_POST["cvv"]) ? htmlspecialchars($_POST["cvv"]) : null;
+    
 
-    // Vérification de la carte de crédit
-    if (!isTestCreditCardValid($credit_card_number, $expiration_date, $cvv)) {
-        echo "Erreur : la carte de crédit n'est pas valide.";
-        exit();
-    }
-
-    try {
-        $query = "INSERT INTO `users_address`(`adresse_line1`, `adresse_line2`, `city`, `postal_code`, `country`, `telephone`, `mobile`, `id_user`) VALUES (:adresse_line1, :adresse_line2, :city, :postal_code, :country, :telephone, :mobile, :id_user)";
-
-        $stmt = $connexion->prepare($query);
-        $stmt->bindParam(":adresse_line1", $adresse_line1);
-        $stmt->bindParam(":adresse_line2", $adresse_line2);
-        $stmt->bindParam(":city", $city);
-        $stmt->bindParam(":postal_code", $postal_code);
-        $stmt->bindParam(":country", $country);
-        $stmt->bindParam(":telephone", $telephone);
-        $stmt->bindParam(":mobile", $mobile);
-        $stmt->bindParam(":id_user", $id_user);
-
-        if ($stmt->execute()) {
-            echo "L'adresse a été ajoutée avec succès !";
-
-            // Supprimer le panier de l'utilisateur
-            $deleteCartQuery = "DELETE FROM `cart` WHERE id_user = :id_user";
-            $deleteCartStmt = $connexion->prepare($deleteCartQuery);
-            $deleteCartStmt->bindParam(":id_user", $id_user);
-
-            if ($deleteCartStmt->execute()) {
-                echo "Le panier a été supprimé.";
-            } else {
-                echo "Erreur lors de la suppression du panier.";
-            }
-
-            $_SESSION['cart_id'] = $_SESSION['cart']['id'];
-            header("location: succes.php?cart_id=" . $_SESSION['cart_id']);
-            exit();
-        } else {
-            echo "Erreur lors de l'ajout de l'adresse.";
-        }
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
-    }
-}
-
-// Fonction de validation de la carte de crédit de test
-function isTestCreditCardValid($number, $expiration, $cvv) {
-    global $testCreditCards;
-
-    foreach ($testCreditCards as $card) {
-        if ($number === $card['number'] && $expiration === $card['expiration'] && $cvv === $card['cvv']) {
-            return true;
-        }
-    }
-
-    return false;
+    $addressManager->addAddress($id_user, $adresse_line1, $adresse_line2, $city, $postal_code, $country, $telephone, $mobile, $credit_card_number, $expiration_date, $cvv);
 }
 ?>
 

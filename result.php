@@ -20,6 +20,8 @@ if (isset($_GET['q'])) {
             $nom = $result['name'];
             $category = $result['id_category'];
             $price = $result['price'] ;
+            $image = $result['image'] ;
+            echo "<p>$image</p>";
             echo "<h1>$nom</h1>";
             echo "<p>$price</p>";
             echo "<a href=\"product.php?id=$id\">Voir le produit</a><br><br>";

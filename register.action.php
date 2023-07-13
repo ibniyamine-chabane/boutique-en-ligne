@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 
 include("src/class/users.php");
 $user = new users;
+
 if (isset($_POST['submit'])) {
 
     if ($_POST['email'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password'] && $_POST['password_confirm']) {
@@ -15,6 +16,7 @@ if (isset($_POST['submit'])) {
             $lastname =  htmlspecialchars(trim($_POST['lastname']));
             $password =  htmlspecialchars(trim($_POST['password']));
             $user->register($email, $firstname, $lastname, $password);
+            json_encode($user);
 
         }else {
             echo "les mot de passe ne correspond pas";
@@ -24,6 +26,7 @@ if (isset($_POST['submit'])) {
         echo "veuillez remplir tout les champs"; 
     } 
 } 
+
 
 ?>
 

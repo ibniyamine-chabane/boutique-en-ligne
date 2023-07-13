@@ -57,13 +57,14 @@ class users
           $request->execute(array($this->email, $firstname, $lastname, $password, $role_id));
           $this->message = "inscription réussi";
           header('location : login.php');
+          exit();
+
         }        
           
         
     }
 
     public function connection($email, $password) {
-        // préparation de la requête
         $request = $this->database->prepare('SELECT u.`id` , `email` , `first_name` , `last_name` , `password` , `rights` 
                                              FROM user u 
                                              INNER JOIN role 
@@ -76,7 +77,7 @@ class users
         $password;
         $logged = false;
                                   
-        foreach ($userDatabase as $user) { //je lis le contenu de la table de la BDD
+        foreach ($userDatabase as $user) { 
 
             if ($email === $user['email'] && password_verify($password, $user['password'])) {   
                 $_SESSION['email'] = $email;

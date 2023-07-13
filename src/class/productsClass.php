@@ -129,9 +129,7 @@ class  products
                             $request2 = $this->database->prepare('SELECT * FROM product WHERE name = (?)');
                             $request2->execute(array($_SESSION['name']));
                             $boutiqueDB = $request2->fetchAll(PDO::FETCH_ASSOC);
-                            //var_dump($boutiqueDB);
 
-                            // echo $boutiqueDB[0]["id"];
 
                             $_SESSION['id_product'] = $boutiqueDB[0]['id'];
                             $this->id = $_SESSION['id_product'];

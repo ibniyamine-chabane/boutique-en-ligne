@@ -1,31 +1,31 @@
-document.getElementById("register-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
+const registerForm = document.getElementById("register-form");
 
-    const formData = new FormData(e.target);
-    formData.append("submit", "true");
+registerForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
+  const formData = new FormData(registerForm);
+  formData.append("submit", "true");
+
+  try {
     const response = await fetch("register.php", {
-        method: "POST",
-        body: formData,
-        headers: {
-            "Content-Type": "text/html; charset=UTF-8"
-        }
+      method: "POST",
+      body: formData,
     });
 
     if (response.ok) {
-        try {
-            const result = await response.json();
-            console.log(result);
+      const result = await response.json();
+      console.log(result);
 
-            if (result.success) {
-                alert("Vous êtes inscrit !");
-            } else {
-                alert(result.message);
-            }
-        } catch (error) {
-            console.error("Erreur lors de l'analyse de la réponse JSON:", error);
-        }
+      if (result.success) {
+        alert("Vous êtes inscrit !");
+        window.location.replace("login.php");
+      } else {
+        alert(result.message);
+      }
     } else {
-        console.error("Erreur lors de l'envoi du formulaire:", response.statusText);
+      console.error("Erreur lors de l'envoi du formulaire:", response.statusText);
     }
+  } catch (error) {
+    console.error("Erreur lors de l'envoi du formulaire:", error);
+  }
 });

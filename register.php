@@ -1,7 +1,6 @@
 <?php
 require_once("src/class/users.php");
 $user = new users;
-json_encode($user);
 
 $message = "";
 
@@ -17,6 +16,7 @@ if (isset($_POST['submit'])) {
             $password =  htmlspecialchars(trim($_POST['password']));
             $user->register($email, $firstname, $lastname, $password);
             $message = $user->getMessage();
+            header('Location: login.php');
         }else {
             $message = "les mots de passe ne correspond pas";
         }    

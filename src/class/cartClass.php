@@ -30,13 +30,11 @@ class cart
 
     public function addProductInCart(int $quantity) {
 
-         //étape 1 on insert l'id de l'user dans la table cart
         $request = $this->getDatabase()->prepare('INSERT INTO cart(id_user , amount, creation_date) 
                                                   VALUES (?, ?, NOW())'
                                                   );
 
         $request->execute(array($_SESSION['id_user'], 0));
-         //étape 2 on select la table cart ou la colonne id user correspond a notre user pour récupérer l'id de cart
         $request2 = $this->getDatabase()->prepare('SELECT id 
                                                  FROM cart
                                                  WHERE id_user = (?)
@@ -47,14 +45,12 @@ class cart
         $cartDb = $request2->fetchAll(PDO::FETCH_ASSOC);
         $id_cart = $cartDb[0]['id'];
         
-         //étape 3 on insert l'id_cart , l'id_product ,et la quantité entré dans le champ par l'user
         $request3 = $this->getDatabase()->prepare('INSERT INTO cart_product(id_cart , id_product , quantity)
                                                 VALUES (?, ?, ?)'
                                                 );
          
         $request3->execute(array($id_cart, $_GET['id'], $quantity));
 
-        //étape 4 on fait un select des table pour récupérer le prix par rapport a la quantité sur le bon produit
         $request4 = $this->getDatabase()->prepare('SELECT user.id , product.id , price , amount , quantity, cart.id
                                                    FROM user
                                                    INNER JOIN cart 
@@ -71,7 +67,6 @@ class cart
         $priceDb = $displaySelect[0]['price'];
         $amount = $priceDb * $quantity;
 
-        //derniere étape ajouter le montant dans notre table cart qui correspont a notre id.
         $update = $this->getDatabase()->prepare('UPDATE cart
                                                    SET `amount` = (?)
                                                    WHERE id_user = (?) AND cart.id = (?)'
