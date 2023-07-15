@@ -130,7 +130,7 @@ class users
             if ($this->email == $_SESSION['email']) {
                 $emailOk = true;
             } else if ( $this->email == $user['email']){
-                $this->message = "cette adresse appartient à un autre utilisateur";
+                $this->message = "cette email appartient à un autre utilisateur";
                 $emailOk = false;
                 break;
             } else {

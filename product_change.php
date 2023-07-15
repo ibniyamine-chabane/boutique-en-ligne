@@ -44,7 +44,8 @@ $request2 = $change->getDatabase()->prepare("SELECT id_product, id_sub_category,
                                 on sub_category.id = sub_category_product.id_sub_category
                                 WHERE id_product = (?)
                                 ORDER BY date_product DESC");
-$request2->execute(array($dbChangeproduct[0]['id']));
+// $request2->execute(array($dbChangeproduct[0]['id']));
+$request2->execute(array($_GET['id']));
 
 $display2 = $request2->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($display2);
@@ -74,13 +75,13 @@ if (isset($_POST['send'])) {
                 set product.name = (?), product.price = (?), product.description = (?), product.id_category = (?), inventory.quantity = (?)
                 WHERE product.id = (?)";
         $request = $change->getDatabase()->prepare($sql);
-        $request->execute(array($name, $price, $description, $_SESSION['category_id'], $quantity, $dbChangeproduct[0]['id']));
+        $request->execute(array($name, $price, $description, $_SESSION['category_id'], $quantity, $_GET['id']));
 
         //update sub category
         $sql2 = "DELETE FROM sub_category_product
                  WHERE id_product = (?)";
         $request2 = $change->getDatabase()->prepare($sql2);
-        $request2->execute(array($dbChangeproduct[0]['id']));
+        $request2->execute(array($_GET['id']));
 
         foreach ($_POST['sub_category'] as $postSubCategory) {
             foreach ($subCategoryDB as $subCategoryName) {
@@ -89,7 +90,7 @@ if (isset($_POST['send'])) {
                     $sql2 = "INSERT INTO `sub_category_product` (`id_product`,`id_sub_category`) 
                     VALUE (?,?)";
                     $request2 = $change->getDatabase()->prepare($sql2);
-                    $request2->execute(array($dbChangeproduct[0]['id'], $subCategoryName['id']));
+                    $request2->execute(array($_GET['id'], $subCategoryName['id']));
                 }
             }
         }
@@ -186,7 +187,7 @@ if (isset($_POST['send'])) {
                         <legend>Sous-catégorie :</legend>
                         <?php foreach ($subCategoryDB as $subCategory) : ?>
                             <div class="category">
-                                <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $dbChangeproduct[0]['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
+                                <input type="checkbox" id="sub_category" name="sub_category[]" value="<?= $subCategory['name'] ?>" <?php foreach ($display2 as $subCategory2) : ?> <?php if ($subCategory['name'] == $subCategory2['subName'] && $_GET['id'] == $subCategory2['productId']) : ?> <?= "checked" ?> <?php endif; ?> <?php endforeach; ?>>
                                 <label for="Action"><?= $subCategory['name'] ?></label>
                             </div>
                         <?php endforeach; ?>
