@@ -89,7 +89,7 @@ $productDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once("header.php"); ?>
     <main>
         <section>
-            <h2>Produit de la boutique</h2>
+            <h2>Produits de la boutique</h2>
             <div class="container-product">
                 <?php foreach ($productDatabase as $product ) : ?>
                     <div class="container-thumbnail"> <!-- div qui contient l'image et le titre  -->

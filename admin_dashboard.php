@@ -98,7 +98,7 @@ if (isset($_POST['submit_sub_category'])) {
                                     <div class="card-font-size">
                                         <h4><?= $product['productName'] ?></h4>
                                         <p><?= "Quantité : " . $product['quantity'] . " " . "prix : " . $product['price'] ."€" ?></p>
-                                        <p><?= $product['date_product'] ?></p>
+                                        <p><?= date('d-m-Y H:i:s', strtotime($product['date_product'])) ?></p>
                                     </div>
                                     <div class="card-font-size">
                                     <span><?php echo $product['categoryName']." : ";  

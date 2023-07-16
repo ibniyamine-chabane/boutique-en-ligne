@@ -1,15 +1,14 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Poppins:ital,wght@1,300&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Comic Neue', sans-serif;
   list-style: none;
   list-style-type: none;
 }
 /* -------    Header   ------  */
-
 
 
 li {
@@ -603,6 +602,7 @@ a.add-product-button {
 .card-font-size {
   font-size: 12px;
   padding: 0px 11px;
+  color: black;
 }
 
 a.admin-action-button {
