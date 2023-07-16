@@ -150,7 +150,7 @@ $totalR = 0;
             </div>
         <?php endif; ?>
         
-        <h1 class="title">Panier</h1> <!-- visible only with screen bellow 1008px-->
+        <h2 class="title">Panier</h2> <!-- visible only with screen bellow 1008px-->
         <div class="container-cart-responsive">
         <?php foreach ($products as $productR) :?>
             <div class="cart-product">
